@@ -3,7 +3,7 @@ import {Link} from "react-router-dom";
 import "./Navbar.css"
 
 function Navbar() {
-    const [sign, setSign] = useState(ture)
+    const [sign, setSign] = useState(true)
     const onClick = () => {
         setSign((prev) => !prev)
     }
