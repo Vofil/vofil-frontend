@@ -3,10 +3,15 @@ import "./LoginRegister.css";
 
 function LoginPage() {
     const [email, setEmail] = useState("");
+    const [ID, setID] = useState("");
     const [password, setPassword] = useState("");
 
     const onEmailHandler = (e) => {
         setEmail(e.currentTarget.value);
+    }
+
+    const onIDHandler = (e) => {
+        setID(e.currentTarget.value);
     }
 
     const onPasswordHandler = (e) => {
@@ -21,7 +26,7 @@ function LoginPage() {
     return (
         <div class="loginregister">
           <form>
-              <div><input name="email" type="email" placeholder="이메일" value={email} onChange={onEmailHandler} class="loginregister__input"/></div>
+              <div><input name="ID" type="text" placeholder="아이디" value={ID} onChange={onIDHandler} class="loginregister__input"/></div>
               <div><input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} class="loginregister__input"/></div>
               <div><button type="submit" onSubmit={onSubmit} class="loginregister__button">로그인</button></div>
           </form>
@@ -30,3 +35,5 @@ function LoginPage() {
 }
 
 export default LoginPage;
+
+// <div><input name="email" type="email" placeholder="이메일" value={email} onChange={onEmailHandler} class="loginregister__input"/></div>
