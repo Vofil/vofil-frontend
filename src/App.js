@@ -4,10 +4,10 @@ import Navbar from './components/Navbar';
 import Main from './routes/Main';
 import Login from './routes/Login';
 import Register from './routes/Register';
-import MainPage from './components/MainPage';
-import LoginPage from './components/LoginPage';
-import RegisterPage from './components/RegisterPage';
-import EditPicturesPage from './components/EditPicturesPage';
+import MainPage from './pages/MainPage';
+import LoginPage from './pages/LoginPage';
+import RegisterPage from './pages/RegisterPage';
+import EditPicturesPage from './pages/EditPicturesPage';
 
 //react-router-dom이 v6이 되면서 Switch -> Routes로 변경됨
 //그리고 v6부터는 component가 아니라 element로 props 내보내야 함.
