@@ -70,6 +70,7 @@ function ImageCropper(props) {
                     const croppedImageUrl = window.URL.createObjectURL(blob);
 
                     resolve(croppedImageUrl);
+                    console.log(croppedImageUrl);
                 }, 'image/jpg'
             );
         });
@@ -77,12 +78,8 @@ function ImageCropper(props) {
 
     return (
         <div>
-            <div>
-                <h2>넘어온 사진</h2>
-                {imageToCrop && <img src={imageToCrop} alt= "preview" />}
-            </div>
             <ReactCrop
-            src={imageToCrop || demoImage}
+            src={imageToCrop}
             crop={cropConfig}
             ruleOfThirds
             onImageLoaded={(imageRef) => setImageRef(imageRef)}

@@ -28,10 +28,6 @@ function EditPicturesPage2() {
                 onChange={onUploadFile}
             />
             <div>
-                <h2>로드된 사진</h2>
-                {imageToCrop && <img src={imageToCrop} alt= "preview" />}
-            </div>
-            <div>
                 <h2>사진 크롭구간</h2>
                 <ImageCropper
                     imageToCrop={imageToCrop}
