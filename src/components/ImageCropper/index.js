@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
-//import 'react-image-crop/lib/ReactCrop.scss';
 import demoImage from "../../assets/yaong.jpg";
 
 function ImageCropper(props) {
@@ -11,7 +10,11 @@ function ImageCropper(props) {
         // default crop config
         {
             unit: '%',
+            //unit: 'px',
+            //x: 130,
+            //y: 50,
             width: 30,
+            //height: 30,
             aspect: 16 / 9,
         }
     );
@@ -73,7 +76,12 @@ function ImageCropper(props) {
     }
 
     return (
-        <ReactCrop
+        <div>
+            <div>
+                <h2>넘어온 사진</h2>
+                {imageToCrop && <img src={imageToCrop} alt= "preview" />}
+            </div>
+            <ReactCrop
             src={imageToCrop || demoImage}
             crop={cropConfig}
             ruleOfThirds
@@ -82,6 +90,7 @@ function ImageCropper(props) {
             onChange={(cropConfig) => setCropConfig(cropConfig)}
             crossorigin="anonymous" // to avoid CORS-related problems
         />
+        </div>
     );
 }
 
