@@ -7,7 +7,7 @@ import Register from './routes/Register';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
-import EditPicturesPage2 from './pages/EditPicturesPage2';
+import EditPicturesPage from './pages/EditPicturesPage';
 
 //react-router-dom이 v6이 되면서 Switch -> Routes로 변경됨
 //그리고 v6부터는 component가 아니라 element로 props 내보내야 함.
@@ -19,7 +19,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route exact path="/" element={MainPage} />
-          <Route exact path="/edit_pictures" element={<EditPicturesPage2/>} />
+          <Route exact path="/edit_pictures" element={<EditPicturesPage/>} />
           <Route exact path="/sign_in" element={<LoginPage/>} />
           <Route exact path="/sign_up" element={<RegisterPage/>} />
         </Routes>
