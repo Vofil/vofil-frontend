@@ -14,6 +14,7 @@ function Navbar() {
             <ul className="navbar">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/edit_pictures"><button onClick={onClick}>사진편집</button></Link></li> 
+                <li><Link to="/mypage"><button onClick={onClick}>마이페이지</button></Link></li>
                 <li><Link to="/sign_in"><button onClick={onClick}>로그인</button></Link></li>
                 <li><Link to="/sign_up"><button onClick={onClick}>회원가입</button></Link></li>    
             </ul>
