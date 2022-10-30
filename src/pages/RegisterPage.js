@@ -88,9 +88,39 @@ function RegisterPage() {
   const onSubmitHandler = (event) => {
     event.preventDefault()
     if(password !== confirmPassword) {
-      return alert('비밀번호가 다릅니다.')
-    }
+      
+      setPassword("")
+      setConfirmPassword("")
 
+      return alert('비밀번호와 비밀번호 확인이 다릅니다.')
+    }
+    else{
+      const user = {
+        name: name,
+        id: ID,
+        password: password,
+        birth_year: birthdayY,
+        birth_month: birthdayM,
+        birth_day: birthdayD,
+        sex: sex,
+      };
+      setUsers([...users, user]);
+      event.target.reset()
+      
+      setName("")
+      setID("")
+      setPassword("")
+      setConfirmPassword("")
+      setBirthdayY(0)
+      setBirthdayM(0)
+      setBirthdayD(0)
+      setSex("")
+      
+      return alert('환영합니다.')
+    }
+  }
+
+  const onClick = (event) => {
     const user = {
       name: name,
       id: ID,
@@ -101,12 +131,11 @@ function RegisterPage() {
       sex: sex,
     };
     setUsers([...users, user]);
-
   }
 
   return (
     <div className="loginregister">
-      <form>
+      <form onSubmit={onSubmitHandler}>
           <div><input name="name" type="text" placeholder="이름" value={name} onChange={onNameHandler} className="loginregister__input"/></div>
           <div><input name="ID" type="text" placeholder="아이디" value={ID} onChange={onIDHandler} className="loginregister__input"/></div>
           <div><input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} className="loginregister__input"/></div>
@@ -143,7 +172,7 @@ function RegisterPage() {
             <label htmlFor="female" className="loginregister__input_radio">여성</label>
             <input name="sex" type="radio" value={2} onChange={onSexHandler} className="loginregister__input__radio"/>
           </div>
-          <div><button type="submit" onSubmit={onSubmitHandler} className="loginregister__button">계정 생성하기</button></div>
+          <div><button type="submit" className="loginregister__button">계정 생성하기</button></div>
       </form>
       <UserList users={users}/>
     </div>
