@@ -97,7 +97,7 @@ function RegisterPage() {
     }
     else{
         axios
-        .post("http://localhost:8080/users", {
+        .post("/api/users", {
           name: name,
           id: ID,
           password: password,
