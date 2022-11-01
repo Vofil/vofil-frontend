@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import axios from 'axios';
 import "./LoginRegister.css";
 import UserList from "../dummydata/UserList";
 
@@ -95,6 +96,26 @@ function RegisterPage() {
       return alert('비밀번호와 비밀번호 확인이 다릅니다.')
     }
     else{
+        axios
+        .post("http://localhost:8080/users", {
+          name: name,
+          id: ID,
+          password: password,
+          birth_year: birthdayY,
+          birth_month: birthdayM,
+          birth_day: birthdayD,
+          sex: sex,
+          point: 0,
+          keyword: null,
+          title: null,
+        })
+        .then((response) => {
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        });
+    /*
       const user = {
         name: name,
         id: ID,
@@ -106,7 +127,7 @@ function RegisterPage() {
       };
       setUsers([...users, user]);
       event.target.reset()
-      
+      */
       setName("")
       setID("")
       setPassword("")
@@ -129,6 +150,9 @@ function RegisterPage() {
       birth_month: birthdayM,
       birth_day: birthdayD,
       sex: sex,
+      point: 0,
+      keyword: null,
+      title: null,
     };
     setUsers([...users, user]);
   }
@@ -168,9 +192,9 @@ function RegisterPage() {
           </div>
           <div className="loginregister__input">
             <label htmlFor="male" className="loginregister__input__radio">남성</label>
-            <input name="sex" type="radio" value={1} onChange={onSexHandler} className="loginregister__input__radio"/>
+            <input name="sex" type="radio" value={3} onChange={onSexHandler} className="loginregister__input__radio"/>
             <label htmlFor="female" className="loginregister__input_radio">여성</label>
-            <input name="sex" type="radio" value={2} onChange={onSexHandler} className="loginregister__input__radio"/>
+            <input name="sex" type="radio" value={4} onChange={onSexHandler} className="loginregister__input__radio"/>
           </div>
           <div><button type="submit" className="loginregister__button">계정 생성하기</button></div>
       </form>
