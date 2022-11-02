@@ -198,7 +198,6 @@ function RegisterPage() {
           </div>
           <div><button type="submit" className="loginregister__button">계정 생성하기</button></div>
       </form>
-      <UserList users={users}/>
     </div>
   );
   
