@@ -1,9 +1,58 @@
 .createvote {
     display: flex;
+    height: 100vh;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+}
+
+.createvote__center {
+    width: 100%;
+    height: 100%;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+}
+
+.createvote__rightleft {
+    display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
 }
+
+.createvote__head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+
+    font-size: 4vh;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.createvote__content {
+    display: flex;
+    justify-content: center;
+    height: 80%;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: green;
+}
+
 .createvote__input {
     width: 300px;
     height: 50px;
@@ -20,7 +69,7 @@
     background-color: rgb(122, 204, 185);
     color: rgb(255, 255, 255);
     font-weight: 700;
-    width: 100%;
+    width: 48px;
     border-radius: 40px;
     height: 48px;
     margin-top: 10px;
