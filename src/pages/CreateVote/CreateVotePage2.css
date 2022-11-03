@@ -1,0 +1,137 @@
+.createvote {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+}
+
+.createvote2 {
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+}
+
+.createvote__center {
+    width: 80%;
+    height: 100%;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+}
+
+.createvote__rightleft {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+}
+
+.createvote__big__head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+
+    font-size: 6vh;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.createvote__mid__head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+
+    font-size: 3vh;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.createvote__small__head {
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    height: 20%;
+
+    font-size: 2vh;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.createvote__small__head2 {
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    height: 20%;
+
+    font-size: 2vh;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.createvote__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: green;
+}
+
+.createvote__input {
+    width: 300px;
+    height: 50px;
+    padding-left: 10px;
+    margin: 10px;
+}
+.createvote__input__radio {
+    width: 75px;
+    height: 25px;
+    padding-left: 10px;
+    margin: 10px;
+}
+.createvote__button {
+    background-color: rgb(122, 204, 185);
+    color: rgb(255, 255, 255);
+    font-weight: 700;
+    width: 150px;
+    border-radius: 40px;
+    height: 48px;
+    margin: 10px;
+}
+.createvote__select {
+    width: 100px;
+    height: 50px;
+    padding-left: 10px;
+    margin: 5px;
+}

@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import {Link} from "react-router-dom";
-import "../CreateVotePage.css";
-import VoteInfo from "../CreateVotePage";
+import "./CreateVotePage.css";
+import Order2 from "./Order2";
 
 function Order1() {
-    const [voteName, setVoteName] = useState("");
+    const [title, setTitle] = useState("");
 
-    const onVoteNameHandler = (event) => {
-        setVoteName(event.currentTarget.value)
+    const onTitleHandler = (event) => {
+        setTitle(event.currentTarget.value)
     }
 
    //console.log(voteName);
@@ -27,14 +27,8 @@ function Order1() {
                     1. 투표 제목을 입력해주세요
                 </div>
                 <div className="createvote__content">
-                    <input
-                        name="voteName"
-                        type="text"
-                        placeholder="예시: 카톡 프사로 쓸 귀여운 사진"
-                        value={voteName}
-                        onChange={onVoteNameHandler}
-                        className="createvote__input"
-                    />
+                    <label htmlFor="소개팅" className="createvote__input_radio">소개팅</label>
+                    <input name="voteFeeling" type="radio" value={"소개팅"} onChange={onTitleHandler} className="createvote__input__radio"/>
                 </div>
             </div>
             <div className="createvote__rightleft">
@@ -44,7 +38,7 @@ function Order1() {
                     </button>
                 </Link>
             </div>
-            <VoteInfo _voteName={voteName} />
+            <Order2 _title={title} />
         </div>
     );
 }

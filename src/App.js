@@ -20,12 +20,19 @@ import Order4 from "./pages/CreateVote/Order4"
 import Order5 from "./pages/CreateVote/Order5"
 import Order6 from "./pages/CreateVote/Order6"
 import Order7 from "./pages/CreateVote/Order7"
+import OrderMid from "./pages/CreateVote/OrderMid"
 import OrderStart from "./pages/CreateVote/OrderStart"
 import OrderEnd from "./pages/CreateVote/OrderEnd"
+import VotePage from "./pages/VotePage"
 
 //react-router-dom이 v6이 되면서 Switch -> Routes로 변경됨
 //그리고 v6부터는 component가 아니라 element로 props 내보내야 함.
 //https://lefthanddeveloper.tistory.com/16
+
+/*
+    <Vote 페이지에 관하여>
+    - 투표 생성해서 투표 만들게 되면 exact path는 String 형태로 /vote/투표인덱스 로 작성
+*/
 function App() {
   return (
     <Router>
@@ -45,8 +52,11 @@ function App() {
           <Route exact path="/create_vote/order5" element={<Order5/>} />
           <Route exact path="/create_vote/order6" element={<Order6/>} />
           <Route exact path="/create_vote/order7" element={<Order7/>} />
+          <Route exact path="/create_vote/orderMid" element={<OrderMid/>} />
           <Route exact path="/create_vote/orderStart" element={<OrderStart/>} />
           <Route exact path="/create_vote/orderEnd" element={<OrderEnd/>} />
+
+          <Route exact path="/vote" element={<VotePage/>} />
 
           <Route exact path="/mypage" element={<MyPage/>} />
           <Route exact path="/mypage/myinfo" element={<MyInfoPage/>} />

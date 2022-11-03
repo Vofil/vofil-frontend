@@ -1,5 +1,18 @@
 .createvote {
     display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin-left: 20px;
+    margin-right: 20px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: red;
+}
+
+.createvote2 {
+    align-items: center;
+    justify-content: center;
     height: 100vh;
     margin-left: 20px;
     margin-right: 20px;
@@ -9,7 +22,7 @@
 }
 
 .createvote__center {
-    width: 100%;
+    width: 80%;
     height: 100%;
 
     border-width: 1px;
@@ -29,13 +42,55 @@
     border-color: red;
 }
 
-.createvote__head {
+.createvote__big__head {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 20%;
 
-    font-size: 4vh;
+    font-size: 6vh;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.createvote__mid__head {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 20%;
+
+    font-size: 3vh;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.createvote__small__head {
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    height: 20%;
+
+    font-size: 2vh;
+    font-weight: bold;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: blue;
+}
+
+.createvote__small__head2 {
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    height: 20%;
+
+    font-size: 2vh;
     font-weight: bold;
 
     border-width: 1px;
@@ -45,6 +100,7 @@
 
 .createvote__content {
     display: flex;
+    align-items: center;
     justify-content: center;
 
     border-width: 1px;
@@ -68,10 +124,10 @@
     background-color: rgb(122, 204, 185);
     color: rgb(255, 255, 255);
     font-weight: 700;
-    width: 48px;
+    width: 150px;
     border-radius: 40px;
     height: 48px;
-    margin-top: 10px;
+    margin: 10px;
 }
 .createvote__select {
     width: 100px;

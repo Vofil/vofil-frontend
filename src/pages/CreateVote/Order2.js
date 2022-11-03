@@ -1,16 +1,18 @@
 import React, {useState} from 'react';
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import {Link} from "react-router-dom";
-import "../CreateVotePage.css";
-import VoteInfo from "../CreateVotePage";
+import "./CreateVotePage.css";
 
-function Order2() {
+function Order2(props) {
 
     const [gender, setGender] = useState(0);
 
     const onGenderHandler = (event) => {
         setGender(event.currentTarget.value)
     }
+
+    console.log(props._title);
+    console.log(gender)
 
     return(
         <div className="createvote">
@@ -35,7 +37,6 @@ function Order2() {
                     <IoIosArrowForward/>
                 </button>
             </div>
-            <VoteInfo _gender={gender} />
         </div>
     );
 }

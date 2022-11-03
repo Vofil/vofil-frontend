@@ -1,4 +1,4 @@
-import "../CreateVotePage.css";
+import "./CreateVotePage.css";
 
 function Order7() {
     return(
