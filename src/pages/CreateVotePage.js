@@ -4,7 +4,6 @@ function CreateVotePage() {
 
     return(
         <h2>투표 생성</h2>
-
     );
 }
 
