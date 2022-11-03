@@ -24,11 +24,11 @@ function LoginPage() {
     }
 
     return (
-        <div class="loginregister">
+        <div className="loginregister">
           <form>
-              <div><input name="ID" type="text" placeholder="아이디" value={ID} onChange={onIDHandler} class="loginregister__input"/></div>
-              <div><input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} class="loginregister__input"/></div>
-              <div><button type="submit" onSubmit={onSubmit} class="loginregister__button">로그인</button></div>
+              <div><input name="ID" type="text" placeholder="아이디" value={ID} onChange={onIDHandler} className="loginregister__input"/></div>
+              <div><input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} className="loginregister__input"/></div>
+              <div><button type="submit" onSubmit={onSubmit} className="loginregister__button">로그인</button></div>
           </form>
         </div>
     );
