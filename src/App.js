@@ -12,6 +12,7 @@ import MyPage from "./pages/MyPage";
 import MyInfoPage from "./pages/MyPageComponents/MyInfoPage"
 import VoteListMPage from "./pages/MyPageComponents/VoteListMPage"
 import VoteListPPage from "./pages/MyPageComponents/VoteListPPage"
+import CreateVotePage from "./pages/CreateVotePage"
 
 //react-router-dom이 v6이 되면서 Switch -> Routes로 변경됨
 //그리고 v6부터는 component가 아니라 element로 props 내보내야 함.
@@ -26,6 +27,7 @@ function App() {
           <Route exact path="/edit_pictures" element={<EditPicturesPage/>} />
           <Route exact path="/sign_in" element={<LoginPage/>} />
           <Route exact path="/sign_up" element={<RegisterPage/>} />
+          <Route exact path="/create_vote" element={<CreateVotePage/>} />
           <Route exact path="/mypage" element={<MyPage/>} />
           <Route exact path="/mypage/myinfo" element={<MyInfoPage/>} />
           <Route exact path="/mypage/votelistM" element={<VoteListMPage/>} />
