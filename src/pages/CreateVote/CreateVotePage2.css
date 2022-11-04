@@ -1,16 +1,4 @@
 .createvote {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    margin-left: 20px;
-    margin-right: 20px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: red;
-}
-
-.createvote2 {
     align-items: center;
     justify-content: center;
     height: 100vh;
@@ -46,7 +34,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 20%;
 
     font-size: 6vh;
     font-weight: bold;
@@ -71,20 +58,6 @@
 }
 
 .createvote__small__head {
-    display: flex;
-    //align-items: center;
-    justify-content: center;
-    height: 20%;
-
-    font-size: 2vh;
-    font-weight: bold;
-
-    border-width: 1px;
-    border-style: solid;
-    border-color: blue;
-}
-
-.createvote__small__head2 {
     display: flex;
     //align-items: center;
     justify-content: center;

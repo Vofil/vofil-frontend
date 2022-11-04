@@ -40,12 +40,12 @@ function OrderMid() {
     }
 
     return(
-        <div className="createvote2">
+        <div className="createvote">
             <div className="createvote__center">
                 <div className="createvote__mid__head">
                     1. 제목의 키워드를 골라주세요!
                 </div>
-                <div className="createvote__small__head2">
+                <div className="createvote__small__head">
                 </div>
                 <div className="createvote__content">
 
