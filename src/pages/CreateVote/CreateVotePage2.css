@@ -13,7 +13,7 @@
     width: 80%;
     height: 100%;
 
-    border-width: 1px;
+    border-width: 10px;
     border-style: solid;
     border-color: red;
 }
@@ -76,6 +76,9 @@
     align-items: center;
     justify-content: center;
 
+    padding-top: 30px;
+    padding-bottom: 30px;
+
     border-width: 1px;
     border-style: solid;
     border-color: green;
@@ -93,6 +96,19 @@
     padding-left: 10px;
     margin: 10px;
 }
+
+.createvote__button__container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 30px;
+
+    border-width: 5px;
+    border-style: solid;
+    border-color: red;
+}
+
 .createvote__button {
     background-color: rgb(122, 204, 185);
     color: rgb(255, 255, 255);
@@ -100,7 +116,6 @@
     width: 150px;
     border-radius: 40px;
     height: 48px;
-    margin: 10px;
 }
 .createvote__select {
     width: 100px;

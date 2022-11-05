@@ -45,7 +45,7 @@ function CreateVotePage() {
       }
 
     return(
-        <button onClick={onDataHandler}>데이터가 갑니다 슝</button>
+        <OrderStart/>
     );
 }
 

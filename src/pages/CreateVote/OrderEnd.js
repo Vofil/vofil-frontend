@@ -14,12 +14,16 @@ function OrderEnd() {
                     투표를 확인해보시겠어요?
                 </div>
                 <div className="createvote__content">
-                    <Link to="/vote">
-                        <button className="createvote__button">네</button>
-                    </Link>
-                    <Link to="/">
-                        <button className="createvote__button">아니오</button>
-                    </Link>
+                    <div className="createvote__button__container">
+                        <Link to="/vote">
+                            <button className="createvote__button">네</button>
+                        </Link>
+                    </div>
+                    <div className="createvote__button__container">
+                        <Link to="/">
+                            <button className="createvote__button">아니오</button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

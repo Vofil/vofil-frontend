@@ -13,7 +13,7 @@ function OrderStart() {
                 <div className="createvote__small__head">
                     개인정보 보호를 위해 블러처리를 해주세요
                 </div>
-                <div className="createvote__content">
+                <div className="createvote__button__container">
                     <Link to="/create_vote/orderMid">
                         <button className="createvote__button">시작하기</button>
                     </Link>
