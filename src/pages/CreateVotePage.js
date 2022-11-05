@@ -1,11 +1,4 @@
 import React, {useState} from 'react';
-import Order1 from "./CreateVote/Order1";
-import Order2 from "./CreateVote/Order2";
-import Order3 from "./CreateVote/Order3";
-import Order4 from "./CreateVote/Order4";
-import Order5 from "./CreateVote/Order5";
-import Order6 from "./CreateVote/Order6";
-import Order7 from "./CreateVote/Order7";
 import OrderStart from "./CreateVote/OrderStart";
 import OrderEnd from "./CreateVote/OrderEnd";
 import axios from 'axios';
