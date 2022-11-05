@@ -137,7 +137,7 @@ function RegisterPage() {
       setBirthdayD(0)
       setSex("")
       
-      return alert('환영합니다.')
+      return alert('가입되었습니다.')
     }
   }
 

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import "./LoginRegister.css";
+import axios from 'axios';
 
 function LoginPage() {
     const [email, setEmail] = useState("");
@@ -19,8 +20,20 @@ function LoginPage() {
     }
 
     //백엔드 연결 아직 안 함. 일단 가입 눌러도 변화 없게.
-    const onSubmit = (e) => {
+    const onSubmitHandler = (e) => {
         e.preventDefault();
+        axios
+        .get("http://localhost:8080/api/users/" + ID, {
+          id: ID,
+          password: password
+        })
+        .then((response) => {
+            console.log('well done!')
+            return alert('환영합니다.')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        });
     }
 
     return (
@@ -28,7 +41,7 @@ function LoginPage() {
           <form>
               <div><input name="ID" type="text" placeholder="아이디" value={ID} onChange={onIDHandler} className="loginregister__input"/></div>
               <div><input name="password" type="password" placeholder="비밀번호" value={password} onChange={onPasswordHandler} className="loginregister__input"/></div>
-              <div><button type="submit" onSubmit={onSubmit} className="loginregister__button">로그인</button></div>
+              <div><button type="submit" onClick={onSubmitHandler} className="loginregister__button">로그인</button></div>
           </form>
         </div>
     );
