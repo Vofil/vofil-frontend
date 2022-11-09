@@ -37,6 +37,7 @@ const _category = [ {c1: "카카오톡 프로필 사진" , c2: "카톡프사"},
 
 function OrderMid() {
     const [title, setTitle] = useState("");
+    const [title_content, setTitleContent] = useState("");
     const [gender, setGender] = useState(0);
     const [age, setAge] = useState(0);
     const [kind, setKind] = useState(0);
@@ -47,6 +48,17 @@ function OrderMid() {
     const onTitleHandler = (event) => {
         console.log(event.currentTarget.value)
         setTitle(event.currentTarget.value)
+        titleContent(event.currentTarget.value)
+    }
+
+    const titleContent = (t) =>{
+        console.log(t)
+        title_content = _title.map(function(element) {
+            console.log(`${element.t2}`)
+            if (`${element.t2}` === t) {
+                setTitleContent(`${element.t1}`)
+            }
+        });
     }
 
     const onGenderHandler = (event) => {
@@ -101,16 +113,17 @@ function OrderMid() {
                     <div className="createvote__small__head">
                         키워드를 골라주시면 제목이 자동 생성됩니다.
                     </div>
+                    <div className="createvote__content">{title_content}</div>
                     <div className="createvote__content">
                         {_title.map(x =>
-                            <label key={x.t1}>
+                            <label key={x.t2} >
                                 <input
                                     type="radio"
                                     value={x.t2}
                                     checked={title === `${x.t2}`}
                                     onChange={onTitleHandler}
                                 />
-                                {x.t1}
+                                {x.t2}
                             </label>
                          )}
                     </div>
