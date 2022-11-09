@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
-import {Link} from "react-router-dom";
-import "./CreateVotePage2.css";
+import {Link, Route, Switch} from "react-router-dom";
+import Modal from 'react-awesome-modal';
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
+import EditPicturesPage from "../EditPicturesPage";
+import "./CreateVotePage2.css";
+import "./modal.css";
+
 
 const _title = [{t1 : "소개팅에 사용할 사진 골라주세요!", t2 : "소개팅"},
     {t1 : "대학 오티에서 보여줄 사진 골라주세요~", t2 : "대학오티"},
@@ -34,6 +38,34 @@ const _category = [ {c1: "카카오톡 프로필 사진" , c2: "카톡프사"},
     {c1: "인스타그램 게시물" , c2: "인스타게시물"},
     {c1: "트위터 프로필 사진" , c2: "트위터프사"},
     {c1: "트위터 헤더" , c2: "트위터헤더"}]
+
+function EditModal({v}) {
+    const [state, setState] = useState(v) // true: 모달 실행, false: 모달 종료
+
+    const onStateHandler = (event) => {
+        setState(!state)
+    }
+
+    return (
+        <div>
+            <Modal
+                visible={state}
+                width="90%"
+                height="90%"
+                effect="fadeInDown"
+                //onClickAway={onStateHandler}
+            >
+                <div>
+                    테스트
+                    <input
+                        value='close' type='button' onClick={onStateHandler}
+                    />
+                </div>
+                <EditPicturesPage/>
+            </Modal>
+        </div>
+    );
+}
 
 function OrderMid() {
     const [title, setTitle] = useState("");
@@ -233,7 +265,7 @@ function OrderMid() {
                         7. 사진을 등록해주세요!
                     </div>
                     <div className="createvote__content">
-
+                        <EditModal v={true}/>
                     </div>
                 </div>
             </div>
