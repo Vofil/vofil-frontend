@@ -1,10 +1,16 @@
-import React, {useState} from "react";
+import React, {useState, useReducer, useContext} from "react";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import demoImage from "../../assets/yaong.jpg";
+import ImgUrlDispatch from "../../pages/CreateVote/OrderMid";
 
 function ImageCropper(props) {
     const {imageToCrop, onImageCropped} = props;
+
+    //const dispatch = useContext(ImgUrlDispatch)
+    //이미지 주소 받기 위해 추가
+    //const [state, dispatch] = useReducer(reducer, initialState);
+    const dispatch = useContext(ImgUrlDispatch)
 
     const [cropConfig, setCropConfig] = useState(
         // default crop config
@@ -69,6 +75,9 @@ function ImageCropper(props) {
                     // creating a Object URL representing the Blob object given
                     const croppedImageUrl = window.URL.createObjectURL(blob);
 
+                    //이미지 주소 받기 위해 추가
+                    //dispatch(croppedImageUrl);
+
                     resolve(croppedImageUrl);
                     console.log(croppedImageUrl);
                 }, 'image/jpg'
@@ -79,14 +88,14 @@ function ImageCropper(props) {
     return (
         <div>
             <ReactCrop
-            src={imageToCrop}
-            crop={cropConfig}
-            ruleOfThirds
-            onImageLoaded={(imageRef) => setImageRef(imageRef)}
-            onComplete={(cropConfig) => cropImage(cropConfig)}
-            onChange={(cropConfig) => setCropConfig(cropConfig)}
-            crossorigin="anonymous" // to avoid CORS-related problems
-        />
+                src={imageToCrop}
+                crop={cropConfig}
+                ruleOfThirds
+                onImageLoaded={(imageRef) => setImageRef(imageRef)}
+                onComplete={(cropConfig) => cropImage(cropConfig)}
+                onChange={(cropConfig) => setCropConfig(cropConfig)}
+                crossorigin="anonymous" // to avoid CORS-related problems
+            />
         </div>
     );
 }

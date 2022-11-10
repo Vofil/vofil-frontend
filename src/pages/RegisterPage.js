@@ -28,7 +28,7 @@ function RegisterPage() {
   const [birthdayY, setBirthdayY] = useState(0)
   const [birthdayM, setBirthdayM] = useState(0)
   const [birthdayD, setBirthdayD] = useState(0)
-  const [sex, setSex] = useState("")
+  const [gender, setGender] = useState("")
 
   //테스트 더미 데이터
   const [users, setUsers] = useState([
@@ -82,8 +82,8 @@ function RegisterPage() {
     setBirthdayD(event.currentTarget.value)
   }
 
-  const onSexHandler = (event) => {
-    setSex(event.currentTarget.value)
+  const onGenderHandler = (event) => {
+    setGender(event.currentTarget.value)
   }
 
   const onSubmitHandler = (event) => {
@@ -104,7 +104,7 @@ function RegisterPage() {
           birth_year: birthdayY,
           birth_month: birthdayM,
           birth_day: birthdayD,
-          sex: sex,
+          gender: gender,
           point: 0,
           keyword: null,
           title: null,
@@ -135,7 +135,7 @@ function RegisterPage() {
       setBirthdayY(0)
       setBirthdayM(0)
       setBirthdayD(0)
-      setSex("")
+      setGender("")
       
       return alert('가입되었습니다.')
     }
@@ -149,7 +149,7 @@ function RegisterPage() {
       birth_year: birthdayY,
       birth_month: birthdayM,
       birth_day: birthdayD,
-      sex: sex,
+      gender: gender,
       point: 0,
       keyword: null,
       title: null,
@@ -192,9 +192,9 @@ function RegisterPage() {
           </div>
           <div className="loginregister__input">
             <label htmlFor="male" className="loginregister__input__radio">남성</label>
-            <input name="sex" type="radio" value={3} onChange={onSexHandler} className="loginregister__input__radio"/>
+            <input name="gender" type="radio" value={3} onChange={onGenderHandler} className="loginregister__input__radio"/>
             <label htmlFor="female" className="loginregister__input_radio">여성</label>
-            <input name="sex" type="radio" value={4} onChange={onSexHandler} className="loginregister__input__radio"/>
+            <input name="gender" type="radio" value={4} onChange={onGenderHandler} className="loginregister__input__radio"/>
           </div>
           <div><button type="submit" className="loginregister__button">계정 생성하기</button></div>
       </form>

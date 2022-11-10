@@ -23,10 +23,26 @@ function LoginPage() {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios
-        .get("http://localhost:8080/api/users/" + ID, {
-          id: ID,
-          password: password
+        .get("/api/users/" + ID, {
+            id: ID,
+            password: password,
         })
+        /*axios({
+            method: "get",
+            url: "/api/users/" + ID,
+            data: {
+              name: name,
+              id: ID,
+              password: password,
+              birth_year: ,
+              birth_month: birthdayM,
+              birth_day: birthdayD,
+              gender: gender,
+              point: 0,
+              keyword: null,
+              title: null,
+            },
+        })*/
         .then((response) => {
             console.log('well done!')
             return alert('환영합니다.')
