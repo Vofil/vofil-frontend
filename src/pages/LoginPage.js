@@ -19,31 +19,19 @@ function LoginPage() {
         setPassword(e.currentTarget.value);
     }
 
-    //백엔드 연결 아직 안 함. 일단 가입 눌러도 변화 없게.
+    //백에 로그인 요청
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios
-        .get("/api/users/" + ID, {
-            id: ID,
-            password: password,
-        })
-        /*axios({
-            method: "get",
-            url: "/api/users/" + ID,
-            data: {
-              name: name,
-              id: ID,
-              password: password,
-              birth_year: ,
-              birth_month: birthdayM,
-              birth_day: birthdayD,
-              gender: gender,
-              point: 0,
-              keyword: null,
-              title: null,
-            },
-        })*/
+        .get("/api/users" + ID, {params:
+            {
+                id: ID,
+                password: password
+            }},
+            {withCredentials: true}
+        )
         .then((response) => {
+            console.log(response)
             console.log('well done!')
             return alert('환영합니다.')
         })
