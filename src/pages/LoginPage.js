@@ -23,7 +23,7 @@ function LoginPage() {
     const onSubmitHandler = (e) => {
         e.preventDefault();
         axios
-        .get("/api/users" + ID, {params:
+        .get("/api/users/", {params:
             {
                 id: ID,
                 password: password
@@ -31,7 +31,8 @@ function LoginPage() {
             {withCredentials: true}
         )
         .then((response) => {
-            console.log(response)
+            console.log("토큰을 내놔라")
+            console.log(response.data)
             console.log('well done!')
             return alert('환영합니다.')
         })

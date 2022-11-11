@@ -1,4 +1,4 @@
-import React, {useState, useContext, useReducer} from 'react';
+import React, {useState, useEffect, useContext, useReducer} from 'react';
 import {Link, Route, Switch} from "react-router-dom";
 import Modal from 'react-awesome-modal';
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
@@ -39,50 +39,50 @@ const _category = [ {c1: "카카오톡 프로필 사진" , c2: "카톡프사"},
     {c1: "인스타그램 게시물" , c2: "인스타게시물"},
     {c1: "트위터 프로필 사진" , c2: "트위터프사"},
     {c1: "트위터 헤더" , c2: "트위터헤더"}]
+const _pic_cnt = [{p1: "2개", p2: 2}, {p1: "3개", p2: 3}, {p1: "4개", p2: 4}]
 
-//이미지 url 값 내보낼 dispatch
-export const ImgUrlDispatch = React.createContext(null);
-
-const initialState = "";
-function reducer(state, action){
-    return state;
-}
-
-function EditModal({v}) {
+function EditModal({v, vote_id, pic_cnt}) {
     const [state, setState] = useState(v) // true: 모달 실행, false: 모달 종료
-
-    //이미지 주소 받기 위해 추가
-    const [img_url, dispatch] = useReducer(reducer, initialState);
-
     const onStateHandler = (event) => {
         setState(!state)
+        //modal_v = !(modal_v)
     }
 
+    /*
+    useEffect(() => {
+        console.log("props 업데이트");
+        console.log(v + " " + vote_id + " " + pic_cnt)
+        console.log("투표 아이디: " + vote_id)
+        console.log("사진 개수: " + pic_cnt)
+    }*/
+
+    console.log("투표 아이디: " + vote_id)
+    console.log("사진 개수: " + pic_cnt)
     return (
-    <ImgUrlDispatch.Provider value={dispatch}>
-            <div>
-                <Modal
-                    visible={state}
-                    width="90%"
-                    height="90%"
-                    effect="fadeInDown"
-                    //onClickAway={onStateHandler}
-                >
-                    <div>
-                        테스트
-                        <input
-                            value='close' type='button' onClick={onStateHandler}
-                        />
-                    </div>
-                    <EditPicturesPage/>
-                    <div>{img_url}</div>
-                </Modal>
-            </div>
-    </ImgUrlDispatch.Provider>
+        <div>
+            <Modal
+                visible={state}
+                width="90%"
+                height="90%"
+                effect="fadeInDown"
+                onClickAway={onStateHandler}
+            >
+                <div>
+                    테스트
+                    <input
+                        value='close' type='button' onClick={onStateHandler}
+                    />
+                </div>
+                <EditPicturesPage vote_id={vote_id} pic_cnt={pic_cnt}/>
+            </Modal>
+        </div>
     );
 }
 
 function OrderMid() {
+    const [user_id, setUserID] = useState(1);
+    const [vote_id, setVoteID] = useState(1);
+
     const [feeling, setFeeling] = useState("");
     const [title_content, setTitleContent] = useState("");
     const [gender, setGender] = useState(0);
@@ -91,6 +91,7 @@ function OrderMid() {
     const [ending_point, setEndingPoint] = useState(0);
     const [categorying, setCategorying] = useState("");
     const [pic_cnt, setPicCnt] = useState(0);
+    const [modal_v, setModalV] = useState(false);
 
     const onFeelingHandler = (event) => {
         console.log(event.currentTarget.value)
@@ -158,7 +159,7 @@ function OrderMid() {
           //투표를 등록한 사람 id
             user_id : "hyomin",
           //투표 id
-            id : 1,
+            id : null,
           //설정 성별(3: 남자, 4: 여자)
             gender : gender,
           //설정 나이대 [0,10,20,30,40,50,60] 0~10대, 10~20대 ...
@@ -191,147 +192,161 @@ function OrderMid() {
         return alert('등록되었습니다~^*^')
       }
 
+    const onModalClick = (event) => {
+        setModalV(true)
+    }
+
     return(
         <div>
-            //<form onSubmit={onSubmitHandler}>
-                <div className="createvote">
-                    <div className="createvote__center">
-                        <div className="createvote__mid__head">
-                            1. 제목의 키워드를 골라주세요!
-                        </div>
-                        <div className="createvote__small__head">
-                            키워드를 골라주시면 제목이 자동 생성됩니다.
-                        </div>
-                        <div className="createvote__content">{title_content}</div>
-                        <div className="createvote__content">
-                            {_title.map(x =>
-                                <label key={x.t2} >
-                                    <input
-                                        type="radio"
-                                        value={x.t2}
-                                        checked={feeling === `${x.t2}`}
-                                        onChange={onFeelingHandler}
-                                    />
-                                    {x.t2}
-                                </label>
-                             )}
-                        </div>
+            <div className="createvote">
+                <div className="createvote__center">
+                    <div className="createvote__mid__head">
+                        1. 제목의 키워드를 골라주세요!
+                    </div>
+                    <div className="createvote__small__head">
+                        키워드를 골라주시면 제목이 자동 생성됩니다.
+                    </div>
+                    <div className="createvote__content">{title_content}</div>
+                    <div className="createvote__content">
+                        {_title.map(x =>
+                            <label key={x.t2} >
+                                <input
+                                    type="radio"
+                                    value={x.t2}
+                                    checked={feeling === `${x.t2}`}
+                                    onChange={onFeelingHandler}
+                                />
+                                {x.t2}
+                            </label>
+                         )}
                     </div>
                 </div>
-                <div className="createvote">
-                    <div className="createvote__center">
-                        <div className="createvote__mid__head">
-                            2. 어떤 성별로부터 투표 받고 싶나요?
-                        </div>
-                        <div className="createvote__content">
-                            {_gender.map(x =>
-                                <label key={x.g1}>
-                                    <input
-                                        type="radio"
-                                        value={x.g2}
-                                        checked={gender === `${x.g2}`}
-                                        onChange={onGenderHandler}
-                                    />
-                                    {x.g1}
-                                </label>
-                            )}
-                        </div>
+            </div>
+            <div className="createvote">
+                <div className="createvote__center">
+                    <div className="createvote__mid__head">
+                        2. 어떤 성별로부터 투표 받고 싶나요?
+                    </div>
+                    <div className="createvote__content">
+                        {_gender.map(x =>
+                            <label key={x.g1}>
+                                <input
+                                    type="radio"
+                                    value={x.g2}
+                                    checked={gender === `${x.g2}`}
+                                    onChange={onGenderHandler}
+                                />
+                                {x.g1}
+                            </label>
+                        )}
                     </div>
                 </div>
-                <div className="createvote">
-                    <div className="createvote__center">
-                        <div className="createvote__mid__head">
-                            3. 어떤 나이대로부터 투표 받고 싶나요?
-                        </div>
-                        <div className="createvote__content">
-                            {_age.map(x =>
-                                <label key={x.a1}>
-                                    <input
-                                        type="radio"
-                                        value={x.a2}
-                                        checked={age === `${x.a2}`}
-                                        onChange={onAgeHandler}
-                                    />
-                                    {x.a1}
-                                </label>
-                             )}
-                        </div>
+            </div>
+            <div className="createvote">
+                <div className="createvote__center">
+                    <div className="createvote__mid__head">
+                        3. 어떤 나이대로부터 투표 받고 싶나요?
+                    </div>
+                    <div className="createvote__content">
+                        {_age.map(x =>
+                            <label key={x.a1}>
+                                <input
+                                    type="radio"
+                                    value={x.a2}
+                                    checked={age === `${x.a2}`}
+                                    onChange={onAgeHandler}
+                                />
+                                {x.a1}
+                            </label>
+                         )}
                     </div>
                 </div>
-                <div className="createvote">
-                    <div className="createvote__center">
-                        <div className="createvote__mid__head">
-                            4. 어떤 방식으로 투표를 진행할까요?
-                        </div>
-                        <div className="createvote__content">
-                            {_kind.map(x =>
-                                <label key={x.k1}>
-                                    <input
-                                        type="radio"
-                                        value={x.k2}
-                                        checked={kind === `${x.k2}`}
-                                        onChange={onKindHandler}
-                                    />
-                                    {x.k1}
-                                </label>
-                            )}
-                        </div>
+            </div>
+            <div className="createvote">
+                <div className="createvote__center">
+                    <div className="createvote__mid__head">
+                        4. 어떤 방식으로 투표를 진행할까요?
+                    </div>
+                    <div className="createvote__content">
+                        {_kind.map(x =>
+                            <label key={x.k1}>
+                                <input
+                                    type="radio"
+                                    value={x.k2}
+                                    checked={kind === `${x.k2}`}
+                                    onChange={onKindHandler}
+                                />
+                                {x.k1}
+                            </label>
+                        )}
                     </div>
                 </div>
-                <div className="createvote">
-                    <div className="createvote__center">
-                        <div className="createvote__mid__head">
-                            5. 몇 개의 투표를 받으면 투표를 종료할까요?
-                        </div>
-                        <div className="createvote__content">
-                            <input
-                                name="endingPoint"
-                                type="range"
-                                min="10"
-                                max="100"
-                                value={ending_point}
-                                onChange={onEndingPointHandler}
-                            />
-                            {ending_point}
-                        </div>
+            </div>
+            <div className="createvote">
+                <div className="createvote__center">
+                    <div className="createvote__mid__head">
+                        5. 몇 개의 투표를 받으면 투표를 종료할까요?
+                    </div>
+                    <div className="createvote__content">
+                        <input
+                            name="endingPoint"
+                            type="range"
+                            min="10"
+                            max="100"
+                            value={ending_point}
+                            onChange={onEndingPointHandler}
+                        />
+                        {ending_point}
                     </div>
                 </div>
-                <div className="createvote">
-                    <div className="createvote__center">
-                        <div className="createvote__mid__head">
-                            6. 어떤 용도로 사진을 이용할 예정인가요?
-                        </div>
-                        <div className="createvote__content">
-                            {_category.map(x =>
-                                <label key={x.c1}>
-                                    <input
-                                        type="radio"
-                                        value={x.c2}
-                                        checked={categorying === `${x.c2}`}
-                                        onChange={onCategoryingHandler}
-                                    />
-                                    {x.c1}
-                                </label>
-                            )}
-                        </div>
+            </div>
+            <div className="createvote">
+                <div className="createvote__center">
+                    <div className="createvote__mid__head">
+                        6. 어떤 용도로 사진을 이용할 예정인가요?
+                    </div>
+                    <div className="createvote__content">
+                        {_category.map(x =>
+                            <label key={x.c1}>
+                                <input
+                                    type="radio"
+                                    value={x.c2}
+                                    checked={categorying === `${x.c2}`}
+                                    onChange={onCategoryingHandler}
+                                />
+                                {x.c1}
+                            </label>
+                        )}
                     </div>
                 </div>
-                <div className="createvote">
-                    <div className="createvote__center">
-                        <div className="createvote__mid__head">
-                            7. 사진을 등록해주세요!
-                        </div>
-                        <div className="createvote__content">
-                            <EditModal v={true}/>
-                        </div>
+            </div>
+            <div className="createvote">
+                <div className="createvote__center">
+                    <div className="createvote__mid__head">
+                        7. 사진을 등록해주세요!
+                    </div>
+                    <div className="createvote__content">
+                        {_pic_cnt.map(x =>
+                            <label key={x.p1}>
+                                <input
+                                    type="radio"
+                                    value={x.p2}
+                                    checked={pic_cnt === `${x.p2}`}
+                                    onChange={onPicCntHandler}
+                                />
+                                {x.p1}
+                            </label>
+                        )}
+                        <button onClick={onModalClick} className="createvote__button">사진 추가</button>
+                        {modal_v === true ? <EditModal v={modal_v} vote_id={vote_id} pic_cnt={pic_cnt} /> : null}
                     </div>
                 </div>
-                <div className="createvote__button__container">
-                    <Link to="/create_vote/orderEnd">
-                        <button onClick={onSubmitHandler} className="createvote__button">생성하기</button>
-                    </Link>
-                </div>
-            //</form>
+            </div>
+            <div className="createvote__button__container">
+                <Link to="/create_vote/orderEnd">
+                    <button onClick={onSubmitHandler} className="createvote__button">생성하기</button>
+                </Link>
+            </div>
         </div>
     );
 }
