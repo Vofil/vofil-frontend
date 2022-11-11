@@ -14,6 +14,7 @@ import VoteListMPage from "./pages/MyPageComponents/VoteListMPage"
 import VoteListPPage from "./pages/MyPageComponents/VoteListPPage"
 import CreateVotePage from "./pages/CreateVotePage"
 import OrderMid from "./pages/CreateVote/OrderMid"
+import OrderMid2 from "./pages/CreateVote/OrderMid2"
 import OrderStart from "./pages/CreateVote/OrderStart"
 import OrderEnd from "./pages/CreateVote/OrderEnd"
 import VotePage from "./pages/VotePage"
@@ -39,6 +40,7 @@ function App() {
 
           <Route exact path="/create_vote" element={<CreateVotePage/>} />
           <Route exact path="/create_vote/orderMid" element={<OrderMid/>} />
+          <Route exact path="/create_vote/orderMid2" element={<OrderMid2/>} />
           <Route exact path="/create_vote/orderStart" element={<OrderStart/>} />
           <Route exact path="/create_vote/orderEnd" element={<OrderEnd/>} />
 

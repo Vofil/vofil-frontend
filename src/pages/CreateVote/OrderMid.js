@@ -1,5 +1,5 @@
 import React, {useState, useEffect, useContext, useReducer} from 'react';
-import {Link, Route, Switch} from "react-router-dom";
+import {Link, Route, Switch, useNavigate} from "react-router-dom";
 import Modal from 'react-awesome-modal';
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import EditPicturesPage from "../EditPicturesPage";
@@ -81,7 +81,7 @@ function EditModal({v, vote_id, pic_cnt}) {
 
 function OrderMid() {
     const [user_id, setUserID] = useState(1);
-    const [vote_id, setVoteID] = useState(1);
+    const [vote_id, setVoteID] = useState(null);
 
     const [feeling, setFeeling] = useState("");
     const [title_content, setTitleContent] = useState("");
@@ -91,7 +91,11 @@ function OrderMid() {
     const [ending_point, setEndingPoint] = useState(0);
     const [categorying, setCategorying] = useState("");
     const [pic_cnt, setPicCnt] = useState(0);
+
     const [modal_v, setModalV] = useState(false);
+    const [disable, setDisable] = useState(true);
+    //페이지 이동 함수
+    const navigate = useNavigate();
 
     const onFeelingHandler = (event) => {
         console.log(event.currentTarget.value)
@@ -183,14 +187,27 @@ function OrderMid() {
             taging : "예쁘다"
         })
         .then((response) => {
+            console.log("응답 받은 id: " + response.data)
+            setVoteID(response.data)
             console.log('well done!')
         })
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
 
+        setDisable(false)
+
         return alert('등록되었습니다~^*^')
-      }
+    }
+
+    const onSubmitHandler2 = (event) => {
+        console.log("투표 아이디 받아온거: " + vote_id)
+        navigate("/create_vote/orderMid2", {
+            state: {
+                id: vote_id
+            }
+        });
+    };
 
     const onModalClick = (event) => {
         setModalV(true)
@@ -343,9 +360,8 @@ function OrderMid() {
                 </div>
             </div>
             <div className="createvote__button__container">
-                <Link to="/create_vote/orderEnd">
-                    <button onClick={onSubmitHandler} className="createvote__button">생성하기</button>
-                </Link>
+                <button onClick={onSubmitHandler} className="createvote__button">중간 저장</button>
+                <button onClick={onSubmitHandler2} disabled={disable} className="createvote__button">다음 단계</button>
             </div>
         </div>
     );
