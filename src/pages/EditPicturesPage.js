@@ -3,7 +3,7 @@ import axios from 'axios';
 //import './App.css';
 import ImageCropper from "../components/ImageCropper/index";
 
-function EditPicturesPage({vote_id, pic_cnt}) {
+function EditPicturesPage({onImageCroppedToModal, voteID}) {
     const [imageToCrop, setImageToCrop] = useState(undefined);
     const [croppedImage, setCroppedImage] = useState(undefined);
     const [res1, setRes1] = useState(undefined);
@@ -26,6 +26,13 @@ function EditPicturesPage({vote_id, pic_cnt}) {
     };
 
     const onSubmitHandler = (event) => {
+        onImageCroppedToModal(croppedImage)
+
+        console.log("모달엣 준 투푶 아이디~: " + voteID)
+
+        var fileName = String(croppedImage)
+        console.log("문자열로 변경했습니다" + fileName)
+
         setRes1(croppedImage)
         console.log("편집 페이지" + croppedImage)
 
@@ -34,11 +41,13 @@ function EditPicturesPage({vote_id, pic_cnt}) {
 
         console.log("멀티파일" + formData)
 
+
+
         axios
-        .post("/api/pictures", {params:
+        .get("/api/pictures/add", {params:
            {
-               file: formData,
-               id: vote_id,
+               file: "testtest",
+               id: voteID,
                cnt: 1
            }},
            {withCredentials: true}
@@ -49,6 +58,7 @@ function EditPicturesPage({vote_id, pic_cnt}) {
         .catch((error) => {
             console.log('An error occurred:', error.response);
         });
+
     }
 
     return (

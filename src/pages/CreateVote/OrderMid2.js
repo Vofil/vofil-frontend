@@ -9,13 +9,19 @@ import "./OrderMid2.css";
 
 
 function EditPicModal({vote_id, pic_cnt}) {
+    // 모달 가시화 상태 관리
     const [state, setState] = useState(true) // true: 모달 실행, false: 모달 종료
 
+    // 편집 사진 받아오기
+    const [croppedImage, setCroppedImage] = useState(undefined)
+
+    // 모달 가시화 상태 관리 메서드
     const closeModal = (event) => {
         console.log(state)
         setState(!state)
     }
 
+    console.log("모달에서 받은 투표 아이디: " + vote_id)
     return (
         <div>
             <Modal
@@ -29,7 +35,10 @@ function EditPicModal({vote_id, pic_cnt}) {
                     테스트
                     <button onClick={closeModal}>close</button>
                 </div>
-                <EditPicturesPage vote_id={vote_id} pic_cnt={pic_cnt}/>
+                <EditPicturesPage
+                    onImageCroppedToModal={(croppedImage) => setCroppedImage(croppedImage)}
+                    voteID={vote_id}
+                />
             </Modal>
         </div>
     );
@@ -78,6 +87,20 @@ function OrderMid2() {
     //테스트 버튼 이올시다 - 조만간 지울예정
     const onTest = (event) => {
         console.log("버튼이 눌렸습니다")
+        axios
+        .post("/api/pictures", {
+            id: voteID,
+            re1: "blob:http://localhost:3000/466fbff7-3eab-42c7-9cc6-c8d4a2e3b3e3",
+            re2: null,
+            re3: null,
+            re4: null,
+        })
+        .then((response) => {
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        });
     }
 
     // 사진 추가 버튼들
@@ -91,6 +114,16 @@ function OrderMid2() {
         console.log(visible)
     }
 
+    const onPlusPic3Handler = (event) => {
+        setVisible(!visible)
+        console.log(visible)
+    }
+
+    const onPlusPic4Handler = (event) => {
+        setVisible(!visible)
+        console.log(visible)
+    }
+
     return(
         <div className="createvote">
             <div className="createvote__center">
@@ -98,29 +131,32 @@ function OrderMid2() {
                     8. 사진을 추가해주세요!
                 </div>
                 <div className="createvote__content">
+                    <button onClick={onTest}>테스트 버튼</button>
+                </div>
+                <div className="createvote__content">
                     <div className="add__photo1">
                         <button onClick={onPlusPic1Handler} className="createvote__b">
                             <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                         </button>
-                        {visible === true ? <EditPicModal/> : null}
+                        {visible === true ? <EditPicModal vote_id={voteID}/> : null}
                     </div>
                     <div className="add__photo2">
-                        <button onClick={onPlusPic2Handler} className="createvote__b">
+                        <button className="createvote__b">
                             <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                         </button>
-                        {visible === true ? <EditPicModal/> : null}
+
                     </div>
                     <div className="add__photo3">
-                        <button onClick={onTest} className="createvote__b">
+                        <button className="createvote__b">
                             <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                         </button>
-                        {visible === true ? <EditPicModal/> : null}
+
                     </div>
                     <div className="add__photo4">
-                        <button onClick={onTest} className="createvote__b">
+                        <button className="createvote__b">
                             <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                         </button>
-                        {visible === true ? <EditPicModal/> : null}
+
                     </div>
                 </div>
             </div>
