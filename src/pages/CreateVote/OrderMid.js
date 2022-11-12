@@ -64,8 +64,7 @@ function OrderMid() {
 
     const titleContent = (t) =>{
         console.log(t)
-        title_content = _title.map(function(element) {
-            console.log(`${element.t2}`)
+        _title.map(function(element) {
             if (`${element.t2}` === t) {
                 setTitleContent(`${element.t1}`)
             }
@@ -179,12 +178,12 @@ function OrderMid() {
                         1. 제목의 키워드를 골라주세요!
                     </div>
                     <div className="createvote__small__head">
-                        키워드를 골라주시면 제목이 자동 생성됩니다.
+                        키워드를 골라주시면 투표 제목이 자동 생성됩니다.
                     </div>
-                    <div className="createvote__content">{title_content}</div>
-                    <div className="createvote__content">
+                    <div className="create__print__title">{title_content}</div>
+                    <div className="createvote__radio__container">
                         {_title.map(x =>
-                            <label key={x.t2} >
+                            <label key={x.t1}>
                                 <input
                                     type="radio"
                                     value={x.t2}
@@ -193,7 +192,7 @@ function OrderMid() {
                                 />
                                 {x.t2}
                             </label>
-                         )}
+                        )}
                     </div>
                 </div>
             </div>
@@ -202,7 +201,7 @@ function OrderMid() {
                     <div className="createvote__mid__head">
                         2. 어떤 성별로부터 투표 받고 싶나요?
                     </div>
-                    <div className="createvote__content">
+                    <div className="createvote__radio__container">
                         {_gender.map(x =>
                             <label key={x.g1}>
                                 <input
@@ -222,7 +221,7 @@ function OrderMid() {
                     <div className="createvote__mid__head">
                         3. 어떤 나이대로부터 투표 받고 싶나요?
                     </div>
-                    <div className="createvote__content">
+                    <div className="createvote__radio__container">
                         {_age.map(x =>
                             <label key={x.a1}>
                                 <input
@@ -242,7 +241,7 @@ function OrderMid() {
                     <div className="createvote__mid__head">
                         4. 어떤 방식으로 투표를 진행할까요?
                     </div>
-                    <div className="createvote__content">
+                    <div className="createvote__radio__container">
                         {_kind.map(x =>
                             <label key={x.k1}>
                                 <input
@@ -280,7 +279,7 @@ function OrderMid() {
                     <div className="createvote__mid__head">
                         6. 어떤 용도로 사진을 이용할 예정인가요?
                     </div>
-                    <div className="createvote__content">
+                    <div className="createvote__radio__container">
                         {_category.map(x =>
                             <label key={x.c1}>
                                 <input
@@ -300,7 +299,7 @@ function OrderMid() {
                     <div className="createvote__mid__head">
                         7. 몇개의 사진을 등록할까요?
                     </div>
-                    <div className="createvote__content">
+                    <div className="createvote__radio__container">
                         {_pic_cnt.map(x =>
                             <label key={x.p1}>
                                 <input

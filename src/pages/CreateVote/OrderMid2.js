@@ -5,25 +5,17 @@ import axios from 'axios';
 import Modal from 'react-awesome-modal';
 import EditPicturesPage from "../EditPicturesPage";
 import "./modal.css";
+import "./OrderMid2.css";
 
 
-function EditModal({v, vote_id, pic_cnt}) {
-    const [state, setState] = useState(v) // true: 모달 실행, false: 모달 종료
-    const onStateHandler = (event) => {
+function EditPicModal({vote_id, pic_cnt}) {
+    const [state, setState] = useState(true) // true: 모달 실행, false: 모달 종료
+
+    const closeModal = (event) => {
+        console.log(state)
         setState(!state)
-        //modal_v = !(modal_v)
     }
 
-    /*
-    useEffect(() => {
-        console.log("props 업데이트");
-        console.log(v + " " + vote_id + " " + pic_cnt)
-        console.log("투표 아이디: " + vote_id)
-        console.log("사진 개수: " + pic_cnt)
-    }*/
-
-    console.log("투표 아이디: " + vote_id)
-    console.log("사진 개수: " + pic_cnt)
     return (
         <div>
             <Modal
@@ -31,13 +23,11 @@ function EditModal({v, vote_id, pic_cnt}) {
                 width="90%"
                 height="90%"
                 effect="fadeInDown"
-                onClickAway={onStateHandler}
+                onClickAway={closeModal}
             >
                 <div>
                     테스트
-                    <input
-                        value='close' type='button' onClick={onStateHandler}
-                    />
+                    <button onClick={closeModal}>close</button>
                 </div>
                 <EditPicturesPage vote_id={vote_id} pic_cnt={pic_cnt}/>
             </Modal>
@@ -51,30 +41,87 @@ function OrderMid2() {
     const voteID = location.state.id
     const picCnt = location.state.pic_cnt
 
-    // pic_cnt 넘겨 받아서 투표 생성 버튼 활성화 시키기
+    // 버튼 비활성화 상태 관리
+    const [disable1, setDisable1] = useState(false);
+    const [disable2, setDisable2] = useState(false);
+    const [disable3, setDisable3] = useState(false);
+    const [disable4, setDisable4] = useState(false);
 
-    console.log("오더2에서 받은 아이디" + voteID)
-    console.log("오더2에서 받은 사진개수" + picCnt)
+    // 모달 상태
+    const [visible, setVisible] = useState(false);
+
+    // pic_cnt에 따라 투표 생성 버튼 활성화 시키기
+    /*
+    if (picCnt >= 4) {
+        setDisable1(true);
+        setDisable2(true);
+        setDisable3(true);
+        setDisable4(true);
+    }
+    else if (picCnt >= 3) {
+        setDisable1(true);
+        setDisable2(true);
+        setDisable3(true);
+    }
+    else if (picCnt >= 2) {
+        setDisable1(true);
+        setDisable2(true);
+    }
+    else {
+        setDisable1(true);
+        setDisable2(true);
+        setDisable3(true);
+        setDisable4(true);
+    }
+    */
+
+    //테스트 버튼 이올시다 - 조만간 지울예정
+    const onTest = (event) => {
+        console.log("버튼이 눌렸습니다")
+    }
+
+    // 사진 추가 버튼들
+    const onPlusPic1Handler = (event) => {
+        setVisible(!visible)
+        console.log(visible)
+    }
+
+    const onPlusPic2Handler = (event) => {
+        setVisible(!visible)
+        console.log(visible)
+    }
 
     return(
         <div className="createvote">
             <div className="createvote__center">
                 <div className="createvote__mid__head">
-                    사진을 추가해주세요!
+                    8. 사진을 추가해주세요!
                 </div>
                 <div className="createvote__content">
-                    사진 추가할 거1
-                    <BsPlusCircleFill/>
-                </div>
-                <div className="createvote__content">
-                    사진 추가할 거2
-                    <BsPlusCircleFill/>
-                </div>
-                <div className="createvote__content">
-                    사진 추가할 거3
-                </div>
-                <div className="createvote__content">
-                    사진 추가할 거4
+                    <div className="add__photo1">
+                        <button onClick={onPlusPic1Handler} className="createvote__b">
+                            <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+                        </button>
+                        {visible === true ? <EditPicModal/> : null}
+                    </div>
+                    <div className="add__photo2">
+                        <button onClick={onPlusPic2Handler} className="createvote__b">
+                            <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+                        </button>
+                        {visible === true ? <EditPicModal/> : null}
+                    </div>
+                    <div className="add__photo3">
+                        <button onClick={onTest} className="createvote__b">
+                            <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+                        </button>
+                        {visible === true ? <EditPicModal/> : null}
+                    </div>
+                    <div className="add__photo4">
+                        <button onClick={onTest} className="createvote__b">
+                            <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+                        </button>
+                        {visible === true ? <EditPicModal/> : null}
+                    </div>
                 </div>
             </div>
         </div>
