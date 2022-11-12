@@ -1,7 +1,7 @@
 // 투표 생성 시작 페이지
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import {Link} from "react-router-dom";
-import "./CreateVotePage.css";
+import "./OrderStartEnd.css";
 
 function OrderStart() {
     return(

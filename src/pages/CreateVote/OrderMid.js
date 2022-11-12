@@ -1,11 +1,9 @@
 import React, {useState, useEffect, useContext, useReducer} from 'react';
 import {Link, Route, Switch, useNavigate} from "react-router-dom";
-import Modal from 'react-awesome-modal';
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import EditPicturesPage from "../EditPicturesPage";
 import axios from 'axios';
-import "./CreateVotePage2.css";
-import "./modal.css";
+import "./OrderMid.css";
 
 
 const _title = [{t1 : "소개팅에 사용할 사진 골라주세요!", t2 : "소개팅"},
@@ -41,44 +39,6 @@ const _category = [ {c1: "카카오톡 프로필 사진" , c2: "카톡프사"},
     {c1: "트위터 헤더" , c2: "트위터헤더"}]
 const _pic_cnt = [{p1: "2개", p2: 2}, {p1: "3개", p2: 3}, {p1: "4개", p2: 4}]
 
-function EditModal({v, vote_id, pic_cnt}) {
-    const [state, setState] = useState(v) // true: 모달 실행, false: 모달 종료
-    const onStateHandler = (event) => {
-        setState(!state)
-        //modal_v = !(modal_v)
-    }
-
-    /*
-    useEffect(() => {
-        console.log("props 업데이트");
-        console.log(v + " " + vote_id + " " + pic_cnt)
-        console.log("투표 아이디: " + vote_id)
-        console.log("사진 개수: " + pic_cnt)
-    }*/
-
-    console.log("투표 아이디: " + vote_id)
-    console.log("사진 개수: " + pic_cnt)
-    return (
-        <div>
-            <Modal
-                visible={state}
-                width="90%"
-                height="90%"
-                effect="fadeInDown"
-                onClickAway={onStateHandler}
-            >
-                <div>
-                    테스트
-                    <input
-                        value='close' type='button' onClick={onStateHandler}
-                    />
-                </div>
-                <EditPicturesPage vote_id={vote_id} pic_cnt={pic_cnt}/>
-            </Modal>
-        </div>
-    );
-}
-
 function OrderMid() {
     const [user_id, setUserID] = useState(1);
     const [vote_id, setVoteID] = useState(null);
@@ -92,7 +52,6 @@ function OrderMid() {
     const [categorying, setCategorying] = useState("");
     const [pic_cnt, setPicCnt] = useState(0);
 
-    const [modal_v, setModalV] = useState(false);
     const [disable, setDisable] = useState(true);
     //페이지 이동 함수
     const navigate = useNavigate();
@@ -155,6 +114,7 @@ function OrderMid() {
         setPicCnt(event.currentTarget.value)
     }
 
+    //중간 저장
     const onSubmitHandler = (event) => {
         console.log("############수정되었습니다")
         event.preventDefault()
@@ -200,18 +160,16 @@ function OrderMid() {
         return alert('등록되었습니다~^*^')
     }
 
+    // 다음 페이지로 넘어갑니다
     const onSubmitHandler2 = (event) => {
         console.log("투표 아이디 받아온거: " + vote_id)
         navigate("/create_vote/orderMid2", {
             state: {
-                id: vote_id
+                id: vote_id,
+                pic_cnt: pic_cnt
             }
         });
     };
-
-    const onModalClick = (event) => {
-        setModalV(true)
-    }
 
     return(
         <div>
@@ -340,7 +298,7 @@ function OrderMid() {
             <div className="createvote">
                 <div className="createvote__center">
                     <div className="createvote__mid__head">
-                        7. 사진을 등록해주세요!
+                        7. 몇개의 사진을 등록할까요?
                     </div>
                     <div className="createvote__content">
                         {_pic_cnt.map(x =>
@@ -354,8 +312,6 @@ function OrderMid() {
                                 {x.p1}
                             </label>
                         )}
-                        <button onClick={onModalClick} className="createvote__button">사진 추가</button>
-                        {modal_v === true ? <EditModal v={modal_v} vote_id={vote_id} pic_cnt={pic_cnt} /> : null}
                     </div>
                 </div>
             </div>

@@ -1,6 +1,6 @@
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 import {Link} from "react-router-dom";
-import "./CreateVotePage.css";
+import "./OrderStartEnd.css";
 // 투표 생성 종료 페이지
 
 function OrderEnd() {
