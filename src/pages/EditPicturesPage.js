@@ -11,6 +11,9 @@ function EditPicturesPage({onImageCroppedToModal, voteID}) {
     const [res3, setRes3] = useState(undefined);
     const [res4, setRes4] = useState(undefined);
 
+    //받아온 사진
+    const [reImage, setReImage] = useState(undefined);
+
 
     const onUploadFile = (event) => {
         if (event.target.files && event.target.files.length > 0) {
@@ -35,30 +38,107 @@ function EditPicturesPage({onImageCroppedToModal, voteID}) {
 
         setRes1(croppedImage)
         console.log("편집 페이지" + croppedImage)
+        console.log("res1: " + res1)
 
         const formData = new FormData()
-        formData.append('multipartFiles', res1)
+        formData.append("file", croppedImage)
+
+        // 보내줄 json 데이터
+        const value = [{
+            id: voteID,
+            cnt: 1
+        }]
+//        formData.append(
+//            "file",
+//            new Blob([JSON.stringify(value)], {type: "application/json"})
+//        )
 
         console.log("멀티파일" + formData)
 
-
-
         axios
-        .get("/api/pictures/add", {params:
-           {
-               file: "testtest",
-               id: voteID,
-               cnt: 1
-           }},
-           {withCredentials: true}
-        )
+        .get("/api/pictures/checked", { params:
+            {
+                file: croppedImage,
+                id: voteID,
+                cnt: 2
+            }
+        })
         .then((response) => {
             console.log('well done!')
         })
         .catch((error) => {
             console.log('An error occurred:', error.response);
         });
+        /*
+        axios
+        .get("/api/pictures/checked", null, { params:
+            {
+                file: "얄루",
+                id: voteID,
+                cnt: 1
+            },
+            headers: {
+                "content-type": "multipart/form-data"
+            }
+        })
+        .then((response) => {
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        });
+        */
+        /*
+        axios
+        .post(`/api/pictures/clock`, formData, {
+            headers: {
+                "Content-Type": "multipart/form-data"
+            },
+        })
+        .then((response) => {
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        });
+        */
+        /*
+        axios({
+            method: "POST",
+            url: `/api/pictures/clock`,
+            mode: "cors",
+            headers: {
+                "Content-Type": "multipart/form-data",
+            },
+            data: formData,
+        })
+        .then((response) => {
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        });
+        */
+    }
 
+    const onPicPicHandler = (event) => {
+        console.log("실행되었습ㄴ디ㅏ")
+
+        axios
+        .get("/api/pictures/show", { params:
+            {
+                id: 137,
+                cnt: 2
+            }
+        })
+        .then((response) => {
+            console.log('well done!')
+            setReImage(response.data)
+            console.log(response.data)
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        });
     }
 
     return (
@@ -87,7 +167,18 @@ function EditPicturesPage({onImageCroppedToModal, voteID}) {
                     />
                 </div>
             }
+            {
+                reImage &&
+                <div>
+                    <h2>DB에서 받은 사진</h2>
+                    <img
+                        alt="dbPicture"
+                        src={reImage}
+                    />
+                </div>
+            }
             <button onClick={onSubmitHandler}>편집한 사진 제출</button>
+            <button onClick={onPicPicHandler}>사진 받아올게여</button>
         </div>
     );
 }

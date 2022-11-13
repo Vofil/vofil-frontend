@@ -18,10 +18,12 @@ function EditPicModal({vote_id, pic_cnt}) {
     // 모달 가시화 상태 관리 메서드
     const closeModal = (event) => {
         console.log(state)
+        console.log("모달에서 출력합니다 bloblbobb: " + croppedImage)
         setState(!state)
     }
 
     console.log("모달에서 받은 투표 아이디: " + vote_id)
+    //console.log("모달에서 출력합니다 bloblbobb: " + croppedImage)
     return (
         <div>
             <Modal
@@ -59,6 +61,9 @@ function OrderMid2() {
     // 모달 상태
     const [visible, setVisible] = useState(false);
 
+    // 편집 사진 받아오기
+    const [croppedImage, setCroppedImage] = useState(undefined)
+
     // pic_cnt에 따라 투표 생성 버튼 활성화 시키기
     /*
     if (picCnt >= 4) {
@@ -90,7 +95,7 @@ function OrderMid2() {
         axios
         .post("/api/pictures", {
             id: voteID,
-            re1: "blob:http://localhost:3000/466fbff7-3eab-42c7-9cc6-c8d4a2e3b3e3",
+            re1: null,
             re2: null,
             re3: null,
             re4: null,
