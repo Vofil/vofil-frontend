@@ -8,7 +8,7 @@ import "./modal.css";
 import "./OrderMid2.css";
 
 
-function EditPicModal({vote_id, pic_cnt}) {
+function EditPicModal({vote_id, pic_cnt, reNum}) {
     // 모달 가시화 상태 관리
     const [state, setState] = useState(true) // true: 모달 실행, false: 모달 종료
 
@@ -17,13 +17,11 @@ function EditPicModal({vote_id, pic_cnt}) {
 
     // 모달 가시화 상태 관리 메서드
     const closeModal = (event) => {
-        console.log(state)
-        console.log("모달에서 출력합니다 bloblbobb: " + croppedImage)
         setState(!state)
     }
 
     console.log("모달에서 받은 투표 아이디: " + vote_id)
-    //console.log("모달에서 출력합니다 bloblbobb: " + croppedImage)
+
     return (
         <div>
             <Modal
@@ -40,6 +38,7 @@ function EditPicModal({vote_id, pic_cnt}) {
                 <EditPicturesPage
                     onImageCroppedToModal={(croppedImage) => setCroppedImage(croppedImage)}
                     voteID={vote_id}
+                    reNum={reNum}
                 />
             </Modal>
         </div>
@@ -47,10 +46,13 @@ function EditPicModal({vote_id, pic_cnt}) {
 }
 
 function OrderMid2() {
-    // ordermid에서 투표 아이디 넘겨 받기
+    // ordermid에서 투표 아이디, 등록 사진 개수 넘겨 받기
     const location = useLocation()
-    const voteID = location.state.id
-    const picCnt = location.state.pic_cnt
+    const voteID = location.state.id       // 투표 아이디
+    const picCnt = location.state.pic_cnt  // 등록 사진 개수
+
+    // EditPicturePage에 전해줄 reNum 상태 관리
+    const [reNum, setReNum] = useState(0);
 
     // 버튼 비활성화 상태 관리
     const [disable1, setDisable1] = useState(false);
@@ -64,68 +66,28 @@ function OrderMid2() {
     // 편집 사진 받아오기
     const [croppedImage, setCroppedImage] = useState(undefined)
 
-    // pic_cnt에 따라 투표 생성 버튼 활성화 시키기
-    /*
-    if (picCnt >= 4) {
-        setDisable1(true);
-        setDisable2(true);
-        setDisable3(true);
-        setDisable4(true);
-    }
-    else if (picCnt >= 3) {
-        setDisable1(true);
-        setDisable2(true);
-        setDisable3(true);
-    }
-    else if (picCnt >= 2) {
-        setDisable1(true);
-        setDisable2(true);
-    }
-    else {
-        setDisable1(true);
-        setDisable2(true);
-        setDisable3(true);
-        setDisable4(true);
-    }
-    */
-
-    //테스트 버튼 이올시다 - 조만간 지울예정
-    const onTest = (event) => {
-        console.log("버튼이 눌렸습니다")
-        axios
-        .post("/api/pictures", {
-            id: voteID,
-            re1: null,
-            re2: null,
-            re3: null,
-            re4: null,
-        })
-        .then((response) => {
-            console.log('well done!')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        });
-    }
-
     // 사진 추가 버튼들
     const onPlusPic1Handler = (event) => {
         setVisible(!visible)
+        setReNum(1)
         console.log(visible)
     }
 
     const onPlusPic2Handler = (event) => {
         setVisible(!visible)
+        setReNum(2)
         console.log(visible)
     }
 
     const onPlusPic3Handler = (event) => {
         setVisible(!visible)
+        setReNum(3)
         console.log(visible)
     }
 
     const onPlusPic4Handler = (event) => {
         setVisible(!visible)
+        setReNum(4)
         console.log(visible)
     }
 
@@ -136,14 +98,11 @@ function OrderMid2() {
                     8. 사진을 추가해주세요!
                 </div>
                 <div className="createvote__content">
-                    <button onClick={onTest}>테스트 버튼</button>
-                </div>
-                <div className="createvote__content">
                     <div className="add__photo1">
                         <button onClick={onPlusPic1Handler} className="createvote__b">
                             <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                         </button>
-                        {visible === true ? <EditPicModal vote_id={voteID}/> : null}
+                        {visible === true ? <EditPicModal vote_id={voteID} reNum={reNum}/> : null}
                     </div>
                     <div className="add__photo2">
                         <button className="createvote__b">
@@ -171,9 +130,3 @@ function OrderMid2() {
 }
 
 export default OrderMid2;
-
-
-/*
-<button onClick={onModalClick} className="createvote__button">사진 추가</button>
-                        {modal_v === true ? <EditModal v={modal_v} vote_id={vote_id} pic_cnt={pic_cnt} /> : null}
-*/

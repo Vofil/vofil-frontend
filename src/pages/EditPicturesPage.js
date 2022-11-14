@@ -3,7 +3,7 @@ import axios from 'axios';
 //import './App.css';
 import ImageCropper from "../components/ImageCropper/index";
 
-function EditPicturesPage({onImageCroppedToModal, voteID}) {
+function EditPicturesPage({onImageCroppedToModal, voteID, reNum}) {
     const [imageToCrop, setImageToCrop] = useState(undefined);
     const [croppedImage, setCroppedImage] = useState(undefined);
     const [res1, setRes1] = useState(undefined);
@@ -13,7 +13,6 @@ function EditPicturesPage({onImageCroppedToModal, voteID}) {
 
     //받아온 사진
     const [reImage, setReImage] = useState(undefined);
-
 
     const onUploadFile = (event) => {
         if (event.target.files && event.target.files.length > 0) {
@@ -31,36 +30,12 @@ function EditPicturesPage({onImageCroppedToModal, voteID}) {
     const onSubmitHandler = (event) => {
         onImageCroppedToModal(croppedImage)
 
-        console.log("모달엣 준 투푶 아이디~: " + voteID)
-
-        var fileName = String(croppedImage)
-        console.log("문자열로 변경했습니다" + fileName)
-
-        setRes1(croppedImage)
-        console.log("편집 페이지" + croppedImage)
-        console.log("res1: " + res1)
-
-        const formData = new FormData()
-        formData.append("file", croppedImage)
-
-        // 보내줄 json 데이터
-        const value = [{
-            id: voteID,
-            cnt: 1
-        }]
-//        formData.append(
-//            "file",
-//            new Blob([JSON.stringify(value)], {type: "application/json"})
-//        )
-
-        console.log("멀티파일" + formData)
-
         axios
         .get("/api/pictures/checked", { params:
             {
                 file: croppedImage,
                 id: voteID,
-                cnt: 2
+                cnt: reNum
             }
         })
         .then((response) => {
@@ -69,56 +44,6 @@ function EditPicturesPage({onImageCroppedToModal, voteID}) {
         .catch((error) => {
             console.log('An error occurred:', error.response);
         });
-        /*
-        axios
-        .get("/api/pictures/checked", null, { params:
-            {
-                file: "얄루",
-                id: voteID,
-                cnt: 1
-            },
-            headers: {
-                "content-type": "multipart/form-data"
-            }
-        })
-        .then((response) => {
-            console.log('well done!')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        });
-        */
-        /*
-        axios
-        .post(`/api/pictures/clock`, formData, {
-            headers: {
-                "Content-Type": "multipart/form-data"
-            },
-        })
-        .then((response) => {
-            console.log('well done!')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        });
-        */
-        /*
-        axios({
-            method: "POST",
-            url: `/api/pictures/clock`,
-            mode: "cors",
-            headers: {
-                "Content-Type": "multipart/form-data",
-            },
-            data: formData,
-        })
-        .then((response) => {
-            console.log('well done!')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        });
-        */
     }
 
     const onPicPicHandler = (event) => {
@@ -127,8 +52,8 @@ function EditPicturesPage({onImageCroppedToModal, voteID}) {
         axios
         .get("/api/pictures/show", { params:
             {
-                id: 137,
-                cnt: 2
+                id: voteID,
+                cnt: reNum
             }
         })
         .then((response) => {

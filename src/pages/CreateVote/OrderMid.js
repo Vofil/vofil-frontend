@@ -5,7 +5,9 @@ import EditPicturesPage from "../EditPicturesPage";
 import axios from 'axios';
 import "./OrderMid.css";
 
-
+/* ---------------------
+투표 생성 선택지 배열 모음
+----------------------*/
 const _title = [{t1 : "소개팅에 사용할 사진 골라주세요!", t2 : "소개팅"},
     {t1 : "대학 오티에서 보여줄 사진 골라주세요~", t2 : "대학오티"},
     {t1 : "직장 팀원한테 무난하게 보일 사진 골라주세요..", t2 : "직장"},
@@ -38,8 +40,26 @@ const _category = [ {c1: "카카오톡 프로필 사진" , c2: "카톡프사"},
     {c1: "트위터 프로필 사진" , c2: "트위터프사"},
     {c1: "트위터 헤더" , c2: "트위터헤더"}]
 const _pic_cnt = [{p1: "2개", p2: 2}, {p1: "3개", p2: 3}, {p1: "4개", p2: 4}]
+const _taging = [ {t1: "예쁘다", t2: 1},
+    {t1: "귀엽다", t2: 2},
+    {t1: "시크하다", t2: 3},
+    {t1: "매력있다", t2: 4},
+    {t1: "사랑스럽다", t2: 5},
+    {t1: "활발하다", t2: 6},
+    {t1: "요즘유행", t2: 7},
+    {t1: "우아하다", t2: 8},
+    {t1: "강아지상", t2: 9},
+    {t1: "고양이상", t2: 10},
+    {t1: "잘생겼다", t2: 20},
+    {t1: "멋있다", t2: 21},
+    {t1: "듬직하다", t2: 24},
+    {t1: "요즘스타일", t2: 26},
+    {t1: "섹시하다", t2: 27},
+    {t1: "청량하다", t2: 28}]
+
 
 function OrderMid() {
+
     const [user_id, setUserID] = useState(1);
     const [vote_id, setVoteID] = useState(null);
 
@@ -51,6 +71,10 @@ function OrderMid() {
     const [ending_point, setEndingPoint] = useState(0);
     const [categorying, setCategorying] = useState("");
     const [pic_cnt, setPicCnt] = useState(0);
+    const [taging, setTaging] = useState("");
+
+    const [taging_visible, setTagingVisible] = useState("false");
+
 
     const [disable, setDisable] = useState(true);
     //페이지 이동 함수
@@ -113,37 +137,31 @@ function OrderMid() {
         setPicCnt(event.currentTarget.value)
     }
 
+    // 태그 선택
+    const onTagingHandler = (event) => {
+        console.log(event.currentTarget.value)
+        setTaging(event.currentTarget.value)
+    }
+
     //중간 저장
     const onSubmitHandler = (event) => {
-        console.log("############수정되었습니다")
         event.preventDefault()
         axios
         .post("/api/votes", {
-          //투표를 등록한 사람 id
             user_id : "hyomin",
-          //투표 id
             id : null,
-          //설정 성별(3: 남자, 4: 여자)
             gender : gender,
-          //설정 나이대 [0,10,20,30,40,50,60] 0~10대, 10~20대 ...
             age : age,
-          //종료 개수
             ending_point : ending_point,
-          //투표 종류(0: 일반투표, 1: 태그투표)
             kind : kind,
-          //등록할 사진 개수
             pic_cnt : pic_cnt,
-          //최종 투표값
             result1 : null,
             result2 : null,
             result3 : null,
             result4 : null,
-          //투표 사진 종류 enum VoteCaregory참고
             categorying : categorying,
-          //투표 키워드 enum VoteFeeling참고
             feeling : feeling,
-          //설정 태그(태그 투표의 경우) enum TagList참고
-            taging : "예쁘다"
+            taging : taging
         })
         .then((response) => {
             console.log("응답 받은 id: " + response.data)
@@ -162,6 +180,25 @@ function OrderMid() {
     // 다음 페이지로 넘어갑니다
     const onSubmitHandler2 = (event) => {
         console.log("투표 아이디 받아온거: " + vote_id)
+
+        // picture 객체 생성하기
+        console.log("픽처 객체가 생성되었습니다")
+        axios
+        .post("/api/pictures", {
+            id: vote_id,
+            re1: null,
+            re2: null,
+            re3: null,
+            re4: null,
+        })
+        .then((response) => {
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        });
+
+        // 다음 페이지 넘어가기
         navigate("/create_vote/orderMid2", {
             state: {
                 id: vote_id,
@@ -256,6 +293,28 @@ function OrderMid() {
                     </div>
                 </div>
             </div>
+            { kind == 1 &&
+                <div className="createvote">
+                    <div className="createvote__center">
+                        <div className="createvote__mid__head">
+                            4-1. 태그투표를 선택하셨군요! 내 사진이 어떤 태그를 받았으면 좋겠나요?
+                        </div>
+                        <div className="createvote__radio__container">
+                            {_taging.map(x =>
+                                <label key={x.t2}>
+                                    <input
+                                        type="radio"
+                                        value={x.t1}
+                                        checked={taging === `${x.t1}`}
+                                        onChange={onTagingHandler}
+                                    />
+                                    {x.t1}
+                                </label>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            }
             <div className="createvote">
                 <div className="createvote__center">
                     <div className="createvote__mid__head">
