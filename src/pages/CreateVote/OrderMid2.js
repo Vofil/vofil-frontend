@@ -8,7 +8,7 @@ import "./modal.css";
 import "./OrderMid2.css";
 
 
-function EditPicModal({vote_id, pic_cnt, reNum}) {
+function EditPicModal({vote_id, pic_cnt, reNum, onImageCroppedToOrderMid2}) {
     // 모달 가시화 상태 관리
     const [state, setState] = useState(true) // true: 모달 실행, false: 모달 종료
 
@@ -18,6 +18,7 @@ function EditPicModal({vote_id, pic_cnt, reNum}) {
     // 모달 가시화 상태 관리 메서드
     const closeModal = (event) => {
         setState(!state)
+        onImageCroppedToOrderMid2(croppedImage)
     }
 
     console.log("모달에서 받은 투표 아이디: " + vote_id)
@@ -60,35 +61,50 @@ function OrderMid2() {
     const [disable3, setDisable3] = useState(false);
     const [disable4, setDisable4] = useState(false);
 
-    // 모달 상태
-    const [visible, setVisible] = useState(false);
+    // 모달 상태 버튼 별로
+    const [visible1, setVisible1] = useState(false);
+    const [visible2, setVisible2] = useState(false);
+    const [visible3, setVisible3] = useState(false);
+    const [visible4, setVisible4] = useState(false);
 
-    // 편집 사진 받아오기
-    const [croppedImage, setCroppedImage] = useState(undefined)
+    // 편집 사진 받아오기 버튼 별로
+    const [croppedImage1, setCroppedImage1] = useState("")
+    const [croppedImage2, setCroppedImage2] = useState("")
+    const [croppedImage3, setCroppedImage3] = useState("")
+    const [croppedImage4, setCroppedImage4] = useState("")
 
     // 사진 추가 버튼들
     const onPlusPic1Handler = (event) => {
-        setVisible(!visible)
+        setVisible1(!visible1)
         setReNum(1)
-        console.log(visible)
     }
 
     const onPlusPic2Handler = (event) => {
-        setVisible(!visible)
+        setVisible2(!visible2)
         setReNum(2)
-        console.log(visible)
     }
 
     const onPlusPic3Handler = (event) => {
-        setVisible(!visible)
+        setVisible3(!visible3)
         setReNum(3)
-        console.log(visible)
     }
 
     const onPlusPic4Handler = (event) => {
-        setVisible(!visible)
+        setVisible4(!visible4)
         setReNum(4)
-        console.log(visible)
+    }
+
+    //페이지 이동 함수
+    const navigate = useNavigate();
+
+    // 생성 완료 버튼
+    const onSubmitHandler = (event) => {
+        navigate("/create_vote/orderEnd", /*{
+            state: {
+                id: vote_id,
+                pic_cnt: pic_cnt
+            }
+        }*/);
     }
 
     return(
@@ -99,29 +115,68 @@ function OrderMid2() {
                 </div>
                 <div className="createvote__content">
                     <div className="add__photo1">
-                        <button onClick={onPlusPic1Handler} className="createvote__b">
-                            <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
-                        </button>
-                        {visible === true ? <EditPicModal vote_id={voteID} reNum={reNum}/> : null}
+                        { croppedImage1 == "" ?
+                            <button onClick={onPlusPic1Handler} className="createvote__b">
+                                <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+                            </button>
+                            : <img alt="croppedImg" src={croppedImage1} />
+                        }
+                        {visible1 === true ?
+                            <EditPicModal
+                                vote_id={voteID}
+                                reNum={reNum}
+                                onImageCroppedToOrderMid2={(croppedImage1) => setCroppedImage1(croppedImage1)}
+                            /> : null
+                        }
                     </div>
                     <div className="add__photo2">
-                        <button className="createvote__b">
-                            <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
-                        </button>
-
+                        { croppedImage2 == "" ?
+                            <button onClick={onPlusPic2Handler} className="createvote__b">
+                                <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+                            </button>
+                            : <img alt="croppedImg" src={croppedImage2} />
+                        }
+                        {visible2 === true ?
+                            <EditPicModal
+                                vote_id={voteID}
+                                reNum={reNum}
+                                onImageCroppedToOrderMid2={(croppedImage2) => setCroppedImage2(croppedImage2)}
+                            /> : null
+                        }
                     </div>
                     <div className="add__photo3">
-                        <button className="createvote__b">
-                            <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
-                        </button>
-
+                        { croppedImage3 == "" ?
+                            <button onClick={onPlusPic3Handler} className="createvote__b">
+                                <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+                            </button>
+                            : <img alt="croppedImg" src={croppedImage3} />
+                        }
+                        {visible3 === true ?
+                            <EditPicModal
+                                vote_id={voteID}
+                                reNum={reNum}
+                                onImageCroppedToOrderMid2={(croppedImage3) => setCroppedImage3(croppedImage3)}
+                            /> : null
+                        }
                     </div>
                     <div className="add__photo4">
-                        <button className="createvote__b">
-                            <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
-                        </button>
-
+                        { croppedImage4 == "" ?
+                            <button onClick={onPlusPic4Handler} className="createvote__b">
+                                <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+                            </button>
+                            : <img alt="croppedImg" src={croppedImage4} />
+                        }
+                        {visible4 === true ?
+                            <EditPicModal
+                                vote_id={voteID}
+                                reNum={reNum}
+                                onImageCroppedToOrderMid2={(croppedImage4) => setCroppedImage4(croppedImage4)}
+                            /> : null
+                        }
                     </div>
+                </div>
+                <div className="createvote__button__container2">
+                    <button onClick={onSubmitHandler} className="createvote__button">생성하기</button>
                 </div>
             </div>
         </div>

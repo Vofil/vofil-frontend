@@ -6,6 +6,7 @@ import ImageCropper from "../components/ImageCropper/index";
 function EditPicturesPage({onImageCroppedToModal, voteID, reNum}) {
     const [imageToCrop, setImageToCrop] = useState(undefined);
     const [croppedImage, setCroppedImage] = useState(undefined);
+
     const [res1, setRes1] = useState(undefined);
     const [res2, setRes2] = useState(undefined);
     const [res3, setRes3] = useState(undefined);
