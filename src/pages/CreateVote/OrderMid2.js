@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, Route, Switch, useNavigate, useLocation} from "react-router-dom";
 import { BsPlusCircleFill } from "react-icons/bs";
 import axios from 'axios';
@@ -73,6 +73,41 @@ function OrderMid2() {
     const [croppedImage3, setCroppedImage3] = useState("")
     const [croppedImage4, setCroppedImage4] = useState("")
 
+    //페이지 이동 함수
+    const navigate = useNavigate();
+
+    // picCnt에 따른 버튼 비활성화
+    const fetchButtonDisabled = async () => {
+        if(picCnt == 4) {
+            setDisable1(false)
+            setDisable2(false)
+            setDisable3(false)
+            setDisable4(false)
+        }
+        else if(picCnt == 3) {
+            setDisable1(false)
+            setDisable2(false)
+            setDisable3(false)
+            setDisable4(true)
+        }
+        else if(picCnt == 2) {
+            setDisable1(false)
+            setDisable2(false)
+            setDisable3(true)
+            setDisable4(true)
+        }
+        else {
+            setDisable1(true)
+            setDisable2(true)
+            setDisable3(true)
+            setDisable4(true)
+        }
+    }
+
+    useEffect(() => {
+        fetchButtonDisabled();
+    }, []);
+
     // 사진 추가 버튼들
     const onPlusPic1Handler = (event) => {
         setVisible1(!visible1)
@@ -94,9 +129,6 @@ function OrderMid2() {
         setReNum(4)
     }
 
-    //페이지 이동 함수
-    const navigate = useNavigate();
-
     // 생성 완료 버튼
     const onSubmitHandler = (event) => {
         navigate("/create_vote/orderEnd", /*{
@@ -116,7 +148,7 @@ function OrderMid2() {
                 <div className="createvote__content">
                     <div className="add__photo1">
                         { croppedImage1 == "" ?
-                            <button onClick={onPlusPic1Handler} className="createvote__b">
+                            <button onClick={onPlusPic1Handler} disabled={disable1} className="createvote__b">
                                 <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                             </button>
                             : <img alt="croppedImg" src={croppedImage1} />
@@ -131,7 +163,7 @@ function OrderMid2() {
                     </div>
                     <div className="add__photo2">
                         { croppedImage2 == "" ?
-                            <button onClick={onPlusPic2Handler} className="createvote__b">
+                            <button onClick={onPlusPic2Handler} disabled={disable1} className="createvote__b">
                                 <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                             </button>
                             : <img alt="croppedImg" src={croppedImage2} />
@@ -146,7 +178,7 @@ function OrderMid2() {
                     </div>
                     <div className="add__photo3">
                         { croppedImage3 == "" ?
-                            <button onClick={onPlusPic3Handler} className="createvote__b">
+                            <button onClick={onPlusPic3Handler} disabled={disable3} className="createvote__b">
                                 <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                             </button>
                             : <img alt="croppedImg" src={croppedImage3} />
@@ -161,7 +193,7 @@ function OrderMid2() {
                     </div>
                     <div className="add__photo4">
                         { croppedImage4 == "" ?
-                            <button onClick={onPlusPic4Handler} className="createvote__b">
+                            <button onClick={onPlusPic4Handler} disabled={disable4} className="createvote__b">
                                 <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                             </button>
                             : <img alt="croppedImg" src={croppedImage4} />
