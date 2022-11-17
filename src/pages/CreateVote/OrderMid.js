@@ -146,9 +146,10 @@ function OrderMid() {
     //중간 저장
     const onSubmitHandler = (event) => {
         event.preventDefault()
+        //setUserID(sessionStorage.getItem("loginID"))
         axios
         .post("/api/votes", {
-            user_id : "hyomin",
+            user_id : sessionStorage.getItem("loginID"),
             id : null,
             gender : gender,
             age : age,

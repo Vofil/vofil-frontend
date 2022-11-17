@@ -2,33 +2,118 @@
 .navbar{
     display: flex;
 
-    width: 100%;
-    height: 80px;
+    width: 100hv;
+    height: 90px;
 
-    border-weight: 2px;
-    border-style: solid;
-    border-color: red;
-    //border-bottom-weight: 2px;
-    //border-bottom-style: solid;
-    //border-bottom-color: rgb(122, 204, 185);
+    //border-weight: 2px;
+    //border-style: solid;
+    //border-color: rgb(122, 204, 185);
+    border-bottom-weight: 3px;
+    //border-bottom-style: dashed;
+    border-bottom-style: dotted;
+    border-bottom-color: rgb(122, 204, 185);
 
     background-color: rgb(255, 255, 255);
 }
 
+.navbar__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 15%;
+    height: 30px;
+
+    color: white;
+
+    font-size: 16px;
+    font-weight: 700;
+
+    border-bottom-weight: 3px;
+    border-bottom-style: dotted;
+    border-bottom-color: rgb(255, 255, 255);
+
+    background-color: rgb(122, 204, 185);
+}
+
+.navbar__bottom__font {
+    font-color: white;
+}
+
 .log__container{
-    text-align: center;
-    flex: 1;
-    padding: 10px;
+    width: 40%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    //border-weight: 2px;
+    //border-style: solid;
+    //border-color: red;
 }
 
 .logo__img{
+    width: 75px;
+    height: 75px;
 
+    margin-top: 5px;
 }
 
-.menu{
-    weight:
+.menu__container{
+    display: flex;
+    align-items: center;
+
+    width: 30%;
+
+    //border-weight: 2px;
+    //border-style: solid;
+    //border-color: red;
 }
 
-.navbar__right{
+.menu__button {
+    width: 55px;
+    height: 55px;
+    margin-left: 40px;
 
+    border-color: rgb(122, 204, 185);
+    background: rgb(255, 255, 255);
+}
+
+.menu__icon{
+    width: 100%;
+    height: 100%;
+
+    color: rgb(122, 204, 185);
+    background: rgb(255, 255, 255);
+
+    //color: rgb(255, 255, 255);
+    //background: rgb(122, 204, 185);
+}
+
+.navbar__right__container{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    width: 30%;
+
+    //border-weight: 2px;
+    //border-style: solid;
+    //border-color: red;
+}
+
+.sign_in_up_button {
+    width: 150px;
+    height: 50px;
+
+    margin-right: 20px;
+
+    background-color: rgb(122, 204, 185);
+    color: rgb(255, 255, 255);
+
+    font-size: 16px;
+    font-weight: 700;
+
+    border-color: rgb(122, 204, 185);
+    border-radius: 40px;
 }

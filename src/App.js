@@ -33,7 +33,7 @@ function App() {
       <div>
         <Navbar />
         <Routes>
-          <Route exact path="/" element={MainPage} />
+          <Route exact path="/" element={<MainPage/>} />
           <Route exact path="/edit_pictures" element={<EditPicturesPage/>} />
           <Route exact path="/sign_in" element={<LoginPage/>} />
           <Route exact path="/sign_up" element={<RegisterPage/>} />

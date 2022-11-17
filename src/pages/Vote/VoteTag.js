@@ -167,19 +167,19 @@ function VoteTag({voteID}) {
             console.log('An error occurred:', error.response);
         })
 
-        axios
-        .get("api/votes/update", {params:
-            {
-                id: voteID
-            }
-        })
-        .then((response) => {
-            console.log('well done!')
-            return alert('제출되었습니다~^^')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        })
+//        axios
+//        .get("api/votes/update", {params:
+//            {
+//                id: voteID
+//            }
+//        })
+//        .then((response) => {
+//            console.log('well done!')
+//            return alert('제출되었습니다~^^')
+//        })
+//        .catch((error) => {
+//            console.log('An error occurred:', error.response);
+//        })
 
         navigate("/");
     }

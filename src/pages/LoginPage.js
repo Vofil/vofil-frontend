@@ -3,6 +3,9 @@ import "./LoginRegister.css";
 import axios from 'axios';
 
 function LoginPage() {
+    //세션 스토리지 생성
+    let sessionStorage = window.sessionStorage;
+
     const [email, setEmail] = useState("");
     const [ID, setID] = useState("");
     const [password, setPassword] = useState("");
@@ -33,6 +36,16 @@ function LoginPage() {
         .then((response) => {
             console.log("토큰을 내놔라")
             console.log(response.data)
+
+            if(response.data){
+                sessionStorage.setItem('loginID', ID)
+            }
+
+            //const {accessToken} = response.data
+
+            // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
+            //axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
             console.log('well done!')
             return alert('환영합니다.')
         })

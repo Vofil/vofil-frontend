@@ -1,0 +1,94 @@
+
+.main__page{
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+    height: 40vh;
+    margin-left: 20px;
+    margin-right: 20px;
+
+    //border-width: 1px;
+    //border-style: solid;
+    //border-color: red;
+}
+
+.vote_category{
+    width: 80%;
+    height: 80%;
+
+    margin-top: 15px;
+    //border-width: 3px;
+    //border-style: solid;
+    //border-color: blue;
+}
+
+
+.vote_category__title{
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
+
+    font-size: 4vh;
+    font-weight: bold;
+
+    border-bottom-width: 3px;
+    border-bottom-style: solid;
+    border-bottom-color: rgb(122, 204, 185);
+}
+
+
+.vote__list__container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 10px;
+
+    //border-width: 3px;
+    //border-style: solid;
+    //border-color: green;
+}
+
+
+.vote__container{
+
+    width: 210px;
+    height: 190px;
+
+    margin: 15px;
+
+    //border-width: 2px;
+    //border-style: solid;
+    //border-color: gray;
+}
+
+
+.thumbnail{
+     width: 210px;
+     height: 120px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
+}
+
+
+.vote__title{
+    width: 210px;
+    height: 70px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    //border-width: 1px;
+    //border-style: solid;
+    //border-color: green;
+}
+
+.radio__hidden__vote {
+    visibility: hidden;
+}
