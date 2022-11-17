@@ -1,4 +1,5 @@
 import {React, useState, useEffect} from "react"
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import "../VotePage.css"
 
@@ -51,6 +52,9 @@ function VoteNormal({voteID}) {
 
     // 눌린 사진이 몇 번째 사진인가?
     const [numOfPic, setNumOfPic] = useState(-1);
+
+    // 네비게이터를 만들겠소
+    const navigate = useNavigate()
 
     // axios를 통해 사진 불러오기
     const fetchVote = async () => {
@@ -167,10 +171,13 @@ function VoteNormal({voteID}) {
         })
         .then((response) => {
             console.log('well done!')
+            return alert('제출되었습니다~^^')
         })
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
+
+        navigate("/");
     }
 
 

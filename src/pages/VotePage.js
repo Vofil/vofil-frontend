@@ -3,7 +3,7 @@ import axios from 'axios';
 import VoteNormal from "./Vote/VoteNormal"
 import VoteTag from "./Vote/VoteTag"
 
-const voteID = 294
+const voteID = 321
 // props로 투표 아이디 받아와서 vote api에서 검색함.
 // 아이디 같은 엔트리 뽑아다가화면에 뿌리기
 function VotePage() {

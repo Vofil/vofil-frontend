@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import {Link} from "react-router-dom";
+import { AiOutlineMenu } from 'react-icons/ai';
 import "./Navbar.css"
+import logo from '../assets/logo_small.jpg';
 
 function Navbar() {
     const [sign, setSign] = useState(true)
@@ -8,6 +10,23 @@ function Navbar() {
     const onClick = () => {
         setSign((prev) => !prev)
     }
+
+    /*
+    return (
+        <div>
+            <div className="navbar">
+                <button>
+                    <AiOutlineMenu/>
+                </button>
+                <div>
+                    <img src={logo}/>
+                </div>
+
+            </div>
+        </div>
+    );
+    */
+
 
     return (
         <div>
@@ -22,6 +41,7 @@ function Navbar() {
             </ul>
         </div>
     );
+
 }
 
 export default Navbar;

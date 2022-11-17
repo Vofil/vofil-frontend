@@ -1,4 +1,5 @@
 import {React, useState, useEffect} from "react"
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import "../VotePage.css"
 
@@ -67,6 +68,9 @@ function VoteTag({voteID}) {
     const [result2, setResult2] = useState(0);
     const [result3, setResult3] = useState(0);
     const [result4, setResult4] = useState(0);
+
+    // 네비게이터를 만들겠소
+    const navigate = useNavigate()
 
     // axios를 통해 사진 불러오기
     const fetchVote = async () => {
@@ -171,11 +175,13 @@ function VoteTag({voteID}) {
         })
         .then((response) => {
             console.log('well done!')
+            return alert('제출되었습니다~^^')
         })
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
 
+        navigate("/");
     }
 
     return(

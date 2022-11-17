@@ -1,28 +1,34 @@
-ul {
-    list-style: none;
-}
 
-a{
-    text-decoration: none; 
-    color: #828282;
-    font-size: 20px;
-}
-
-button {
-    border: 0;
-    color: #828282;
-    font-size: 20px;
-}
-/*classs는 .클래스명 으로 작성해주면 됨. 
-  해당 js 파일에서 태그 className = "클래스명" 으로 적용해주면 
-  클래스 바디가 반영되어 출력된다*/
 .navbar{
     display: flex;
-    background-color: rgb(122, 204, 185);
+
+    width: 100%;
+    height: 80px;
+
+    border-weight: 2px;
+    border-style: solid;
+    border-color: red;
+    //border-bottom-weight: 2px;
+    //border-bottom-style: solid;
+    //border-bottom-color: rgb(122, 204, 185);
+
+    background-color: rgb(255, 255, 255);
 }
 
-.navbar li{
+.log__container{
     text-align: center;
     flex: 1;
     padding: 10px;
+}
+
+.logo__img{
+
+}
+
+.menu{
+    weight:
+}
+
+.navbar__right{
+
 }

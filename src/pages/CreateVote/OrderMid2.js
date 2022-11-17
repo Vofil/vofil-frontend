@@ -15,9 +15,8 @@ function EditPicModal({vote_id, pic_cnt, reNum, onImageCroppedToOrderMid2}) {
     // 편집 사진 받아오기
     const [croppedImage, setCroppedImage] = useState(undefined)
 
-    // 모달 가시화 상태 관리 메서드
-    const closeModal = (event) => {
-        setState(!state)
+    // 편집 이미지 order2에 전달 메서드
+    const passImage = () => {
         onImageCroppedToOrderMid2(croppedImage)
     }
 
@@ -27,17 +26,14 @@ function EditPicModal({vote_id, pic_cnt, reNum, onImageCroppedToOrderMid2}) {
         <div>
             <Modal
                 visible={state}
-                width="90%"
-                height="90%"
+                width="1000px"
+                height="600px"
                 effect="fadeInDown"
-                onClickAway={closeModal}
             >
-                <div>
-                    테스트
-                    <button onClick={closeModal}>close</button>
-                </div>
                 <EditPicturesPage
                     onImageCroppedToModal={(croppedImage) => setCroppedImage(croppedImage)}
+                    onModalClose={(state) => setState(state)}
+                    passImageTrigger={(croppedImage) => onImageCroppedToOrderMid2(croppedImage)}
                     voteID={vote_id}
                     reNum={reNum}
                 />
@@ -45,6 +41,10 @@ function EditPicModal({vote_id, pic_cnt, reNum, onImageCroppedToOrderMid2}) {
         </div>
     );
 }
+//onClickAway={closeModal}
+//<div>
+//    <button onClick={closeModal}>편집완료</button>
+//</div>
 
 function OrderMid2() {
     // ordermid에서 투표 아이디, 등록 사진 개수 넘겨 받기
@@ -68,10 +68,10 @@ function OrderMid2() {
     const [visible4, setVisible4] = useState(false);
 
     // 편집 사진 받아오기 버튼 별로
-    const [croppedImage1, setCroppedImage1] = useState("")
-    const [croppedImage2, setCroppedImage2] = useState("")
-    const [croppedImage3, setCroppedImage3] = useState("")
-    const [croppedImage4, setCroppedImage4] = useState("")
+    const [croppedImage1, setCroppedImage1] = useState(null)
+    const [croppedImage2, setCroppedImage2] = useState(null)
+    const [croppedImage3, setCroppedImage3] = useState(null)
+    const [croppedImage4, setCroppedImage4] = useState(null)
 
     //페이지 이동 함수
     const navigate = useNavigate();
@@ -147,7 +147,7 @@ function OrderMid2() {
                 </div>
                 <div className="createvote__content">
                     <div className="add__photo1">
-                        { croppedImage1 == "" ?
+                        { croppedImage1 == null ?
                             <button onClick={onPlusPic1Handler} disabled={disable1} className="createvote__b">
                                 <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                             </button>
@@ -162,7 +162,7 @@ function OrderMid2() {
                         }
                     </div>
                     <div className="add__photo2">
-                        { croppedImage2 == "" ?
+                        { croppedImage2 == null ?
                             <button onClick={onPlusPic2Handler} disabled={disable1} className="createvote__b">
                                 <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                             </button>
@@ -177,7 +177,7 @@ function OrderMid2() {
                         }
                     </div>
                     <div className="add__photo3">
-                        { croppedImage3 == "" ?
+                        { croppedImage3 == null ?
                             <button onClick={onPlusPic3Handler} disabled={disable3} className="createvote__b">
                                 <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                             </button>
@@ -192,7 +192,7 @@ function OrderMid2() {
                         }
                     </div>
                     <div className="add__photo4">
-                        { croppedImage4 == "" ?
+                        { croppedImage4 == null ?
                             <button onClick={onPlusPic4Handler} disabled={disable4} className="createvote__b">
                                 <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
                             </button>
