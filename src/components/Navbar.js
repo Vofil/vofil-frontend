@@ -29,41 +29,82 @@ function Navbar() {
         isClickMenu()
     }
 
-    return (
-        <div>
-            <div className="navbar">
-                <div className="menu__container">
-                    <button onClick={isClickMenu} className="menu__button">
-                        <AiOutlineMenu className="menu__icon"/>
-                    </button>
-                </div>
-                <div className="log__container">
-                    <Link to="/">
-                        <img src={logo} className="logo__img"/>
-                    </Link>
-                </div>
-                <div className="navbar__right__container">
-                    <Link to="/sign_in">
-                        <button onClick={onClick} className="sign_in_up_button">로그인</button>
-                    </Link>
-                    <Link to="/sign_up">
-                        <button onClick={onClick} className="sign_in_up_button">회원가입</button>
-                    </Link>
-                </div>
-            </div>
-            {menuState == true &&
-                <div>
-                    <div className="navbar__bottom">
-                        <button onClick={onClickCreateVote}>투표 생성하기</button>
-                    </div>
-                    <div className="navbar__bottom">
-                        <button onClick={onClickEditPic}>사진 편집하기</button>
-                    </div>
-                </div>
-            }
-        </div>
-    );
+    const logout = () => {
+        sessionStorage.clear()
+        navigate("/")
+        return alert("로그아웃 되었습니다!")
+    }
 
+    if(sessionStorage.length <= 0) {
+        return (
+            <div>
+                <div className="navbar">
+                    <div className="menu__container">
+                        <button onClick={isClickMenu} className="menu__button">
+                            <AiOutlineMenu className="menu__icon"/>
+                        </button>
+                    </div>
+                    <div className="log__container">
+                        <Link to="/">
+                            <img src={logo} className="logo__img"/>
+                        </Link>
+                    </div>
+                    <div className="navbar__right__container">
+                        <Link to="/sign_in">
+                            <button onClick={onClick} className="sign_in_up_button">로그인</button>
+                        </Link>
+                        <Link to="/sign_up">
+                            <button onClick={onClick} className="sign_in_up_button">회원가입</button>
+                        </Link>
+                    </div>
+                </div>
+                {menuState == true &&
+                    <div>
+                        <div className="navbar__bottom">
+                            <button onClick={onClickCreateVote}>투표 생성하기</button>
+                        </div>
+                        <div className="navbar__bottom">
+                            <button onClick={onClickEditPic}>사진 편집하기</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        );
+    }
+    else{
+        return (
+            <div>
+                <div className="navbar">
+                    <div className="menu__container">
+                        <button onClick={isClickMenu} className="menu__button">
+                            <AiOutlineMenu className="menu__icon"/>
+                        </button>
+                    </div>
+                    <div className="log__container">
+                        <Link to="/">
+                            <img src={logo} className="logo__img"/>
+                        </Link>
+                    </div>
+                    <div className="navbar__right__container">
+                        <Link to="/mypage">
+                            <button onClick={onClick} className="sign_in_up_button">마이페이지</button>
+                        </Link>
+                        <button onClick={logout} className="sign_in_up_button">로그아웃</button>
+                    </div>
+                </div>
+                {menuState == true &&
+                    <div>
+                        <div className="navbar__bottom">
+                            <button onClick={onClickCreateVote}>투표 생성하기</button>
+                        </div>
+                        <div className="navbar__bottom">
+                            <button onClick={onClickEditPic}>사진 편집하기</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        );
+    }
 
 //    return (
 //        <div>
