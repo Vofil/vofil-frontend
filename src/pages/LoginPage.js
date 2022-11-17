@@ -1,10 +1,14 @@
 import React, {useState} from 'react';
+import {useNavigate} from "react-router-dom";
 import "./LoginRegister.css";
 import axios from 'axios';
 
 function LoginPage() {
     //세션 스토리지 생성
     let sessionStorage = window.sessionStorage;
+
+    // 네비게이션 생성
+    const navigate = useNavigate()
 
     const [email, setEmail] = useState("");
     const [ID, setID] = useState("");
@@ -45,6 +49,8 @@ function LoginPage() {
 
             // API 요청하는 콜마다 헤더에 accessToken 담아 보내도록 설정
             //axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
+            navigate("/")
 
             console.log('well done!')
             return alert('환영합니다.')

@@ -40,18 +40,18 @@ function App() {
           <Route exact path="/sign_up" element={<RegisterPage/>} />
 
           <Route exact path="/create_vote" element={<CreateVotePage/>} />
-          <Route exact path="/create_vote/orderMid" element={<OrderMid/>} />
-          <Route exact path="/create_vote/orderMid2" element={<OrderMid2/>} />
-          <Route exact path="/create_vote/orderStart" element={<OrderStart/>} />
+          <Route exact path="/orderMid" element={<OrderMid/>} />
+          <Route exact path="/orderMid2" element={<OrderMid2/>} />
+          <Route exact path="/orderStart" element={<OrderStart/>} />
           <Route exact path="/orderEnd" element={<OrderEnd/>} />
 
           <Route exact path="/vote" element={<VotePage/>} />
           <Route exact path="/vote_result" element={<VoteResult/>} />
 
           <Route exact path="/mypage" element={<MyPage/>} />
-          <Route exact path="/mypage/myinfo" element={<MyInfoPage/>} />
-          <Route exact path="/mypage/votelistM" element={<VoteListMPage/>} />
-          <Route exact path="/mypage/votelistP" element={<VoteListPPage/>} />
+          <Route exact path="/myinfo" element={<MyInfoPage/>} />
+          <Route exact path="/votelistM" element={<VoteListMPage/>} />
+          <Route exact path="/votelistP" element={<VoteListPPage/>} />
         </Routes>
       </div>
     </Router>

@@ -14,7 +14,7 @@ function OrderStart() {
                     개인정보 보호를 위해 블러처리를 해주세요
                 </div>
                 <div className="createvote__button__container">
-                    <Link to="/create_vote/orderMid">
+                    <Link to="/orderMid">
                         <button className="createvote__button">시작하기</button>
                     </Link>
                 </div>

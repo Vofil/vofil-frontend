@@ -200,7 +200,7 @@ function OrderMid() {
         });
 
         // 다음 페이지 넘어가기
-        navigate("/create_vote/orderMid2", {
+        navigate("/orderMid2", {
             state: {
                 id: vote_id,
                 pic_cnt: pic_cnt

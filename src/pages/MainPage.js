@@ -185,7 +185,7 @@ function MainPage() {
                             ))
                         }
                         {customVotes == null &&
-                            <div>텅 비었ek</div>
+                            <div>텅 비었다</div>
                         }
                     </div>
                 }
@@ -217,7 +217,7 @@ function MainPage() {
                             ))
                         }
                         {latestVotes == null &&
-                            <div>텅 비었ek</div>
+                            <div>텅 비었다</div>
                         }
                     </div>
                 }
