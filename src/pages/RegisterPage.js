@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import axios from 'axios';
 import "./LoginRegister.css";
-import UserList from "../dummydata/UserList";
 
   // 생일 select box 
   const now = new Date();
