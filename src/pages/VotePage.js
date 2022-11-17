@@ -1,12 +1,17 @@
 import {React, useState, useEffect} from "react"
+import {useLocation} from "react-router-dom";
 import axios from 'axios';
 import VoteNormal from "./Vote/VoteNormal"
 import VoteTag from "./Vote/VoteTag"
 
-const voteID = 324
 // props로 투표 아이디 받아와서 vote api에서 검색함.
 // 아이디 같은 엔트리 뽑아다가화면에 뿌리기
 function VotePage() {
+    //네비게이트로 받아온 투표 아이디입니다.
+    const location = useLocation()
+    const voteID = location.state.id
+
+    console.log("투표하기 페이지에서 투표 번호" + voteID)
 
     // voteID로 api에서 kind 확인하고 렌더링
     const [kind, setKind] = useState(-1);

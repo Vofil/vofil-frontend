@@ -47,11 +47,23 @@ function MainPage() {
     const onSetLatestHandler = (event) => {
         setLatest(event.currentTarget.value)
         console.log("최근투표선택된것: " + event.currentTarget.value)
+        navigate("/vote", {
+            state: {
+                id: event.currentTarget.value
+            }
+        })
     }
 
     const onSetCustomHandler = (event) => {
         setCustom(event.currentTarget.value)
+        console.log("최근투표선택된것: " + event.currentTarget.value)
+        navigate("/vote", {
+            state: {
+                id: event.currentTarget.value
+            }
+        })
     }
+
 
     // 최신 투표 데이터 저장하기
     const fetchLatestVotes = async () => {
@@ -118,18 +130,27 @@ function MainPage() {
                 <div className="vote_category__title">나만의 맞춤 투표</div>
                 {sessionStorage.getItem("loginID") != null &&
                     <div className="vote__list__container">
-                        {latestVotes != null &&
-                            latestVotes.map( x => (
+                        {customVotes != null &&
+                            customVotes.map( x => (
                                 _title.map( y => (
                                     (`${y.t2}` == `${x.title}`) &&
-                                        <div className="vote__container">
-                                            <div className="thumbnail"><img alt="사진" src={x.re1}/></div>
-                                            <div className="vote__title">{y.t1}</div>
-                                        </div>
+                                        <label key={x.vote_id}>
+                                            <input
+                                                type="radio"
+                                                className="radio__hidden__vote"
+                                                value={x.vote_id}
+                                                checked={custom === `${x.vote_id}`}
+                                                onChange={onSetCustomHandler}
+                                            />
+                                                <div className="vote__container">
+                                                    <div className="thumbnail"><img alt="사진" src={x.re1}/></div>
+                                                    <div className="vote__title">{y.t1}</div>
+                                                </div>
+                                        </label>
                                 ))
                             ))
                         }
-                        {latestVotes == null &&
+                        {customVotes == null &&
                             <div>텅 비었ek</div>
                         }
                     </div>
@@ -141,8 +162,8 @@ function MainPage() {
                 <div className="vote_category__title">최근 생성된 투표</div>
                 {sessionStorage.getItem("loginID") != null &&
                     <div className="vote__list__container">
-                        {customVotes != null &&
-                            customVotes.map( x => (
+                        {latestVotes != null &&
+                            latestVotes.map( x => (
                                 _title.map( y => (
                                     (`${y.t2}` == `${x.title}`) &&
                                         <label key={x.vote_id}>
@@ -161,7 +182,7 @@ function MainPage() {
                                 ))
                             ))
                         }
-                        {customVotes == null &&
+                        {latestVotes == null &&
                             <div>텅 비었ek</div>
                         }
                     </div>

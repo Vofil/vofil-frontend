@@ -9,7 +9,7 @@ import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
 function CreateVotePage() {
 
     const [data, setData] = useState({
-        User_id: "tester01",
+        User_id: sessionStorage.getItem("loginID"),
         id: 1,
         gender: 3,
         age: 2,
