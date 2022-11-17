@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import {useNavigate, useLocation} from "react-router-dom";
 // 투표 참여 후 투표 결과 페이지
 // 투표 참여한 사람만 볼 수 있음
 // <접근 경로>
@@ -11,19 +11,25 @@ import axios from 'axios';
 
 function VoteResult() {
 
+    //네비게이트로 받아온 투표 아이디입니다.
+    const location = useLocation()
+    const voteID = location.state.id
+
     // result api 불러오기
-    for(var i = 1, i < 5, i++){
-        axios
-        .get("api/votes/result", { params:
-            {
-                id: "투표 아이디",
-                cnt: i
-            }
+//    for(var i = 1, i < 5, i++){
+//        axios
+//        .get("api/votes/result", { params:
+//            {
+//                id: voteID,
+//                cnt: i
+//            }
+//
+//        })
+//    }
 
-        })
-    }
-
-    return();
+    return(
+        <h2>결과페이지 입니다</h2>
+    );
 }
 
 export default VoteResult;

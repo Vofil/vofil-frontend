@@ -18,6 +18,7 @@ import OrderMid2 from "./pages/CreateVote/OrderMid2"
 import OrderStart from "./pages/CreateVote/OrderStart"
 import OrderEnd from "./pages/CreateVote/OrderEnd"
 import VotePage from "./pages/VotePage"
+import VoteResult from "./pages/Vote/VoteResult"
 
 //react-router-dom이 v6이 되면서 Switch -> Routes로 변경됨
 //그리고 v6부터는 component가 아니라 element로 props 내보내야 함.
@@ -42,9 +43,10 @@ function App() {
           <Route exact path="/create_vote/orderMid" element={<OrderMid/>} />
           <Route exact path="/create_vote/orderMid2" element={<OrderMid2/>} />
           <Route exact path="/create_vote/orderStart" element={<OrderStart/>} />
-          <Route exact path="/create_vote/orderEnd" element={<OrderEnd/>} />
+          <Route exact path="/orderEnd" element={<OrderEnd/>} />
 
           <Route exact path="/vote" element={<VotePage/>} />
+          <Route exact path="/vote_result" element={<VoteResult/>} />
 
           <Route exact path="/mypage" element={<MyPage/>} />
           <Route exact path="/mypage/myinfo" element={<MyInfoPage/>} />

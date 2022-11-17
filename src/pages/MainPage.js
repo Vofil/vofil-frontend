@@ -52,6 +52,40 @@ function MainPage() {
                 id: event.currentTarget.value
             }
         })
+
+        // 불리언 판단 true: 투표하기 페이지로, false: 투표 결과페이지로
+        axios
+        .get("api/voters/bool", { params:
+            {
+                id: sessionStorage.getItem("loginID"),
+                Vid: event.currentTarget.value
+            }
+        })
+        .then((response) => {
+            console.log("불리언: " + response.data)
+            if(response.data == true){
+                // 투표하기 페이지로
+                navigate("/vote", {
+                    state: {
+                        id: event.currentTarget.value
+                    }
+                })
+            }
+            else {
+                // 투표 결과 페이지로
+                navigate("/vote_result", {
+                    state: {
+                        id: event.currentTarget.value
+                    }
+                })
+            }
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+
+
     }
 
     const onSetCustomHandler = (event) => {
