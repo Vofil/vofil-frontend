@@ -108,7 +108,7 @@ function VoteListPPage() {
         <div>
             <div className="main__page">
                 <div className="vote_category2">
-                    <div className="vote_category__title">내가 만든 투표</div>
+                    <div className="vote_category__title">내가 참여한 투표</div>
                     {sessionStorage.getItem("loginID") != null &&
                         <div className="vote__list__container2">
                             {voteData != null &&

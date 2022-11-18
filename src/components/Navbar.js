@@ -1,12 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import { AiOutlineMenu } from 'react-icons/ai';
+import axios from 'axios';
 import "./Navbar.css"
 import logo from '../assets/logo_small.jpg';
 
 function Navbar() {
     const [sign, setSign] = useState(true)
     const [menuState, setMenuState] = useState(false)
+    const [name, setName] = useState("")
 
     //네비게이트 생성
     const navigate = useNavigate()
@@ -34,6 +36,27 @@ function Navbar() {
         navigate("/")
         return alert("로그아웃 되었습니다!")
     }
+
+    const fetchUserDataLoad = () => {
+        axios
+        .get("api/mypage/user/information", { params:
+            {
+                user_id: sessionStorage.getItem("loginID")
+            }
+        })
+        .then((response) => {
+            setName(response.data.name)
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
+    useEffect(() => {
+        fetchUserDataLoad();
+    }, []);
 
     if(sessionStorage.length <= 0) {
         return (
@@ -86,6 +109,7 @@ function Navbar() {
                         </Link>
                     </div>
                     <div className="navbar__right__container">
+                        <div className="nickname">[{name}] 님 </div>
                         <Link to="/mypage">
                             <button onClick={onClick} className="sign_in_up_button">마이페이지</button>
                         </Link>

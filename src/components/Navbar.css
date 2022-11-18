@@ -41,7 +41,7 @@
 }
 
 .log__container{
-    width: 40%;
+    width: 30%;
 
     display: flex;
     align-items: center;
@@ -95,7 +95,7 @@
     justify-content: flex-end;
     align-items: center;
 
-    width: 30%;
+    width: 40%;
 
     //border-weight: 2px;
     //border-style: solid;
@@ -116,4 +116,12 @@
 
     border-color: rgb(122, 204, 185);
     border-radius: 40px;
+}
+
+.nickname{
+    font-size: 16px;
+    font-weight: 700;
+    color: rgb(122, 204, 185);
+
+    margin-right: 20px;
 }

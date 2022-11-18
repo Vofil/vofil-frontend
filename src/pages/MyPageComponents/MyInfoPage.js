@@ -20,7 +20,12 @@ function MyInfoPage() {
             setName(response.data.name)
             setID(response.data.id)
             setBirth(response.data.birth)
-            setGender(response.data.gender)
+            if(response.data.gender == 3) {
+                setGender("남자")
+            }
+            else{
+                setGender("여자")
+            }
             setTitle(response.data.title)
 
             console.log('well done!')
@@ -38,11 +43,11 @@ function MyInfoPage() {
         <div>
             <h2>내 정보</h2>
             <ul>
-                <li>{name}</li>
-                <li>{user_id}</li>
-                <li>{birth}</li>
-                <li>{gender}</li>
-                <li>{title}</li>
+                <li>닉네임: {name}</li>
+                <li>아이디: {user_id}</li>
+                <li>생일: {birth}</li>
+                <li>성별: {gender}</li>
+                <li>칭호: {title}</li>
             </ul>
         </div>
     );
