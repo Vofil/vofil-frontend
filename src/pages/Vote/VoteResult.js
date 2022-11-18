@@ -182,13 +182,13 @@ function VoteResult() {
             }
         })
         .then((response) => {
-            if(_cnt == 0){
+            if(_cnt == 1){
                 setRE1(response.data)
             }
-            else if(_cnt == 1){
+            else if(_cnt == 2){
                 setRE2(response.data)
             }
-            else if(_cnt == 2){
+            else if(_cnt == 3){
                 setRE3(response.data)
             }
             else{

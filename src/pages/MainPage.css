@@ -22,6 +22,15 @@
     //border-color: blue;
 }
 
+.vote_category2{
+    width: 80%;
+
+    margin-top: 15px;
+    //border-width: 3px;
+    //border-style: solid;
+    //border-color: blue;
+}
+
 
 .vote_category__title{
     //display: flex;
@@ -47,6 +56,15 @@
     //border-color: green;
 }
 
+.vote__list__container2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+
+}
 
 .vote__container{
 

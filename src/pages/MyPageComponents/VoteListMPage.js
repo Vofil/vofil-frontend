@@ -107,10 +107,10 @@ function VoteListMPage() {
     return (
         <div>
             <div className="main__page">
-                <div className="vote_category">
+                <div className="vote_category2">
                     <div className="vote_category__title">내가 만든 투표</div>
                     {sessionStorage.getItem("loginID") != null &&
-                        <div className="vote__list__container">
+                        <div className="vote__list__container2">
                             {voteData != null &&
                                 voteData.map( x => (
                                     _title.map( y => (
