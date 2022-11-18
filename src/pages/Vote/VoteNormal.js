@@ -149,7 +149,7 @@ function VoteNormal({voteID}) {
 
         axios
         .post("/api/voters", {
-            user_id: "jisu",
+            user_id: sessionStorage.getItem("loginID"),
             vote_id: voteID,
             result1: result1,
             result2: result2,

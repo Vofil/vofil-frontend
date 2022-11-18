@@ -131,12 +131,11 @@ function OrderMid2() {
 
     // 생성 완료 버튼
     const onSubmitHandler = (event) => {
-        navigate("/orderEnd" /*{
+        navigate("/orderEnd", {
             state: {
-                id: vote_id,
-                pic_cnt: pic_cnt
+                id: voteID,
             }
-        }*/);
+        });
     }
 
     return(

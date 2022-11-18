@@ -44,30 +44,48 @@ function MainPage() {
     const navigate = useNavigate()
 
     //핸들러를 만들어야 해
+    //1. 최근 투표
     const onSetLatestHandler = (event) => {
         setLatest(event.currentTarget.value)
-        console.log("최근투표선택된것: " + event.currentTarget.value)
-        navigate("/vote", {
-            state: {
-                id: event.currentTarget.value
-            }
-        })
+        console.log("최근투표선택된것e: " + event.currentTarget.value)
+//        navigate("/vote", {
+//            state: {
+//                id: event.currentTarget.value
+//            }
+//        })
+        canAccess(event.currentTarget.value)
 
-        // 불리언 판단 true: 투표하기 페이지로, false: 투표 결과페이지로
+    }
+
+    const onSetCustomHandler = (event) => {
+        setCustom(event.currentTarget.value)
+        console.log("맞춤투표: " + event.currentTarget.value)
+//        navigate("/vote", {
+//            state: {
+//                id: event.currentTarget.value
+//            }
+//        })
+        canAccess(event.currentTarget.value)
+    }
+
+    // 접근 가능한가?? 불리언 판단 true: 투표하기 페이지로, false: 투표 결과페이지로
+    const canAccess = (Vid) => {
         axios
-        .get("api/voters/bool", { params:
+        .get("/api/voters/bool", { params:
             {
                 id: sessionStorage.getItem("loginID"),
-                Vid: event.currentTarget.value
+                Vid: Vid
             }
         })
         .then((response) => {
             console.log("불리언: " + response.data)
             if(response.data == true){
+                console.log("투표하기 페이지로 가야합ㄴ디ㅏ.")
+                console.log("투표 아이디: " + Vid)
                 // 투표하기 페이지로
                 navigate("/vote", {
                     state: {
-                        id: event.currentTarget.value
+                        id: Vid
                     }
                 })
             }
@@ -75,7 +93,7 @@ function MainPage() {
                 // 투표 결과 페이지로
                 navigate("/vote_result", {
                     state: {
-                        id: event.currentTarget.value
+                        id: Vid
                     }
                 })
             }
@@ -83,18 +101,6 @@ function MainPage() {
         })
         .catch((error) => {
             console.log('An error occurred:', error.response);
-        })
-
-
-    }
-
-    const onSetCustomHandler = (event) => {
-        setCustom(event.currentTarget.value)
-        console.log("최근투표선택된것: " + event.currentTarget.value)
-        navigate("/vote", {
-            state: {
-                id: event.currentTarget.value
-            }
         })
     }
 
@@ -106,19 +112,35 @@ function MainPage() {
         setError(null)
         setLoading(true)
 
-        axios
-        .get("api/mainpage/latest", { params:
-            {
-                user_id: sessionStorage.getItem("loginID")
-            }
-        })
-        .then((response) => {
-            setLatestVotes(response.data)
-            console.log('well done!')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        })
+        console.log("세션스토리지 길이 new: " + sessionStorage.length)
+
+        if(sessionStorage.length <= 0){
+            axios
+            .get("/api/mainpage/latest")
+            .then((response) => {
+                setLatestVotes(response.data)
+                console.log('well done!')
+            })
+            .catch((error) => {
+                console.log('An error occurred:', error.response);
+            })
+        }
+        else{
+            axios
+            .get("/api/mainpage/latest", { params:
+                {
+                    user_id: sessionStorage.getItem("loginID")
+                }
+            })
+            .then((response) => {
+                setLatestVotes(response.data)
+                console.log('well done!')
+            })
+            .catch((error) => {
+                console.log('An error occurred:', error.response);
+            })
+        }
+
         setLoading(false);
     };
 
@@ -126,26 +148,29 @@ function MainPage() {
         fetchLatestVotes();
     }, []);
 
-    // 최신 투표 데이터 저장하기
+    // 맞춤 투표 데이터 저장하기
     const fetchCustomVotes = async () => {
         //
         setLatestVotes(null)
         setError(null)
         setLoading(true)
 
-        axios
-        .get("api/mainpage/custom", { params:
-            {
-                user_id: sessionStorage.getItem("loginID")
-            }
-        })
-        .then((response) => {
-            setCustomVotes(response.data)
-            console.log('well done!')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        })
+        if(sessionStorage.length != 0){
+            axios
+            .get("/api/mainpage/custom", { params:
+                {
+                    user_id: sessionStorage.getItem("loginID")
+                }
+            })
+            .then((response) => {
+                setCustomVotes(response.data)
+                console.log('well done!')
+            })
+            .catch((error) => {
+                console.log('An error occurred:', error.response);
+            })
+        }
+
         setLoading(false);
     };
 

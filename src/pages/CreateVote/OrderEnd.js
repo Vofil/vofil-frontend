@@ -1,10 +1,14 @@
 import { IoIosArrowBack, IoIosArrowForward} from "react-icons/io";
-import {Link, useNavigate} from "react-router-dom";
+import {Link, useNavigate, useLocation} from "react-router-dom";
 import axios from 'axios';
 import "./OrderStartEnd.css";
 // 투표 생성 종료 페이지
 
 function OrderEnd() {
+
+    // ordermid에서 투표 아이디, 등록 사진 개수 넘겨 받기
+    const location = useLocation()
+    const voteID = location.state.id       // 투표 아이디
 
     //페이지 이동 함수
     const navigate = useNavigate();
@@ -14,10 +18,10 @@ function OrderEnd() {
         console.log("버튼 클릭 되었음.")
 
         axios
-        .get("api/voters/bool", { params:
+        .get("/api/voters/bool", { params:
             {
                 id: sessionStorage.getItem("loginID"),
-                Vid: 327
+                Vid: voteID
             }
         })
         .then((response) => {
@@ -34,11 +38,14 @@ function OrderEnd() {
                 // 투표 결과 페이지로
                 navigate("/vote_result", {
                     state: {
-                        id: 327
+                        id: voteID
                     }
                 })
             }
             console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
         })
     }
 
