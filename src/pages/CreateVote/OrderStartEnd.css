@@ -5,9 +5,7 @@
     height: 100vh;
     margin-left: 20px;
     margin-right: 20px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: red;
+
 }
 
 .createvote2 {
@@ -16,18 +14,14 @@
     height: 100vh;
     margin-left: 20px;
     margin-right: 20px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: red;
+
 }
 
 .createvote__center {
     width: 80%;
     height: 100%;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: red;
+
 }
 
 .createvote__rightleft {
@@ -37,9 +31,7 @@
     height: 100vh;
 
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: red;
+
 }
 
 .createvote__big__head {
@@ -51,9 +43,6 @@
     font-size: 6vh;
     font-weight: bold;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: blue;
 }
 
 .createvote__mid__head {
@@ -65,9 +54,7 @@
     font-size: 3vh;
     font-weight: bold;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: blue;
+
 }
 
 .createvote__small__head {
@@ -79,9 +66,6 @@
     font-size: 2vh;
     font-weight: bold;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: blue;
 }
 
 .createvote__small__head2 {
@@ -93,9 +77,7 @@
     font-size: 2vh;
     font-weight: bold;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: blue;
+
 }
 
 .createvote__content {
@@ -106,9 +88,7 @@
     padding-top: 30px;
     padding-bottom: 30px;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: green;
+
 }
 
 .createvote__input {
@@ -131,9 +111,7 @@
 
     margin: 10px;
 
-    border-width: 5px;
-    border-style: solid;
-    border-color: red;
+
 }
 
 .createvote__button {

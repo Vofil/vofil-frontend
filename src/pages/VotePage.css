@@ -5,18 +5,14 @@
     height: 100vh;
     margin-left: 20px;
     margin-right: 20px;
-    border-width: 1px;
-    border-style: solid;
-    border-color: red;
+
 }
 
 .createvote__center2 {
     width: 80%;
     height: 100%;
 
-    border-width: 10px;
-    border-style: solid;
-    border-color: red;
+
 }
 
 .createvote__rightleft {
@@ -26,9 +22,7 @@
     height: 100vh;
 
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: red;
+
 }
 
 .createvote__big__head2 {
@@ -41,9 +35,7 @@
     font-size: 6vh;
     font-weight: bold;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: blue;
+
 }
 
 .createvote__mid__head2 {
@@ -55,9 +47,7 @@
     font-size: 3vh;
     font-weight: bold;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: blue;
+
 }
 
 .createvote__small__head2 {
@@ -69,9 +59,7 @@
     font-size: 2vh;
     font-weight: bold;
 
-    border-width: 1px;
-    border-style: solid;
-    border-color: blue;
+
 }
 
 .createvote__content2 {
@@ -79,16 +67,14 @@
     align-items: center;
     justify-content: center;
 
-    border-width: 10px;
-    border-style: solid;
-    border-color: green;
+
 }
 
 .createvote__content__entity {
     margin: 5px;
     border-width: 5px;
     border-style: solid;
-    border-color: yellow;
+    border-color: rgb(122, 204, 185);
 }
 
 .select__photo1 {
