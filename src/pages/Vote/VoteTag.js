@@ -53,6 +53,7 @@ function VoteTag({voteID}) {
         - 투표 방식
         - 등록된 사진
     */
+    const [endingPoint, setEndingPoint] = useState(0);
     const [feeling, setFeeling] = useState("");
     const [image1, setImage1] = useState(null);
     const [image2, setImage2] = useState(null);
@@ -87,6 +88,8 @@ function VoteTag({voteID}) {
                     setFeeling(`${element.t1}`)
                 }
             });
+
+            setEndingPoint(response.data.ending_point)
 
             console.log('well done!')
         })
@@ -187,6 +190,9 @@ function VoteTag({voteID}) {
     return(
         <div className="createvote2">
             <div className="createvote__center2">
+                <div className="vote__state">
+                    남은 투표자수: {endingPoint}
+                </div>
                 <div className="createvote__big__head2">
                     {feeling}
                 </div>

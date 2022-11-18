@@ -166,9 +166,9 @@
 
     margin: 5px;
 
-    border-width: 3px;
-    border-style: solid;
-    border-color: rgb(122, 204, 185);
+    //border-width: 3px;
+    //border-style: solid;
+    //border-color: rgb(122, 204, 185);
 }
 
 
@@ -192,9 +192,9 @@
 
     height: 10%;
 
-    border-width: 5px;
-    border-style: solid;
-    border-color: red;
+    //border-width: 5px;
+    //border-style: solid;
+    //border-color: red;
 }
 
 .createvote__b {
@@ -221,4 +221,19 @@
 
 .radio__hidden {
     visibility: hidden;
+}
+
+.vote__state{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 10%;
+
+    font-size: 3vh;
+    font-weight: bold;
+
+    //border-width: 1px;
+    //border-style: solid;
+    //border-color: blue;
 }

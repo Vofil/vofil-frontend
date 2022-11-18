@@ -325,8 +325,8 @@ function OrderMid() {
                         <input
                             name="endingPoint"
                             type="range"
-                            min="10"
-                            max="100"
+                            min="2"
+                            max="10"
                             value={ending_point}
                             onChange={onEndingPointHandler}
                         />
