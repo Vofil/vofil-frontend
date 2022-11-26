@@ -15,11 +15,6 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
     const [cropState, setCropState] = useState(false)
     const [zoomState, setZoomState] = useState(false)
 
-//    const [res1, setRes1] = useState(undefined);
-//    const [res2, setRes2] = useState(undefined);
-//    const [res3, setRes3] = useState(undefined);
-//    const [res4, setRes4] = useState(undefined);
-
     //받아온 사진
     const [reImage, setReImage] = useState(undefined);
 
@@ -34,7 +29,6 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
 
             reader.readAsDataURL(event.target.files[0]);
         }
-        
     };
 
     /*---------------------
@@ -68,27 +62,52 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
        기타 버튼
     ------------*/
     // 편집 완료 버튼
-    const onSubmitHandler = (event) => {
+    const onSubmitHandler = () => {
+
         onImageCroppedToModal(croppedImage)
         passImageTrigger(croppedImage)
 
-        axios
-        .get("/api/pictures/checked", { params:
-            {
-                file: croppedImage,
-                id: voteID,
-                cnt: reNum
+        const byteString = atob(croppedImage.split(",")[1]);
+
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([ia], {
+            type: "image/jpeg"
+        });
+        const file = new File([blob], "image.jpg");
+
+        let formData = new FormData();
+
+        formData.append("file", file)
+        formData.append("id", voteID)
+        formData.append("cnt", reNum)
+
+        for (var pair of formData.entries()) {
+            console.log(pair[0] + " : " + pair[1])
+        }
+
+        axios({
+            method: 'post',
+            url: "/api/pictures/checking",
+            data: formData,
+            headers: {
+                'Content-Type': 'multipart/form-data;'
             }
         })
         .then((response) => {
             console.log('well done!')
         })
         .catch((error) => {
+            alert("파일을 저장하는데 실패했습니다");
             console.log('An error occurred:', error.response);
         });
 
         onModalClose(false)
     }
+
 
     // DB에 저장된 사진 불러오기 입니다.
     const onPicPicHandler = (event) => {
@@ -128,11 +147,13 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
                     <div className="right__edit__title">
                         파일을 로드해주세요
                     </div>
-                    <input
-                        type="file"
-                        accept="image/*"
-                        onChange={onUploadFile}
-                    />
+                    <form>
+                        <input
+                            type="file"
+                            accept="image/png, image/jpeg, image/jpg"
+                            onChange={(event) => onUploadFile(event)}
+                        />
+                    </form>
                 </div>
                 <div className="right__edit__button__container">
                     <div className="right__edit__title">
@@ -148,6 +169,45 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
             </div>
         </div>
     );
+
+
+//    return (
+//        <div className="edit">
+//            <div className="left__edit">
+//                {blurState == true && <div>블러창을 열게요</div>}
+//                {cropState == true &&
+//                    <ImageCropper
+//                        imageToCrop={imageToCrop}
+//                        onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
+//                    />
+//                }
+//                {zoomState == true && <div>줌창 열게요</div>}
+//            </div>
+//            <div className="right__edit">
+//                <div className="right__edit__loadpicture">
+//                    <div className="right__edit__title">
+//                        파일을 로드해주세요
+//                    </div>
+//                    <input
+//                        type="file"
+//                        accept="image/*"
+//                        onChange={onUploadFile}
+//                    />
+//                </div>
+//                <div className="right__edit__button__container">
+//                    <div className="right__edit__title">
+//                        편집 모드
+//                    </div>
+//                    <button onClick={onBlurMode} className="right__edit__button">블러</button>
+//                    <button onClick={onCropMode} className="right__edit__button">자르기</button>
+//                    <button onClick={onZoomMode} className="right__edit__button">크기조절</button>
+//                </div>
+//                <div className="right__edit__submit__container">
+//                    <button onClick={onSubmitHandler} className="right__edit__submit_button">편집 완료</button>
+//                </div>
+//            </div>
+//        </div>
+//    );
 
 
     /*

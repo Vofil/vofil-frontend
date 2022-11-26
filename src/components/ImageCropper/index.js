@@ -65,16 +65,26 @@ function ImageCropper(props) {
                         return;
                     }
 
+                    const reader = new FileReader();
+                    reader.readAsDataURL(blob);
+                    reader.onload = function() {
+                        console.log(reader.result);
+                        document.querySelector('img').src = reader.result;
+                        resolve(reader.result)
+                    };
+
+
+
                     blob.name = fileName;
+                    console.log(blob.name)
                     // creating a Object URL representing the Blob object given
                     const croppedImageUrl = window.URL.createObjectURL(blob);
 
-                    //이미지 주소 받기 위해 추가
-                    //dispatch(croppedImageUrl);
-
-                    resolve(croppedImageUrl);
+                    //resolve(reader.result)
+                    //resolve(blob);
+                    //resolve(croppedImageUrl);
                     console.log(croppedImageUrl);
-                }, 'image/jpg'
+                }, 'image/png, image/jpeg, image/jpg'
             );
         });
     }
