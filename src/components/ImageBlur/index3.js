@@ -1,55 +1,43 @@
-//import { useRef, useEffect } from 'react';
-//
-//
-//const INITIAL_AREA = {
-//  x: 0,
-//  y: 0,
-//  width: 0,
-//  height: 0,
-//};
-//
-//function ImageBlur(props) {
-//    const {source, onImageCropped} = props;
-//
-//    //레이어 만들기
-//    const blurLayer = useRef(null);
-//    const imageLayer = useRef(null);
-//    const dragLayer = useRef(null);
-//
-//    //블러 모드인가?
-//    const [isBlurMode, setIsBlurMode] = useState(false);
-//
-//    //편집할 이미지 소스
-//    const [imageSource, setImageSource] = useState(null);
-//
-//    //블러 구역, 블러 구역 모음
-//    const [blurryArea, setBlurArea] = useState(INITIAL_AREA);
-//    const [blurryAreas, setBlurryAreas] = useState([]);
-//
-//    //hook 생성
-//    useEffect(drawImageLayer, [imageSource, rotationAngle, blurryAreas]);
-//    useEffect(drawBlurLayer, [imageSource, rotationAngle]);
-//    useEffect(drawDragLayer, [imageSource, rotationAngle]);
-//    useEffect(drawDragArea, [blurryArea]);
-//
-//    //hook 함수
-//    function drawImageLayer() {
-//        if (!imageLayer) return;
-//        const ctx = imageLayer.current.getContext("2d");
-//        const image = new Image();
-//        image.src = imageSource
-//
-//        image.onload = function() {
-//            ctx.drawImage(image, 0,0);
-//        }
-//    }
-//
-//
-//    return (
-//        <canvas ref={blurLayer}/>
-//        <canvas ref={imageLayer}/>
-//        <canvas ref={dragLayer}/>
-//    );
-//}
-//
-//export default ImageBlur;
+import { React, useRef, useEffect } from "react";
+import ReactDOM from "react-dom";
+import CanvasDraw from "react-canvas-draw";
+
+function ImageBlur(props) {
+    const {imageToCrop, onImageCropped} = props;
+    const canvasRef = useRef(null);
+
+    function getBlurredImage() {
+        const blurredImage = allInOneCanvas();
+        console.log("blurredImageURL: " + blurredImage)
+
+        onImageCropped(blurredImage)
+    }
+
+    function allInOneCanvas() {
+        const canvas = document.createElement('canvas');
+        canvas.width = 500;
+        canvas.height = 500;
+        const ctx = canvas.getContext('2d')
+
+        // 두 캔버스를 저장용 캔버스에 그린다 (먼저 그린쪽이 아래에 있는 레이어가 된다)
+        ctx.drawImage(canvasRef.current.canvasContainer.childNodes[0], 0, 0);
+        ctx.drawImage(canvasRef.current.canvasContainer.childNodes[1], 0, 0);
+
+        return(canvas.toDataURL());
+    }
+
+    return(
+        <div>
+            <CanvasDraw
+                ref={canvasRef}
+                imgSrc={imageToCrop}
+                canvasWidth={500}
+                canvasHeight={500}
+                brushColor="#000000"
+            />
+            <button onClick={getBlurredImage}>블러완료</button>
+        </div>
+    );
+}
+
+export default ImageBlur;

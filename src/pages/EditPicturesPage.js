@@ -5,7 +5,6 @@ import ImageZoom from "../components/ImageZoom/index2";
 import ImageBlur from "../components/ImageBlur/index3";
 import "./EditPictures.css"
 
-
 function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger, voteID, reNum}) {
     // 로드한 크롭할 이미지 => 차후 편집할 이미지로 변경합니다.
     const [imageToCrop, setImageToCrop] = useState(null);
@@ -69,6 +68,8 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
     ------------*/
     // 편집 완료 버튼
     const onSubmitHandler = () => {
+
+        console.log("제출 버튼이 눌렸습니다")
 
         onImageCroppedToModal(croppedImage)
         passImageTrigger(croppedImage)
@@ -148,7 +149,7 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
                 {blurState == false && cropState == false && zoomState == false && <img alt="image" src={imageToCrop}/>}
                 {blurState == true &&
                     <ImageBlur
-                        source={imageToCrop}
+                        imageToCrop={imageToCrop}
                         onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
                     />
                 }
