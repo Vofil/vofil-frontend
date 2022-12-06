@@ -1,14 +1,18 @@
 import React, {useState} from "react";
 import axios from 'axios';
 import ImageCropper from "../components/ImageCropper/index";
+import ImageZoom from "../components/ImageZoom/index2";
+import ImageBlur from "../components/ImageBlur/index3";
 import "./EditPictures.css"
 
 
 function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger, voteID, reNum}) {
     // 로드한 크롭할 이미지 => 차후 편집할 이미지로 변경합니다.
-    const [imageToCrop, setImageToCrop] = useState(undefined);
+    const [imageToCrop, setImageToCrop] = useState(null);
     // 크롭 된 이미지 => 차후 편집된 이미지로 변경합시다
-    const [croppedImage, setCroppedImage] = useState(undefined);
+    const [croppedImage, setCroppedImage] = useState(null);
+    // 불러온 사진 이름
+    const [imgName, setImageName] = useState("");
 
     // 편집 모드 버튼 상태 관리
     const [blurState, setBlurState] = useState(false)
@@ -21,6 +25,8 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
     // 파일 로드 버튼
     const onUploadFile = (event) => {
         if (event.target.files && event.target.files.length > 0) {
+            setImageName(event.target.files[0].name)
+
             const reader = new FileReader();
 
             reader.addEventListener('load', () =>
@@ -77,7 +83,7 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
         const blob = new Blob([ia], {
             type: "image/jpeg"
         });
-        const file = new File([blob], "image.jpg");
+        const file = new File([blob], imgName);
 
         let formData = new FormData();
 
@@ -106,6 +112,12 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
         });
 
         onModalClose(false)
+        setImageToCrop(null)
+        setCroppedImage(null)
+        setImageName("")
+        setZoomState(false)
+        setCropState(false)
+        setBlurState(false)
     }
 
 
@@ -133,14 +145,25 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
     return (
         <div className="edit">
             <div className="left__edit">
-                {blurState == true && <div>블러창을 열게요</div>}
+                {blurState == false && cropState == false && zoomState == false && <img alt="image" src={imageToCrop}/>}
+                {blurState == true &&
+                    <ImageBlur
+                        source={imageToCrop}
+                        onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
+                    />
+                }
                 {cropState == true &&
                     <ImageCropper
                         imageToCrop={imageToCrop}
                         onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
                     />
                 }
-                {zoomState == true && <div>줌창 열게요</div>}
+                {zoomState == true &&
+                    <ImageZoom
+                        imageToZoom={imageToCrop}
+                        onImageZoomed={(croppedImage) => setCroppedImage(croppedImage)}
+                    />
+                }
             </div>
             <div className="right__edit">
                 <div className="right__edit__loadpicture">

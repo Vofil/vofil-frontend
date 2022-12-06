@@ -125,25 +125,28 @@ function VoteResult() {
     }, []);
 
     const getPic = (_cnt) => {
-        axios
-        .get("api/pictures/show", { params:
-            {
-                id: voteID,
-                cnt: _cnt
-            }
+        axios({
+            method: "GET",
+            url: "api/pictures/FullView",
+            params: { id: voteID, cnt: _cnt},
+            responseType: "blob",
         })
         .then((response) => {
             if(_cnt == 1){
-                setImage1(response.data)
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage1(url)
             }
             else if(_cnt == 2){
-                setImage2(response.data)
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage2(url)
             }
             else if(_cnt == 3){
-                setImage3(response.data)
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage3(url)
             }
             else{
-                setImage4(response.data)
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage4(url)
             }
 
             console.log('well done!')
@@ -151,6 +154,36 @@ function VoteResult() {
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
+//        axios
+//        .get("api/pictures/FullView", { params:
+//            {
+//                id: voteID,
+//                cnt: _cnt
+//            }
+//        })
+//        .then((response) => {
+//            if(_cnt == 1){
+//                //console.log("1: " + response)
+//                setImage1(response.data)
+//            }
+//            else if(_cnt == 2){
+//                //console.log("2: " + response.data)
+//                setImage2(response.data)
+//            }
+//            else if(_cnt == 3){
+//                console.log("3: " + response.data)
+//                setImage3(response.data)
+//            }
+//            else{
+//                console.log("4: " + response.data)
+//                setImage4(response.data)
+//            }
+//
+//            console.log('well done!')
+//        })
+//        .catch((error) => {
+//            console.log('An error occurred:', error.response);
+//        })
     }
 
 
@@ -253,10 +286,10 @@ function VoteResult() {
 //        </div>
 //    );
 
-    console.log("1: " + image1)
-    console.log("2: " +image2)
-    console.log("3: " +image3)
-    console.log("4: " +image4)
+//    console.log("1: " + image1)
+//    console.log("2: " +image2)
+//    console.log("3: " +image3)
+//    console.log("4: " +image4)
 
     return(
         <div className="voteresult">
