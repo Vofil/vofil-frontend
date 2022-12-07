@@ -1,0 +1,33 @@
+
+.edit_window {
+    display: flex;
+    //align-items: center;
+    //justify-content: center;
+    width: 850px;
+    height: 600px;
+
+    border-width: 3px;
+    border-type: solid;
+    border-color: red;
+}
+
+.edit_window_crop {
+    height: 600px;
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.edit_detail {
+    display: flex;
+    //align-items: center;
+    //justify-content: center;
+    width: 150px;
+    height: 600px;
+
+    border-width: 3px;
+    border-type: solid;
+    border-color: #000000;
+}
+

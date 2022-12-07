@@ -6,6 +6,7 @@ function ImageBlur(props) {
     const {imageToCrop, onImageCropped} = props;
     const canvasRef = useRef(null);
 
+
     function getBlurredImage() {
         const blurredImage = allInOneCanvas();
         console.log("blurredImageURL: " + blurredImage)
@@ -15,8 +16,8 @@ function ImageBlur(props) {
 
     function allInOneCanvas() {
         const canvas = document.createElement('canvas');
-        canvas.width = 500;
-        canvas.height = 500;
+        canvas.width = 700;
+        canvas.height = 600;
         const ctx = canvas.getContext('2d')
 
         // 두 캔버스를 저장용 캔버스에 그린다 (먼저 그린쪽이 아래에 있는 레이어가 된다)
@@ -31,9 +32,9 @@ function ImageBlur(props) {
             <CanvasDraw
                 ref={canvasRef}
                 imgSrc={imageToCrop}
-                canvasWidth={500}
-                canvasHeight={500}
-                brushColor="#000000"
+                canvasWidth={700}
+                canvasHeight={600}
+                brushColor="#FFFFFF"
             />
             <button onClick={getBlurredImage}>블러완료</button>
         </div>

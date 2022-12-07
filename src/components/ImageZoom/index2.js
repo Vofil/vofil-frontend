@@ -29,7 +29,7 @@ class ImageZoom extends Component {
     plus = () => {
         if(this.state.resize < 3){
             this.setState({
-                resize: this.state.resize + 1
+                resize: this.state.resize + 0.2
             });
             //setResize(resize+0.2)
         }
@@ -38,7 +38,7 @@ class ImageZoom extends Component {
     minus = () => {
         if(this.state.resize >0.3){
             this.setState({
-                resize: this.state.resize - 1
+                resize: this.state.resize - 0.2
             });
             //setResize(resize-0.2)
         }
@@ -52,8 +52,8 @@ class ImageZoom extends Component {
                 <AvatarEditor
                     ref={this.setEditorRef}
                     image={imageToZoom}
-                    width={250}
-                    height={250}
+                    width={700}
+                    height={600}
                     scale={this.state.resize}
                     border={0}
                 />

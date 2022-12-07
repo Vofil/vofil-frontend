@@ -2,6 +2,7 @@ import React, {useState, useReducer, useContext} from "react";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import demoImage from "../../assets/yaong.jpg";
+import "../edit.css";
 
 function ImageCropper(props) {
     const {imageToCrop, onImageCropped} = props;
@@ -15,7 +16,7 @@ function ImageCropper(props) {
             //y: 50,
             width: 30,
             //height: 30,
-            aspect: 16 / 9,
+            aspect: 1 / 1,
         }
     );
 
@@ -90,16 +91,21 @@ function ImageCropper(props) {
     }
 
     return (
-        <div>
-            <ReactCrop
-                src={imageToCrop}
-                crop={cropConfig}
-                ruleOfThirds
-                onImageLoaded={(imageRef) => setImageRef(imageRef)}
-                onComplete={(cropConfig) => cropImage(cropConfig)}
-                onChange={(cropConfig) => setCropConfig(cropConfig)}
-                crossorigin="anonymous" // to avoid CORS-related problems
-            />
+        <div className="edit_window">
+            <div className="edit_window_crop">
+                <ReactCrop
+                    src={imageToCrop}
+                    crop={cropConfig}
+                    ruleOfThirds
+                    onImageLoaded={(imageRef) => setImageRef(imageRef)}
+                    onComplete={(cropConfig) => cropImage(cropConfig)}
+                    onChange={(cropConfig) => setCropConfig(cropConfig)}
+                    crossorigin="anonymous" // to avoid CORS-related problems
+                />
+            </div>
+            <div className="edit_detail">
+                세부 설정
+            </div>
         </div>
     );
 }

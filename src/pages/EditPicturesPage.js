@@ -149,7 +149,7 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
                 {blurState == false && cropState == false && zoomState == false && <img alt="image" src={imageToCrop}/>}
                 {blurState == true &&
                     <ImageBlur
-                        imageToCrop={imageToCrop}
+                        imageToCrop={croppedImage}
                         onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
                     />
                 }
@@ -161,7 +161,7 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
                 }
                 {zoomState == true &&
                     <ImageZoom
-                        imageToZoom={imageToCrop}
+                        imageToZoom={croppedImage}
                         onImageZoomed={(croppedImage) => setCroppedImage(croppedImage)}
                     />
                 }
@@ -194,88 +194,6 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
         </div>
     );
 
-
-//    return (
-//        <div className="edit">
-//            <div className="left__edit">
-//                {blurState == true && <div>블러창을 열게요</div>}
-//                {cropState == true &&
-//                    <ImageCropper
-//                        imageToCrop={imageToCrop}
-//                        onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
-//                    />
-//                }
-//                {zoomState == true && <div>줌창 열게요</div>}
-//            </div>
-//            <div className="right__edit">
-//                <div className="right__edit__loadpicture">
-//                    <div className="right__edit__title">
-//                        파일을 로드해주세요
-//                    </div>
-//                    <input
-//                        type="file"
-//                        accept="image/*"
-//                        onChange={onUploadFile}
-//                    />
-//                </div>
-//                <div className="right__edit__button__container">
-//                    <div className="right__edit__title">
-//                        편집 모드
-//                    </div>
-//                    <button onClick={onBlurMode} className="right__edit__button">블러</button>
-//                    <button onClick={onCropMode} className="right__edit__button">자르기</button>
-//                    <button onClick={onZoomMode} className="right__edit__button">크기조절</button>
-//                </div>
-//                <div className="right__edit__submit__container">
-//                    <button onClick={onSubmitHandler} className="right__edit__submit_button">편집 완료</button>
-//                </div>
-//            </div>
-//        </div>
-//    );
-
-
-    /*
-    return (
-        <div>
-            <h2>사진편집기</h2>
-            <input
-                type="file"
-                accept="image/*"
-                onChange={onUploadFile}
-            />
-            <div>
-                <h2>사진 크롭구간</h2>
-                <ImageCropper
-                    imageToCrop={imageToCrop}
-                    onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
-                />
-            </div>
-            <h2>크롭 결과물</h2>
-            {
-                croppedImage &&
-                <div>
-                    <h2>Cropped Image</h2>
-                    <img
-                        alt="Cropped"
-                        src={croppedImage}
-                    />
-                </div>
-            }
-            {
-                reImage &&
-                <div>
-                    <h2>DB에서 받은 사진</h2>
-                    <img
-                        alt="dbPicture"
-                        src={reImage}
-                    />
-                </div>
-            }
-            <button onClick={onSubmitHandler}>편집한 사진 제출</button>
-            <button onClick={onPicPicHandler}>사진 받아올게여</button>
-        </div>
-    );
-    */
 }
 
 export default EditPicturesPage;

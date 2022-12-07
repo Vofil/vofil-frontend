@@ -2,6 +2,8 @@ import axios from 'axios';
 import {useNavigate, useLocation} from "react-router-dom";
 import {React, useState, useEffect} from 'react'
 import "./VoteResult.css"
+import InstaPostFrame from "../../Frame/InstaPostFrame"
+
 // 투표 참여 후 투표 결과 페이지
 // 투표 참여한 사람만 볼 수 있음
 // <접근 경로>
@@ -58,6 +60,12 @@ function VoteResult() {
     const [re2, setRE2] = useState(0);
     const [re3, setRE3] = useState(0);
     const [re4, setRE4] = useState(0);
+
+    // 투표 결과 분석
+    let [voteReGender1, setVoteReGender1] = useState([])
+    let [voteReGender2, setVoteReGender2] = useState([])
+    let [voteReGender3, setVoteReGender3] = useState([])
+    let [voteReGender4, setVoteReGender4] = useState([])
 
     // 투표 사진 데이터 저장하기(feeling, kind)
     const fetchVoteInfo = async () => {
@@ -154,36 +162,6 @@ function VoteResult() {
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
-//        axios
-//        .get("api/pictures/FullView", { params:
-//            {
-//                id: voteID,
-//                cnt: _cnt
-//            }
-//        })
-//        .then((response) => {
-//            if(_cnt == 1){
-//                //console.log("1: " + response)
-//                setImage1(response.data)
-//            }
-//            else if(_cnt == 2){
-//                //console.log("2: " + response.data)
-//                setImage2(response.data)
-//            }
-//            else if(_cnt == 3){
-//                console.log("3: " + response.data)
-//                setImage3(response.data)
-//            }
-//            else{
-//                console.log("4: " + response.data)
-//                setImage4(response.data)
-//            }
-//
-//            console.log('well done!')
-//        })
-//        .catch((error) => {
-//            console.log('An error occurred:', error.response);
-//        })
     }
 
 
@@ -233,58 +211,65 @@ function VoteResult() {
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
-        }
+    }
 
     useEffect(() => {
         fetchVoteRe();
     }, []);
 
-//     return(
-//        <div className="voteresult">
-//            <div className="voteresult__center">
-//                <div className="voteresult__state">
-//                    투표 진행 중 or 투표 결과
-//                </div>
-//                <div className="voteresult__title">
-//                    {feeling}
-//                </div>
-//                <div className="voteresult__kind">
-//                    투표 종류: {kind}
-//                </div>
-//                <div className="voteresult__votelist">
-//                    <div className="voteresult__vote">
-//                        <div className="voteresult__img">
-//                            <img alt="image" src={image1}/>
-//                        </div>
-//                        <div className="voteresult__cnt">{re1}</div>
-//                    </div>
-//
-//
-//                    <div className="voteresult__vote">
-//                        <div className="voteresult__img">
-//                            <img alt="image" src={image2}/>
-//                        </div>
-//                        <div className="voteresult__cnt">{re2}</div>
-//                    </div>
-//
-//
-//                    <div className="voteresult__vote">
-//                        <div className="voteresult__img">
-//                            <img alt="image" src={image3}/>
-//                        </div>
-//                        <div className="voteresult__cnt">{re3}</div>
-//                    </div>
-//                    <div className="voteresult__vote">
-//                        <div className="voteresult__img">
-//                            <img alt="image" src={image4}/>
-//                        </div>
-//                        <div className="voteresult__cnt">{re4}</div>
-//                    </div>
-//
-//                </div>
-//            </div>
-//        </div>
-//    );
+    // 투표 결과 분석
+    const fetchVoteGender = async () => {
+        getGenderRe(1)
+        getGenderRe(2)
+        getGenderRe(3)
+        getGenderRe(4)
+    };
+
+    const getGenderRe = (_cnt) => {
+        axios
+        .get("api/votes/graph", { params:
+            {
+                id: voteID,
+                cnt: _cnt
+            }
+        })
+        .then((response) => {
+            if(_cnt == 1){
+                console.log(response.data)
+                setVoteReGender1(response.data)
+//                console.log("성별: " + response.data.name)
+//                console.log("퍼센티지: "+ response.data.percentage)
+            }
+            else if(_cnt == 2){
+                console.log(response.data)
+                setVoteReGender2(response.data)
+//                console.log("성별: " + response.data.name)
+//                console.log("퍼센티지: "+ response.data.percentage)
+            }
+            else if(_cnt == 3){
+                console.log(response.data)
+                setVoteReGender3(response.data)
+//                console.log("성별: " + response.data.name)
+//                console.log("퍼센티지: "+ response.data.percentage)
+            }
+            else{
+                console.log(response.data)
+                setVoteReGender4(response.data)
+//                console.log("성별: " + response.data.name)
+//                console.log("퍼센티지: "+ response.data.percentage)
+            }
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
+    useEffect(() => {
+        fetchVoteGender();
+    }, []);
+
 
 //    console.log("1: " + image1)
 //    console.log("2: " +image2)
@@ -307,7 +292,7 @@ function VoteResult() {
                     { image1 != "" &&
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
-                                <img alt="image" src={image1}/>
+                                <InstaPostFrame sourceImg={image1}/>
                             </div>
                             <div className="voteresult__cnt">{re1}</div>
                         </div>
@@ -336,6 +321,14 @@ function VoteResult() {
                             <div className="voteresult__cnt">{re4}</div>
                         </div>
 
+                    }
+                    {voteReGender1 != null &&
+                        voteReGender1.map( x => (
+                            <div>
+                                <div>{x.name}</div>
+                                <div>{x.percentage}</div>
+                            </div>
+                        ))
                     }
                 </div>
             </div>
