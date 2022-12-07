@@ -1,0 +1,12 @@
+.insta__parent {
+    position: relative;
+}
+
+.insta__child {
+    height: 250px;
+    width: 200px;
+
+    position: absolute;
+    top: 50px;
+    left: 50px;
+}

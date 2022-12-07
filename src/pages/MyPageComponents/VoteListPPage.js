@@ -28,6 +28,8 @@ const _title = [{t1 : "소개팅에 사용할 사진 골라주세요!", t2 : "�
 function VoteListPPage() {
 
     let [voteData, setVoteData] = useState([])
+    let [voteData2, setVoteData2] = useState([])
+    let [tmpBlob, setTmpBlob] = useState()
 
     // 선택된 것은..!
     const [v, setV] = useState(0)
@@ -43,8 +45,26 @@ function VoteListPPage() {
             }
         })
         .then((response) => {
-            setVoteData(response.data)
-
+            response.data.map(function(element) {
+                axios({
+                    method: "GET",
+                    url: "api/pictures/FullView",
+                    params: { id: `${element.vote_id}`, cnt: 1},
+                    responseType: "blob",
+                })
+                .then((response) => {
+                    console.log("내부")
+                    const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                    element.pic = url;
+                    setTmpBlob(url)
+                    console.log(url)
+                    console.log('well done!')
+                })
+                .catch((error) => {
+                    console.log('An error occurred:', error.response);
+                })
+            })
+            setVoteData2(response.data)
             console.log('well done!')
         })
         .catch((error) => {
@@ -55,6 +75,10 @@ function VoteListPPage() {
     useEffect(() => {
         fetchVoteMDataLoad();
     }, []);
+
+    useEffect(() => {
+        setVoteData(voteData2)
+    }, [tmpBlob])
 
     const onSetVHandler = (event) => {
         setV(event.currentTarget.value)
@@ -124,7 +148,7 @@ function VoteListPPage() {
                                                     onChange={onSetVHandler}
                                                 />
                                                     <div className="vote__container">
-                                                        <div className="thumbnail"><img alt="사진" src={x.re1}/></div>
+                                                        <div className="thumbnail"><img alt="사진" src={x.pic} className="thumbimg"/></div>
                                                         <div className="vote__title">{y.t1}</div>
                                                     </div>
                                             </label>

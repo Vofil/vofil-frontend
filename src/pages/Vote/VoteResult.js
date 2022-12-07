@@ -237,26 +237,18 @@ function VoteResult() {
             if(_cnt == 1){
                 console.log(response.data)
                 setVoteReGender1(response.data)
-//                console.log("성별: " + response.data.name)
-//                console.log("퍼센티지: "+ response.data.percentage)
             }
             else if(_cnt == 2){
                 console.log(response.data)
                 setVoteReGender2(response.data)
-//                console.log("성별: " + response.data.name)
-//                console.log("퍼센티지: "+ response.data.percentage)
             }
             else if(_cnt == 3){
                 console.log(response.data)
                 setVoteReGender3(response.data)
-//                console.log("성별: " + response.data.name)
-//                console.log("퍼센티지: "+ response.data.percentage)
             }
             else{
                 console.log(response.data)
                 setVoteReGender4(response.data)
-//                console.log("성별: " + response.data.name)
-//                console.log("퍼센티지: "+ response.data.percentage)
             }
 
             console.log('well done!')
@@ -269,12 +261,6 @@ function VoteResult() {
     useEffect(() => {
         fetchVoteGender();
     }, []);
-
-
-//    console.log("1: " + image1)
-//    console.log("2: " +image2)
-//    console.log("3: " +image3)
-//    console.log("4: " +image4)
 
     return(
         <div className="voteresult">

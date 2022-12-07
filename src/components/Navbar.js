@@ -37,6 +37,7 @@ function Navbar() {
         return alert("로그아웃 되었습니다!")
     }
 
+
     const fetchUserDataLoad = () => {
         axios
         .get("api/mypage/user/information", { params:

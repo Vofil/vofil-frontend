@@ -26,6 +26,11 @@ const _title = [{t1 : "소개팅에 사용할 사진 골라주세요!", t2 : "�
     {t1 : "트위터 배경 사진으로 쓸만한 사진 투표 부탁드립니다", t2 : "트위터배사"},]
 
 function MainPage() {
+    // 사진 출력 도우미
+    const [latestVotes2, setLatestVotes2] = useState(null);
+    const [customVotes2, setCustomVotes2] = useState(null);
+    const [tmpBlobL, setTmpBlobL] = useState();
+    const [tmpBlobC, setTmpBlobC] = useState();
 
     // loading 상태
     const [loading, setLoading] = useState(false);
@@ -133,7 +138,26 @@ function MainPage() {
                 }
             })
             .then((response) => {
-                setLatestVotes(response.data)
+                console.log("외부")
+                response.data.map(function(element) {
+                    axios({
+                        method: "GET",
+                        url: "api/pictures/FullView",
+                        params: { id: `${element.vote_id}`, cnt: 1},
+                        responseType: "blob",
+                    })
+                    .then((response) => {
+                        console.log("내부")
+                        const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                        element.pic = url;
+                        setTmpBlobL(url)
+                        console.log('well done!')
+                    })
+                    .catch((error) => {
+                        console.log('An error occurred:', error.response);
+                    })
+                })
+                setLatestVotes2(response.data)
                 console.log('well done!')
             })
             .catch((error) => {
@@ -147,6 +171,10 @@ function MainPage() {
     useEffect(() => {
         fetchLatestVotes();
     }, []);
+
+    useEffect(() => {
+        setLatestVotes(customVotes2)
+    },[tmpBlobL])
 
     // 맞춤 투표 데이터 저장하기
     const fetchCustomVotes = async () => {
@@ -163,7 +191,25 @@ function MainPage() {
                 }
             })
             .then((response) => {
-                setCustomVotes(response.data)
+                response.data.map(function(element) {
+                    axios({
+                        method: "GET",
+                        url: "api/pictures/FullView",
+                        params: { id: `${element.vote_id}`, cnt: 1},
+                        responseType: "blob",
+                    })
+                    .then((response) => {
+                        const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                        element.pic = url;
+                        setTmpBlobC(url)
+                        console.log('well done!')
+                    })
+                    .catch((error) => {
+                        console.log('An error occurred:', error.response);
+                    })
+                })
+                setCustomVotes2(response.data)
+                console.log("customVOte: " + response.data)
                 console.log('well done!')
             })
             .catch((error) => {
@@ -177,6 +223,10 @@ function MainPage() {
     useEffect(() => {
         fetchCustomVotes();
     }, []);
+
+    useEffect(() => {
+        setCustomVotes(customVotes2)
+    },[tmpBlobC])
 
 
     if (loading) return <div>로딩중..</div>;
@@ -201,10 +251,10 @@ function MainPage() {
                                                 checked={custom === `${x.vote_id}`}
                                                 onChange={onSetCustomHandler}
                                             />
-                                                <div className="vote__container">
-                                                    <div className="thumbnail"><img alt="사진" src={x.re1}/></div>
-                                                    <div className="vote__title">{y.t1}</div>
-                                                </div>
+                                            <div className="vote__container">
+                                                <div className="thumbnail"><img alt="사진" src={x.pic} className="thumbimg"/></div>
+                                                <div className="vote__title">{y.t1}</div>
+                                            </div>
                                         </label>
                                 ))
                             ))
@@ -233,10 +283,10 @@ function MainPage() {
                                                 checked={latest === `${x.vote_id}`}
                                                 onChange={onSetLatestHandler}
                                             />
-                                                <div className="vote__container">
-                                                    <div className="thumbnail"><img alt="사진" src={x.re1}/></div>
-                                                    <div className="vote__title">{y.t1}</div>
-                                                </div>
+                                            <div className="vote__container">
+                                                <div className="thumbnail"><img alt="사진" src={x.pic} className="thumbimg"/></div>
+                                                <div className="vote__title">{y.t1}</div>
+                                            </div>
                                         </label>
                                 ))
                             ))
@@ -253,3 +303,6 @@ function MainPage() {
 }
 
 export default MainPage;
+
+
+//<div className="thumbnail"><img alt="사진" src={x.re1}/></div>

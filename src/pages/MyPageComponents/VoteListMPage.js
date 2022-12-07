@@ -25,9 +25,11 @@ const _title = [{t1 : "소개팅에 사용할 사진 골라주세요!", t2 : "�
     {t1 : "트위터 프사 어떤게 제일 나아?", t2 : "트위터프사"},
     {t1 : "트위터 배경 사진으로 쓸만한 사진 투표 부탁드립니다", t2 : "트위터배사"},]
 
-function VoteListMPage() {
 
+function VoteListMPage() {
     let [voteData, setVoteData] = useState([])
+    let [voteData2, setVoteData2] = useState([])
+    let [tmpBlob, setTmpBlob] = useState()
 
     // 선택된 것은..!
     const [v, setV] = useState(0)
@@ -43,18 +45,69 @@ function VoteListMPage() {
             }
         })
         .then((response) => {
-            setVoteData(response.data)
-
+            response.data.map(function(element) {
+                axios({
+                    method: "GET",
+                    url: "api/pictures/FullView",
+                    params: { id: `${element.vote_id}`, cnt: 1},
+                    responseType: "blob",
+                })
+                .then((response) => {
+                    console.log("내부")
+                    const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                    element.pic = url;
+                    setTmpBlob(url)
+                    console.log(url)
+                    console.log('well done!')
+                })
+                .catch((error) => {
+                    console.log('An error occurred:', error.response);
+                })
+            })
+            console.log(response.data)
+            setVoteData2(response.data)
             console.log('well done!')
         })
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
+
     }
 
     useEffect(() => {
         fetchVoteMDataLoad();
     }, []);
+
+    useEffect(() => {
+        setVoteData(voteData2)
+    }, [tmpBlob])
+
+
+//    const fetchPicGet = (e) => {
+//        e.map(function(element) {
+//            axios({
+//                method: "GET",
+//                url: "api/pictures/FullView",
+//                params: { id: `${element.vote_id}`, cnt: 1},
+//                responseType: "blob",
+//            })
+//            .then((response) => {
+//                console.log("내부")
+//                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+//                element.pic = url;
+//                console.log('well done!')
+//            })
+//            .catch((error) => {
+//                console.log('An error occurred:', error.response);
+//            })
+//        })
+//        setVoteData(e)
+//        console.log(e)
+//    }
+
+//    useEffect(() => {
+//        fetchPicGet();
+//    }, []);
 
     const onSetVHandler = (event) => {
         setV(event.currentTarget.value)
@@ -124,7 +177,8 @@ function VoteListMPage() {
                                                     onChange={onSetVHandler}
                                                 />
                                                     <div className="vote__container">
-                                                        <div className="thumbnail"><img alt="사진" src={x.re1}/></div>
+                                                        <div className="thumbnail"><img alt="사진" src={x.pic} className="thumbimg"/></div>
+                                                        {console.log("렌더링시: " + `${x.pic}`)}
                                                         <div className="vote__title">{y.t1}</div>
                                                     </div>
                                             </label>
