@@ -243,7 +243,7 @@ function VoteNormal({voteID}) {
                 </div>
                 <div className="vote__content2">
                     {(image1 != null) &&
-                        <label key={1} className="createvote__content__entity">
+                        <label key={1} className={'createvote__content__entity' + (result1 == 1 ? '_c' : '')}>
                             <input
                                 type="radio"
                                 className="radio__hidden"
@@ -262,7 +262,7 @@ function VoteNormal({voteID}) {
                         </label>
                     }
                     {(image2 != null) &&
-                        <label key={2} className="createvote__content__entity">
+                        <label key={2} className={'createvote__content__entity' + (result2 == 1 ? '_c' : '')}>
                             <input
                                 type="radio"
                                 className="radio__hidden"
@@ -281,7 +281,7 @@ function VoteNormal({voteID}) {
                         </label>
                     }
                     {(image3 != null) &&
-                        <label key={3} className="createvote__content__entity">
+                        <label key={3} className={'createvote__content__entity' + (result3 == 1 ? '_c' : '')}>
                             <input
                                 type="radio"
                                 className="radio__hidden"
@@ -300,7 +300,7 @@ function VoteNormal({voteID}) {
                         </label>
                     }
                     {(image4 != null) &&
-                        <label key={4} className="createvote__content__entity">
+                        <label key={4} className={'createvote__content__entity' + (result4 == 1 ? '_c' : '')}>
                             <input
                                 type="radio"
                                 className="radio__hidden"

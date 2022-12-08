@@ -88,9 +88,19 @@
     //height: 200px;
 
     margin: 5px;
-    //border-width: 5px;
+    //border-width: 4px;
     //border-style: solid;
     //border-color: rgb(122, 204, 185);
+}
+
+.createvote__content__entity_c {
+    //width: 200px;
+    //height: 200px;
+
+    margin: 5px;
+    border-width: 4px;
+    border-style: solid;
+    border-color: rgb(122, 204, 185);
 }
 
 .select__photo1 {
