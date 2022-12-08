@@ -8,6 +8,7 @@ function MyInfoPage() {
     const [birth, setBirth] = useState("");
     const [gender, setGender] = useState(0);
     const [title, setTitle] = useState("");
+    const [point, setPoint] = useState(0);
 
     const fetchUserDataLoad = () => {
         axios
@@ -27,6 +28,7 @@ function MyInfoPage() {
                 setGender("여자")
             }
             setTitle(response.data.title)
+            setPoint(response.data.point)
 
             console.log('well done!')
         })
@@ -48,6 +50,7 @@ function MyInfoPage() {
                 <li>생일: {birth}</li>
                 <li>성별: {gender}</li>
                 <li>칭호: {title}</li>
+                <li>포인트: {point}</li>
             </ul>
         </div>
     );
