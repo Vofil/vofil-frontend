@@ -2,7 +2,7 @@
     display:flex;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 120vh;
     margin-left: 20px;
     margin-right: 20px;
 }
@@ -192,6 +192,8 @@
     align-items: center;
     justify-content: center;
 
+    margin-top: 50px;
+
     height: 10%;
 
     //border-width: 5px;
@@ -247,5 +249,28 @@
     border-width: 3px;
     border-style: solid;
     border-color: gray;
+}
+
+.caution{
+    display: flex;
+    //align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    height: 2%;
+
+    font-size: 2vh;
+    font-weight: bold;
+
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.caution-gray {
+    color: gray;
+
+    margin-left: 5px;
+    margin-right: 5px;
 }
 

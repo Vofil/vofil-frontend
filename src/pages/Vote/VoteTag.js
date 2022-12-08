@@ -327,6 +327,11 @@ function VoteTag({voteID}) {
                 <div className="createvote__button__container2">
                     <button onClick={onSubmitHandler} className="createvote__button2">제출하기</button>
                 </div>
+                <div className="caution">
+                    <div className="caution-gray">타인이 올린 사진 및 개인 정보를 무단으로 캡쳐 및 유포할 경우, </div>
+                    <div>vofil 서비스 영구 정지 및 민형사상 책임이</div>
+                    <div className="caution-gray">따를 수 있습니다.</div>
+                </div>
             </div>
         </div>
     );

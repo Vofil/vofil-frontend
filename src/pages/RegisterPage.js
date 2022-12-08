@@ -157,6 +157,7 @@ function RegisterPage() {
   }
 
   return (
+  <div>
     <div className="loginregister">
       <form onSubmit={onSubmitHandler}>
           <div><input name="name" type="text" placeholder="이름" value={name} onChange={onNameHandler} className="loginregister__input"/></div>
@@ -198,6 +199,12 @@ function RegisterPage() {
           <div><button type="submit" className="loginregister__button">계정 생성하기</button></div>
       </form>
     </div>
+    <div className="caution_register">
+          <div className="caution-gray-register">타인이 올린 사진 및 개인 정보를 무단으로 캡쳐 및 유포할 경우, </div>
+          <div>vofil 서비스 영구 정지 및 민형사상 책임이</div>
+          <div className="caution-gray-register">따를 수 있습니다.</div>
+    </div>
+  </div>
   );
   
 }
