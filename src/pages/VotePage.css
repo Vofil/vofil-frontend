@@ -1,18 +1,27 @@
-.createvote2 {
+.vote2 {
     display:flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
     margin-left: 20px;
     margin-right: 20px;
-
 }
 
-.createvote__center2 {
+.vote__center2 {
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
     width: 80%;
-    height: 100%;
+    height: 750px;
 
+    text-align: center;
 
+    //border-width: 5px;
+    //border-style: solid;
+    //border-color: rgb(122, 204, 185);
 }
 
 .createvote__rightleft {
@@ -21,8 +30,6 @@
     justify-content: center;
     height: 100vh;
 
-
-
 }
 
 .createvote__big__head2 {
@@ -30,9 +37,9 @@
     align-items: center;
     justify-content: center;
 
-    height: 15%;
+    height: 10%;
 
-    font-size: 6vh;
+    font-size: 4vh;
     font-weight: bold;
 
 
@@ -54,7 +61,7 @@
     display: flex;
     //align-items: center;
     justify-content: center;
-    height: 5%;
+    height: 2%;
 
     font-size: 2vh;
     font-weight: bold;
@@ -62,19 +69,28 @@
 
 }
 
-.createvote__content2 {
+.vote__content2 {
+    width: 1050px;
+    height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
 
+    flex-wrap: wrap;
 
+    //border-width: 5px;
+    //border-style: solid;
+    //border-color: rgb(122, 204, 185);
 }
 
 .createvote__content__entity {
+    //width: 200px;
+    //height: 200px;
+
     margin: 5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: rgb(122, 204, 185);
+    //border-width: 5px;
+    //border-style: solid;
+    //border-color: rgb(122, 204, 185);
 }
 
 .select__photo1 {
@@ -92,9 +108,9 @@
 
     margin: 5px;
 
-    border-width: 3px;
-    border-style: solid;
-    border-color: rgb(122, 204, 185);
+    //border-width: 3px;
+    //border-style: solid;
+    //border-color: rgb(122, 204, 185);
 }
 
 .select__photo2 {
@@ -112,9 +128,9 @@
 
     margin: 5px;
 
-    border-width: 3px;
-    border-style: solid;
-    border-color: rgb(122, 204, 185);
+    //border-width: 3px;
+    //border-style: solid;
+    //border-color: rgb(122, 204, 185);
 }
 
 .select__photo3 {
@@ -132,9 +148,9 @@
 
     margin: 5px;
 
-    border-width: 3px;
-    border-style: solid;
-    border-color: rgb(122, 204, 185);
+    //border-width: 3px;
+    //border-style: solid;
+    //border-color: rgb(122, 204, 185);
 }
 
 .select__photo4 {
@@ -216,10 +232,20 @@
 
     height: 10%;
 
-    font-size: 3vh;
+    font-size: 2vh;
     font-weight: bold;
 
-    //border-width: 1px;
-    //border-style: solid;
-    //border-color: blue;
 }
+
+
+
+.vote__img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-width: 3px;
+    border-style: solid;
+    border-color: gray;
+}
+

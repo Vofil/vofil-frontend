@@ -7,8 +7,10 @@ function TwitterProfileFrame(props) {
     return(
         <div className="twit__profile">
             <div className="twit__profile__parent">
-                <img src={frame} className="twit__profile__frame"/>
-                <div className="twit__profile__child">
+                <div className="twit__profile__child1">
+                    <img src={frame} className="twit__profile__frame"/>
+                </div>
+                <div className="twit__profile__child2">
                     <img src={sourceImg} className="twit__profile__img"/>
                 </div>
             </div>

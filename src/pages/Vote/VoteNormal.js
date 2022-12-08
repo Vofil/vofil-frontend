@@ -228,8 +228,8 @@ function VoteNormal({voteID}) {
 
 
     return(
-        <div className="createvote2">
-            <div className="createvote__center2">
+        <div className="vote2">
+            <div className="vote__center2">
                 <div className="vote__state">
                     남은 투표자수: {endingPoint}
                 </div>
@@ -239,7 +239,7 @@ function VoteNormal({voteID}) {
                 <div className="createvote__small__head2">
                     투표 방식: 일반투표
                 </div>
-                <div className="createvote__content2">
+                <div className="vote__content2">
                     {(image1 != null) &&
                         <label key={1} className="createvote__content__entity">
                             <input
@@ -249,8 +249,8 @@ function VoteNormal({voteID}) {
                                 checked={numOfPic == 1}
                                 onChange={onSelectPic}
                             />
-                            <div className="voteresult__img">
-                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image1}/>}
+                            <div>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image1} />}
                                 { category == "인스타프사" && <InstaProfileFrame sourceImg={image1}/>}
                                 { category == "카톡프사" && <KakaoProfileFrame sourceImg={image1}/>}
                                 { category == "카톡배사" && <KakaoBackFrame sourceImg={image1}/>}
@@ -268,7 +268,7 @@ function VoteNormal({voteID}) {
                                 checked={numOfPic == 2}
                                 onChange={onSelectPic}
                             />
-                            <div className="voteresult__img">
+                            <div>
                                 { category == "인스타게시물" && <InstaPostFrame sourceImg={image2}/>}
                                 { category == "인스타프사" && <InstaProfileFrame sourceImg={image2}/>}
                                 { category == "카톡프사" && <KakaoProfileFrame sourceImg={image2}/>}
@@ -287,7 +287,7 @@ function VoteNormal({voteID}) {
                                 checked={numOfPic == 3}
                                 onChange={onSelectPic}
                             />
-                            <div className="voteresult__img">
+                            <div>
                                 { category == "인스타게시물" && <InstaPostFrame sourceImg={image3}/>}
                                 { category == "인스타프사" && <InstaProfileFrame sourceImg={image3}/>}
                                 { category == "카톡프사" && <KakaoProfileFrame sourceImg={image3}/>}
@@ -306,7 +306,7 @@ function VoteNormal({voteID}) {
                                 checked={numOfPic == 4}
                                 onChange={onSelectPic}
                             />
-                            <div className="voteresult__img">
+                            <div>
                                 { category == "인스타게시물" && <InstaPostFrame sourceImg={image4}/>}
                                 { category == "인스타프사" && <InstaProfileFrame sourceImg={image4}/>}
                                 { category == "카톡프사" && <KakaoProfileFrame sourceImg={image4}/>}

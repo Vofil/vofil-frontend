@@ -7,7 +7,7 @@ function KakaoProfileFrame(props) {
     return(
         <div className="kakao__profile">
             <div className="kakao__profile__parent">
-                <img src={frame} className="kakao__profile__frame"/>
+                    <img src={frame} className="kakao__profile__frame"/>
                 <div className="kakao__profile__child">
                     <img src={sourceImg} className="kakao__profile__img"/>
                 </div>
@@ -17,3 +17,4 @@ function KakaoProfileFrame(props) {
 }
 
 export default KakaoProfileFrame;
+

@@ -2,6 +2,12 @@ import {React, useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import "../VotePage.css"
+import InstaPostFrame from "../../Frame/InstaPostFrame"
+import InstaProfileFrame from "../../Frame/InstaProfileFrame"
+import KakaoBackFrame from "../../Frame/KakaoBackFrame"
+import KakaoProfileFrame from "../../Frame/KakaoProfileFrame"
+import TwitterBackFrame from "../../Frame/TwitterBackFrame"
+import TwitterProfileFrame from "../../Frame/TwitterProfileFrame"
 
 // 태그투표에 쓸 태그
 const _taging = [ {t1: "예쁘다", t2: 1},
@@ -55,6 +61,8 @@ function VoteTag({voteID}) {
     */
     const [endingPoint, setEndingPoint] = useState(0);
     const [feeling, setFeeling] = useState("");
+    const [category, setCategory] = useState("");
+
     const [image1, setImage1] = useState(null);
     const [image2, setImage2] = useState(null);
     const [image3, setImage3] = useState(null);
@@ -90,27 +98,7 @@ function VoteTag({voteID}) {
             });
 
             setEndingPoint(response.data.ending_point)
-
-            console.log('well done!')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        })
-
-        // 사진 로드
-        axios
-        .get("api/pictures/confirm", { params:
-            {
-                id: voteID,
-            }
-        })
-        .then((response) => {
-
-            setImage1(response.data.re1)
-            setImage2(response.data.re2)
-            setImage3(response.data.re3)
-            setImage4(response.data.re4)
-
+            setCategory(response.data.categorying)
             console.log('well done!')
         })
         .catch((error) => {
@@ -122,6 +110,61 @@ function VoteTag({voteID}) {
     useEffect(() => {
         fetchVote();
     }, []);
+
+    // 투표 사진 데이터 불러오기
+    const fetchVotePic = async () => {
+        //초기화
+//        setImage1(null)
+//        setImage2(null)
+//        setImage3(null)
+//        setImage4(null)
+
+        setError(null)
+        setLoading(true)
+
+        getPic(1)
+        getPic(2)
+        getPic(3)
+        getPic(4)
+
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchVotePic();
+    }, []);
+
+    const getPic = (_cnt) => {
+        axios({
+            method: "GET",
+            url: "api/pictures/FullView",
+            params: { id: voteID, cnt: _cnt},
+            responseType: "blob",
+        })
+        .then((response) => {
+            if(_cnt == 1){
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage1(url)
+            }
+            else if(_cnt == 2){
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage2(url)
+            }
+            else if(_cnt == 3){
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage3(url)
+            }
+            else{
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage4(url)
+            }
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
 
 
     if (loading) return <div>로딩중..</div>;
@@ -188,8 +231,8 @@ function VoteTag({voteID}) {
     }
 
     return(
-        <div className="createvote2">
-            <div className="createvote__center2">
+        <div className="vote2">
+            <div className="vote__center2">
                 <div className="vote__state">
                     남은 투표자수: {endingPoint}
                 </div>
@@ -199,10 +242,17 @@ function VoteTag({voteID}) {
                 <div className="createvote__small__head2">
                     투표 방식: 태그투표
                 </div>
-                <div className="createvote__content2">
+                <div className="vote__content2">
                     {(image1 != null) &&
                         <label key={1} className="createvote__content__entity">
-                            <img src={image1}/>
+                            <div>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image1} />}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image1}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image1}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image1}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image1}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image1}/>}
+                            </div>
                             <select value={result1} onChange={onResult1Handler}>
                                 <option value="default" disabled>태그를 선택해주세요</option>
                                 {_taging.map((tag) => (
@@ -215,7 +265,14 @@ function VoteTag({voteID}) {
                     }
                     {(image2 != null) &&
                         <label key={2} className="createvote__content__entity">
-                            <img src={image2}/>
+                            <div>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image2}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image2}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image2}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image2}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image2}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image2}/>}
+                            </div>
                             <select value={result2} onChange={onResult2Handler}>
                                 <option value="default" disabled>태그를 선택해주세요</option>
                                 {_taging.map((tag) => (
@@ -228,7 +285,14 @@ function VoteTag({voteID}) {
                     }
                     {(image3 != null) &&
                         <label key={3} className="createvote__content__entity">
-                            <img src={image3}/>
+                            <div>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image3}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image3}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image3}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image3}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image3}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image3}/>}
+                            </div>
                             <select value={result3} onChange={onResult3Handler}>
                                 <option value="default" disabled>태그를 선택해주세요</option>
                                 {_taging.map((tag) => (
@@ -241,7 +305,14 @@ function VoteTag({voteID}) {
                     }
                     {(image4 != null) &&
                         <label key={4} className="createvote__content__entity">
-                            <img src={image4}/>
+                            <div>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image4}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image4}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image4}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image4}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image4}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image4}/>}
+                            </div>
                             <select value={result4} onChange={onResult4Handler}>
                                 <option value="default" disabled>태그를 선택해주세요</option>
                                 {_taging.map((tag) => (
