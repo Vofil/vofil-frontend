@@ -2,6 +2,12 @@ import {React, useState, useEffect} from "react"
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 import "../VotePage.css"
+import InstaPostFrame from "../../Frame/InstaPostFrame"
+import InstaProfileFrame from "../../Frame/InstaProfileFrame"
+import KakaoBackFrame from "../../Frame/KakaoBackFrame"
+import KakaoProfileFrame from "../../Frame/KakaoProfileFrame"
+import TwitterBackFrame from "../../Frame/TwitterBackFrame"
+import TwitterProfileFrame from "../../Frame/TwitterProfileFrame"
 
 const _title = [{t1 : "소개팅에 사용할 사진 골라주세요!", t2 : "소개팅"},
     {t1 : "대학 오티에서 보여줄 사진 골라주세요~", t2 : "대학오티"},
@@ -36,6 +42,8 @@ function VoteNormal({voteID}) {
     */
     const [endingPoint, setEndingPoint] = useState(0);
     const [feeling, setFeeling] = useState("");
+    const [category, setCategory] = useState("");
+
     const [image1, setImage1] = useState(null);
     const [image2, setImage2] = useState(null);
     const [image3, setImage3] = useState(null);
@@ -74,38 +82,73 @@ function VoteNormal({voteID}) {
             });
 
             setEndingPoint(response.data.ending_point)
-
+            setCategory(response.data.categorying)
             console.log('well done!')
         })
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
-
-        // 사진 로드
-        axios
-        .get("api/pictures/confirm", { params:
-            {
-                id: voteID,
-            }
-        })
-        .then((response) => {
-
-            setImage1(response.data.re1)
-            setImage2(response.data.re2)
-            setImage3(response.data.re3)
-            setImage4(response.data.re4)
-
-            console.log('well done!')
-        })
-        .catch((error) => {
-            console.log('An error occurred:', error.response);
-        })
-        setLoading(false);
     };
 
     useEffect(() => {
         fetchVote();
     }, []);
+
+
+    // 투표 사진 데이터 불러오기
+    const fetchVotePic = async () => {
+        //초기화
+//        setImage1(null)
+//        setImage2(null)
+//        setImage3(null)
+//        setImage4(null)
+
+        setError(null)
+        setLoading(true)
+
+        getPic(1)
+        getPic(2)
+        getPic(3)
+        getPic(4)
+
+        setLoading(false);
+    };
+
+    useEffect(() => {
+        fetchVotePic();
+    }, []);
+
+    const getPic = (_cnt) => {
+        axios({
+            method: "GET",
+            url: "api/pictures/FullView",
+            params: { id: voteID, cnt: _cnt},
+            responseType: "blob",
+        })
+        .then((response) => {
+            if(_cnt == 1){
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage1(url)
+            }
+            else if(_cnt == 2){
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage2(url)
+            }
+            else if(_cnt == 3){
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage3(url)
+            }
+            else{
+                const url = window.URL.createObjectURL(new Blob([response.data], {type: response.headers['content-type']}))
+                setImage4(url)
+            }
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
 
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
@@ -206,7 +249,14 @@ function VoteNormal({voteID}) {
                                 checked={numOfPic == 1}
                                 onChange={onSelectPic}
                             />
-                            <img alt="사진" src={image1}></img>
+                            <div className="voteresult__img">
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image1}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image1}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image1}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image1}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image1}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image1}/>}
+                            </div>
                         </label>
                     }
                     {(image2 != null) &&
@@ -218,7 +268,14 @@ function VoteNormal({voteID}) {
                                 checked={numOfPic == 2}
                                 onChange={onSelectPic}
                             />
-                            <img alt="사진" src={image2}></img>
+                            <div className="voteresult__img">
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image2}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image2}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image2}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image2}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image2}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image2}/>}
+                            </div>
                         </label>
                     }
                     {(image3 != null) &&
@@ -230,7 +287,14 @@ function VoteNormal({voteID}) {
                                 checked={numOfPic == 3}
                                 onChange={onSelectPic}
                             />
-                            <img alt="사진" src={image3}></img>
+                            <div className="voteresult__img">
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image3}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image3}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image3}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image3}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image3}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image3}/>}
+                            </div>
                         </label>
                     }
                     {(image4 != null) &&
@@ -242,7 +306,14 @@ function VoteNormal({voteID}) {
                                 checked={numOfPic == 4}
                                 onChange={onSelectPic}
                             />
-                            <img alt="사진" src={image4}></img>
+                            <div className="voteresult__img">
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image4}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image4}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image4}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image4}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image4}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image4}/>}
+                            </div>
                         </label>
                     }
                 </div>
