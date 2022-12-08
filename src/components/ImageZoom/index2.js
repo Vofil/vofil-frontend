@@ -46,20 +46,41 @@ class ImageZoom extends Component {
 
 
     render() {
-        const {imageToZoom, onImageZoomed} = this.props;
+        const {imageToZoom, onImageZoomed, ratioFrame} = this.props;
+        var w = 600;
+        var h = 500;
+        if(ratioFrame == 1){
+            w = 500;
+            h = 500;
+        }
+        else if(ratioFrame == 2){
+            w = 250;
+            h = 500;
+        }
+        else{
+            w = 600;
+            h = 200;
+        }
         return(
-            <div>
-                <AvatarEditor
-                    ref={this.setEditorRef}
-                    image={imageToZoom}
-                    width={700}
-                    height={600}
-                    scale={this.state.resize}
-                    border={0}
-                />
-                <button onClick={this.plus}>+</button>
-                <button onClick={this.minus}>-</button>
-                <button onClick={this.getBlurredImage}>확대축소</button>
+            <div className="edit_window">
+                <div className="edit_window_crop">
+                    <AvatarEditor
+                        ref={this.setEditorRef}
+                        image={imageToZoom}
+                        width={w}
+                        height={h}
+                        scale={this.state.resize}
+                        border={0}
+                    />
+                </div>
+                <div className="edit_detail">
+                    <div className="edit_title">확대 축소</div>
+                    <div className="zoom-box">
+                        <button onClick={this.plus} className="plus-minus-button">+</button>
+                        <button onClick={this.minus} className="plus-minus-button">-</button>
+                    </div>
+                    <button onClick={this.getBlurredImage} className="crop_button">완료</button>
+                </div>
             </div>
         );
     }

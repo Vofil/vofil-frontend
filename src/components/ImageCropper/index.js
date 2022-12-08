@@ -1,11 +1,16 @@
-import React, {useState, useReducer, useContext} from "react";
+import React, {useEffect, useState, useReducer, useContext} from "react";
 import ReactCrop from 'react-image-crop';
 import 'react-image-crop/dist/ReactCrop.css';
 import demoImage from "../../assets/yaong.jpg";
 import "../edit.css";
 
 function ImageCropper(props) {
-    const {imageToCrop, onImageCropped} = props;
+    const {imageToCrop, onImageCropped, onRatio} = props;
+
+    const [w, wSet] = useState(0);
+    const [h, hSet] = useState(0);
+
+    const [r, rSet] = useState(1);
 
     const [cropConfig, setCropConfig] = useState(
         // default crop config
@@ -34,6 +39,7 @@ function ImageCropper(props) {
                 aspect: 1 / 1,
             }
         )
+        rSet(1)
     }
 
     const crop2 = () => {
@@ -48,6 +54,7 @@ function ImageCropper(props) {
                 aspect: 1 / 2,
             }
         )
+        rSet(2)
     }
 
     const crop3 = () => {
@@ -62,7 +69,17 @@ function ImageCropper(props) {
                 aspect: 3 / 1,
             }
         )
+        rSet(3)
     }
+
+    useEffect(() => {
+        var img = new Image()
+        img.src = imageToCrop
+        wSet(img.width)
+        hSet(img.height)
+        console.log(img.width)
+        console.log(img.height)
+    }, [])
 
     async function cropImage(crop) {
         if (imageRef && crop.width && crop.height) {
@@ -75,6 +92,7 @@ function ImageCropper(props) {
             // calling the props function to expose
             // croppedImage to the parent component
             onImageCropped(croppedImage);
+            onRatio(r);
         }
     }
 
@@ -170,3 +188,7 @@ ImageCropper.defaultProps = {
 }
 
 export default ImageCropper;
+
+
+//className="edit-window-image"
+//style={{width: w, height: h}}

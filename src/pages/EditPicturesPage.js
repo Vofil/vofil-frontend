@@ -12,6 +12,8 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
     const [croppedImage, setCroppedImage] = useState(null);
     // 불러온 사진 이름
     const [imgName, setImageName] = useState("");
+    // 사진 비율
+    const [ratio, setRatio] = useState("");
 
     // 편집 모드 버튼 상태 관리
     const [blurState, setBlurState] = useState(false)
@@ -146,23 +148,26 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
     return (
         <div className="edit">
             <div className="left__edit">
-                {blurState == false && cropState == false && zoomState == false && <img alt="image" src={imageToCrop}/>}
+                {blurState == false && cropState == false && zoomState == false && <div className="load_image"><img alt="image" src={imageToCrop} className="my-image"/></div>}
                 {blurState == true &&
                     <ImageBlur
                         imageToCrop={croppedImage}
                         onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
+                        ratioFrame={ratio}
                     />
                 }
                 {cropState == true &&
                     <ImageCropper
                         imageToCrop={imageToCrop}
                         onImageCropped={(croppedImage) => setCroppedImage(croppedImage)}
+                        onRatio={(ratio) => setRatio(ratio)}
                     />
                 }
                 {zoomState == true &&
                     <ImageZoom
                         imageToZoom={croppedImage}
                         onImageZoomed={(croppedImage) => setCroppedImage(croppedImage)}
+                        ratioFrame={ratio}
                     />
                 }
             </div>
@@ -183,9 +188,9 @@ function EditPicturesPage({onImageCroppedToModal, onModalClose, passImageTrigger
                     <div className="right__edit__title">
                         편집 모드
                     </div>
-                    <button onClick={onBlurMode} className="right__edit__button">블러</button>
-                    <button onClick={onCropMode} className="right__edit__button">자르기</button>
-                    <button onClick={onZoomMode} className="right__edit__button">크기조절</button>
+                    <button onClick={onCropMode} className="right__edit__button">1. 자르기</button>
+                    <button onClick={onBlurMode} className="right__edit__button">2. 블러</button>
+                    <button onClick={onZoomMode} className="right__edit__button">3. 크기조절</button>
                 </div>
                 <div className="right__edit__submit__container">
                     <button onClick={onSubmitHandler} className="right__edit__submit_button">편집 완료</button>

@@ -19,6 +19,18 @@
     justify-content: center;
 }
 
+.edit_window_zoom {
+    height: 600px;
+    width: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: gray;
+}
+
 .edit_detail {
     //display: flex;
     //align-items: center;
@@ -101,3 +113,134 @@
     border-radius: 30px;
 }
 
+.color-palette{
+    width: 125px;
+    height: 190px;
+
+    margin-top:140px;
+    margin-left:7px;
+    padding: 3px;
+
+    border-style:solid;
+    border-width: 2px;
+    border-color: rgb(122, 204, 185);
+}
+
+.color-button1{
+    width: 45px;
+    height: 45px;
+
+    margin: 8px;
+
+    background-color: black;
+
+    border-style:solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 30px;
+}
+
+.color-button2{
+    width: 45px;
+    height: 45px;
+
+    margin: 8px;
+
+    background-color: white;
+
+    border-style:solid;
+    border-width: 2px;
+    border-color: black;
+    border-radius: 30px;
+}
+
+.color-button3{
+    width: 45px;
+    height: 45px;
+
+    margin: 8px;
+
+    background-color: red;
+
+    border-style:solid;
+    border-width: 2px;
+    border-color: red;
+    border-radius: 30px;
+}
+
+.color-button4{
+    width: 45px;
+    height: 45px;
+
+    margin: 8px;
+
+    background-color: yellow;
+
+    border-style:solid;
+    border-width: 2px;
+    border-color: yellow;
+    border-radius: 30px;
+}
+
+.color-button5{
+    width: 45px;
+    height: 45px;
+
+    margin: 8px;
+
+    background-color: blue;
+
+    border-style:solid;
+    border-width: 2px;
+    border-color: blue;
+    border-radius: 30px;
+}
+
+.color-button6{
+    width: 45px;
+    height: 45px;
+
+    margin: 8px;
+
+    background-color: green;
+
+    border-style:solid;
+    border-width: 2px;
+    border-color: green;
+    border-radius: 30px;
+}
+
+.zoom-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 50px;
+
+    margin-top: 200px;
+    margin-left: 4px;
+}
+
+.plus-minus-button{
+    width: 45px;
+    height: 45px;
+
+    margin: 5px;
+
+    font-size: 25px;
+
+    border-style:solid;
+    border-width: 1px;
+    border-color: rgb(122, 204, 185);
+    //border-radius: 30px;
+}
+
+.my-image{
+    height: 500px;
+    width: 600px;
+    object-fit: contain;
+}
+
+.edit-window-image{
+    object-fit: contain;
+}
