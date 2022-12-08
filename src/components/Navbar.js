@@ -37,6 +37,22 @@ function Navbar() {
         return alert("로그아웃 되었습니다!")
     }
 
+    //끌어올리기
+    const reraise = () => {
+        axios
+        .put("api/votes/reraise", {params:
+            {
+                userID: sessionStorage.getItem("loginID")
+            }
+        })
+        .then((response) => {
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
 
     const fetchUserDataLoad = () => {
         axios
@@ -103,6 +119,9 @@ function Navbar() {
                         <button onClick={isClickMenu} className="menu__button">
                             <AiOutlineMenu className="menu__icon"/>
                         </button>
+                    </div>
+                    <div className="menu__container">
+                        <button onClick={reraise} className="sign_in_up_button">끌어올리기</button>
                     </div>
                     <div className="log__container">
                         <Link to="/">

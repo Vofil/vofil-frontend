@@ -1,29 +1,19 @@
 import frame from "../assets/Instagram_Post_Frame.png"
-import imageSource from "../assets/image1.jpg"
 import "./Position.css"
 
-function InstaPostFrame(sourceImg) {
+function InstaPostFrame(props) {
+    const {sourceImg} = props;
 
     return(
-        <div className="insta__parent">
-            <img src={frame}/>
-            <div className="insta__child">
-                <img src={imageSource}/>
+        <div className="insta__post">
+            <div className="insta__post__parent">
+                <img src={frame}/>
+                <div className="insta__post__child">
+                    <img src={sourceImg} className="insta__post__img"/>
+                </div>
             </div>
         </div>
     );
 }
 
 export default InstaPostFrame;
-
-
-//<img alt="image" src={require(`${sourceImg}`).default}/>
-
-
-
-<div style="position: relative;">
-            <img src={frame}/>
-            <div style="position: absolute; top: 50px; left: 50px;">
-                <img src={imageSource}/>
-            </div>
-        </div>

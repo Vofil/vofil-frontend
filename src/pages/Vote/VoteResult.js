@@ -45,9 +45,10 @@ function VoteResult() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    // 투표 제목, 투표 종류
+    // 투표 제목, 투표 종류, 사진 용도
     const [feeling, setFeeling] = useState("");
     const [kind, setKind] = useState(-1);
+    const [category, setCategory] = useState("");
 
     // 사진 이미지
     const [image1, setImage1] = useState("");
@@ -96,6 +97,8 @@ function VoteResult() {
             else{
                 setKind("태그 투표")
             }
+
+            setCategory(response.data.categorying)
 
         })
         .catch((error) => {
@@ -278,7 +281,12 @@ function VoteResult() {
                     { image1 != "" &&
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
-                                <InstaPostFrame sourceImg={image1}/>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image1}/>}
+                                { category == "인스타프사" && <InstaPostFrame sourceImg={image1}/>}
+                                { category == "카톡프사" && <InstaPostFrame sourceImg={image1}/>}
+                                { category == "카톡배사" && <InstaPostFrame sourceImg={image1}/>}
+                                { category == "트위터프사" && <InstaPostFrame sourceImg={image1}/>}
+                                { category == "트위터헤더" && <InstaPostFrame sourceImg={image1}/>}
                             </div>
                             <div className="voteresult__cnt">{re1}</div>
                         </div>
@@ -286,7 +294,7 @@ function VoteResult() {
                     { image2 != "" &&
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
-                                <img alt="image" src={image2}/>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image2}/>}
                             </div>
                             <div className="voteresult__cnt">{re2}</div>
                         </div>
@@ -294,7 +302,7 @@ function VoteResult() {
                     { image3 != "" &&
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
-                                <img alt="image" src={image3}/>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image3}/>}
                             </div>
                             <div className="voteresult__cnt">{re3}</div>
                         </div>
@@ -302,7 +310,7 @@ function VoteResult() {
                     { image4 != "" &&
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
-                                <img alt="image" src={image4}/>
+                                { category == "인스타게시물" && <InstaPostFrame sourceImg={image4}/>}
                             </div>
                             <div className="voteresult__cnt">{re4}</div>
                         </div>

@@ -1,12 +1,60 @@
-.insta__parent {
+.insta__post{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 500px;
+    height: 424px;
+
+    //background-color: gray;
+}
+
+.insta__post__parent {
     position: relative;
 }
 
-.insta__child {
-    height: 250px;
-    width: 200px;
+.insta__post__child {
+    height: 235px;
+    width: 235px;
 
     position: absolute;
-    top: 50px;
-    left: 50px;
+    top: 73px;
+    left: 8px;
+}
+
+.insta__post__img {
+    width: 235px;
+    height: 235px;
+    object-fit: cover;
+}
+
+
+.kakao__back{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 500px;
+    height: 424px;
+
+    //background-color: gray;
+}
+
+.kakao__back__parent {
+    position: relative;
+}
+
+.kakao__back__child {
+    height: 235px;
+    width: 235px;
+
+    position: absolute;
+    top: 73px;
+    left: 8px;
+}
+
+.kakao__back__img {
+    width: 235px;
+    height: 235px;
+    object-fit: cover;
 }
