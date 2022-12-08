@@ -607,33 +607,262 @@ function VoteResult() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="voteresult__tag">태그 분석 </div>
+                            { (kind == "태그 투표") &&
+                                <div className="voteresult__tag">
+                                    {tagRe1 != null &&
+                                        tagRe1.map( x => (
+                                            <div className="voteresult__agepercentageBox">
+                                                <div>{x.name}</div>
+                                                <div>{x.percentage}</div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
                         </div>
                     }
                     { image2 != "" &&
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
                                 { category == "인스타게시물" && <InstaPostFrame sourceImg={image2}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image2}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image2}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image2}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image2}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image2}/>}
                             </div>
-                            <div className="voteresult__cnt">{re2}</div>
+                            <div className="voteresult__analBox">
+                                <div className="voteresult__cnt">{re2}</div>
+                                <div className="voteresult__agegenderBox">
+                                    <div className="voteresult__gender">
+                                        {voteReGender2 != null &&
+                                            voteReGender2.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__age">
+                                        {voteReAge2 != null &&
+                                            voteReAge2.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                                <div className="voteresult__nickBox">
+                                    <div className="voteresult__nick">
+                                        {voteReTitle12 != null &&
+                                            voteReTitle12.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__nick">
+                                        {voteReTitle22 != null &&
+                                            voteReTitle22.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__nick">
+                                        {voteReTitle32 != null &&
+                                            voteReTitle32.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            { (kind == "태그 투표") &&
+                                <div className="voteresult__tag">
+                                    {tagRe2 != null &&
+                                        tagRe2.map( x => (
+                                            <div className="voteresult__agepercentageBox">
+                                                <div>{x.name}</div>
+                                                <div>{x.percentage}</div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
                         </div>
                     }
                     { image3 != "" &&
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
                                 { category == "인스타게시물" && <InstaPostFrame sourceImg={image3}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image3}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image3}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image3}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image3}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image3}/>}
                             </div>
-                            <div className="voteresult__cnt">{re3}</div>
+                            <div className="voteresult__analBox">
+                                <div className="voteresult__cnt">{re3}</div>
+                                <div className="voteresult__agegenderBox">
+                                    <div className="voteresult__gender">
+                                        {voteReGender3 != null &&
+                                            voteReGender3.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__age">
+                                        {voteReAge3 != null &&
+                                            voteReAge3.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                                <div className="voteresult__nickBox">
+                                    <div className="voteresult__nick">
+                                        {voteReTitle13 != null &&
+                                            voteReTitle13.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__nick">
+                                        {voteReTitle23 != null &&
+                                            voteReTitle23.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__nick">
+                                        {voteReTitle33 != null &&
+                                            voteReTitle33.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            { (kind == "태그 투표") &&
+                                <div className="voteresult__tag">
+                                    {tagRe3 != null &&
+                                        tagRe3.map( x => (
+                                            <div className="voteresult__agepercentageBox">
+                                                <div>{x.name}</div>
+                                                <div>{x.percentage}</div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
                         </div>
                     }
                     { image4 != "" &&
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
                                 { category == "인스타게시물" && <InstaPostFrame sourceImg={image4}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image4}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image4}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image4}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image4}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image4}/>}
                             </div>
-                            <div className="voteresult__cnt">{re4}</div>
+                            <div className="voteresult__analBox">
+                                <div className="voteresult__cnt">{re4}</div>
+                                <div className="voteresult__agegenderBox">
+                                    <div className="voteresult__gender">
+                                        {voteReGender1 != null &&
+                                            voteReGender1.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__age">
+                                        {voteReAge4 != null &&
+                                            voteReAge4.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                                <div className="voteresult__nickBox">
+                                    <div className="voteresult__nick">
+                                        {voteReTitle14 != null &&
+                                            voteReTitle14.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__nick">
+                                        {voteReTitle24 != null &&
+                                            voteReTitle24.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__nick">
+                                        {voteReTitle34 != null &&
+                                            voteReTitle34.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            { (kind == "태그 투표") &&
+                                <div className="voteresult__tag">
+                                    {tagRe4 != null &&
+                                        tagRe4.map( x => (
+                                            <div className="voteresult__agepercentageBox">
+                                                <div>{x.name}</div>
+                                                <div>{x.percentage}</div>
+                                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
                         </div>
-
                     }
                 </div>
             </div>
