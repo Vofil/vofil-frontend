@@ -156,12 +156,41 @@ function VoteListMPage() {
         })
     }
 
+    //끌어올리기
+    const reraise = () => {
+        axios
+        .get("api/votes/reraise", {params:
+            {
+                userId: sessionStorage.getItem("loginID")
+            }
+        })
+        .then((response) => {
+            console.log("끌어올리기: " + response.data)
+            if(response.data == -1){
+                alert("끌어올릴 수 있는 투표가 없어요..")
+            }
+            else if(response.data == -50){
+                alert("포인트가 부족해요..")
+            }
+            else{
+                alert("투표를 끌어 올렸습니다!")
+            }
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
 
     return (
         <div>
             <div className="main__page">
                 <div className="vote_category2">
-                    <div className="vote_category__title">내가 만든 투표</div>
+                    <div className="vote_category__title">
+                        내가 만든 투표
+                        <button onClick={reraise} className="button">끌어올리기</button>
+                    </div>
                     {sessionStorage.getItem("loginID") != null &&
                         <div className="vote__list__container2">
                             {voteData != null &&

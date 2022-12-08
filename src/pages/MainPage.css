@@ -112,3 +112,20 @@
 .radio__hidden__vote {
     visibility: hidden;
 }
+
+.button{
+    width: 130px;
+    height: 40px;
+
+    margin-left: 850px;
+    margin-bottom: 10px;
+
+    background-color: rgb(122, 204, 185);
+    color: rgb(255, 255, 255);
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border-color: rgb(122, 204, 185);
+    border-radius: 40px;
+}
