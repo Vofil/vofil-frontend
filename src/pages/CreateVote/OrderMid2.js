@@ -6,6 +6,12 @@ import Modal from 'react-awesome-modal';
 import EditPicturesPage from "../EditPicturesPage";
 import "./modal.css";
 import "./OrderMid2.css";
+import InstaPostFrame from "../../Frame/InstaPostFrame"
+import InstaProfileFrame from "../../Frame/InstaProfileFrame"
+import KakaoBackFrame from "../../Frame/KakaoBackFrame"
+import KakaoProfileFrame from "../../Frame/KakaoProfileFrame"
+import TwitterBackFrame from "../../Frame/TwitterBackFrame"
+import TwitterProfileFrame from "../../Frame/TwitterProfileFrame"
 
 
 function EditPicModal({vote_id, pic_cnt, reNum, onImageCroppedToOrderMid2}) {
@@ -55,6 +61,9 @@ function OrderMid2() {
     // EditPicturePage에 전해줄 reNum 상태 관리
     const [reNum, setReNum] = useState(0);
 
+    // 카테고리
+    const [category, setCategory] = useState("");
+
     // 버튼 비활성화 상태 관리
     const [disable1, setDisable1] = useState(false);
     const [disable2, setDisable2] = useState(false);
@@ -75,6 +84,29 @@ function OrderMid2() {
 
     //페이지 이동 함수
     const navigate = useNavigate();
+
+    // axios를 통해 사진 불러오기
+    const fetchVote = async () => {
+        // 제목 로드
+        axios
+        .get("api/votes/confirm", { params:
+            {
+                id: voteID
+            }
+        })
+        .then((response) => {
+            setCategory(response.data.categorying)
+            console.log(response.data.categorying)
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    };
+
+    useEffect(() => {
+        fetchVote();
+    }, []);
 
     // picCnt에 따른 버튼 비활성화
     const fetchButtonDisabled = async () => {
@@ -144,67 +176,83 @@ function OrderMid2() {
                 <div className="createvote__mid__head">
                     8. 사진을 추가해주세요!
                 </div>
-                <div className="createvote__content">
-                    <div className="add__photo1">
-                        { croppedImage1 == null ?
-                            <button onClick={onPlusPic1Handler} disabled={disable1} className="createvote__b">
-                                <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
-                            </button>
-                            : <img alt="croppedImg" src={croppedImage1} />
-                        }
-                        {visible1 === true ?
-                            <EditPicModal
-                                vote_id={voteID}
-                                reNum={reNum}
-                                onImageCroppedToOrderMid2={(croppedImage1) => setCroppedImage1(croppedImage1)}
-                            /> : null
-                        }
-                    </div>
-                    <div className="add__photo2">
-                        { croppedImage2 == null ?
-                            <button onClick={onPlusPic2Handler} disabled={disable1} className="createvote__b">
-                                <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
-                            </button>
-                            : <img alt="croppedImg" src={croppedImage2} />
-                        }
-                        {visible2 === true ?
-                            <EditPicModal
-                                vote_id={voteID}
-                                reNum={reNum}
-                                onImageCroppedToOrderMid2={(croppedImage2) => setCroppedImage2(croppedImage2)}
-                            /> : null
-                        }
-                    </div>
-                    <div className="add__photo3">
-                        { croppedImage3 == null ?
-                            <button onClick={onPlusPic3Handler} disabled={disable3} className="createvote__b">
-                                <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
-                            </button>
-                            : <img alt="croppedImg" src={croppedImage3} />
-                        }
-                        {visible3 === true ?
-                            <EditPicModal
-                                vote_id={voteID}
-                                reNum={reNum}
-                                onImageCroppedToOrderMid2={(croppedImage3) => setCroppedImage3(croppedImage3)}
-                            /> : null
-                        }
-                    </div>
-                    <div className="add__photo4">
-                        { croppedImage4 == null ?
-                            <button onClick={onPlusPic4Handler} disabled={disable4} className="createvote__b">
-                                <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
-                            </button>
-                            : <img alt="croppedImg" src={croppedImage4} />
-                        }
-                        {visible4 === true ?
-                            <EditPicModal
-                                vote_id={voteID}
-                                reNum={reNum}
-                                onImageCroppedToOrderMid2={(croppedImage4) => setCroppedImage4(croppedImage4)}
-                            /> : null
-                        }
-                    </div>
+                <div className="num-box">
+                    <button onClick={onPlusPic1Handler} disabled={disable1} className={'createvote__b_' + (disable1 ? 'dis' : 'active')}>1</button>
+                    <button onClick={onPlusPic2Handler} disabled={disable2} className={'createvote__b_' + (disable2 ? 'dis' : 'active')}>2</button>
+                    <button onClick={onPlusPic3Handler} disabled={disable3} className={'createvote__b_' + (disable3 ? 'dis' : 'active')}>3</button>
+                    <button onClick={onPlusPic4Handler} disabled={disable4} className={'createvote__b_' + (disable4 ? 'dis' : 'active')}>4</button>
+                </div>
+                <div>
+                    {visible1 === true ?
+                        <EditPicModal
+                            vote_id={voteID}
+                            reNum={reNum}
+                            onImageCroppedToOrderMid2={(croppedImage1) => setCroppedImage1(croppedImage1)}
+                        /> : null
+                    }
+                    {visible2 === true ?
+                        <EditPicModal
+                            vote_id={voteID}
+                            reNum={reNum}
+                            onImageCroppedToOrderMid2={(croppedImage2) => setCroppedImage2(croppedImage2)}
+                        /> : null
+                    }
+                    {visible3 === true ?
+                        <EditPicModal
+                            vote_id={voteID}
+                            reNum={reNum}
+                            onImageCroppedToOrderMid2={(croppedImage3) => setCroppedImage3(croppedImage3)}
+                        /> : null
+                    }
+                    {visible4 === true ?
+                        <EditPicModal
+                            vote_id={voteID}
+                            reNum={reNum}
+                            onImageCroppedToOrderMid2={(croppedImage4) => setCroppedImage4(croppedImage4)}
+                        /> : null
+                    }
+                </div>
+                <div className="sample-container">
+                    {disable1 == false &&
+                        <div className="sample">
+                            { category == "인스타게시물" && <InstaPostFrame sourceImg={croppedImage1} />}
+                            { category == "인스타프사" && <InstaProfileFrame sourceImg={croppedImage1}/>}
+                            { category == "카톡프사" && <KakaoProfileFrame sourceImg={croppedImage1}/>}
+                            { category == "카톡배사" && <KakaoBackFrame sourceImg={croppedImage1}/>}
+                            { category == "트위터프사" && <TwitterProfileFrame sourceImg={croppedImage1}/>}
+                            { category == "트위터헤더" && <TwitterBackFrame sourceImg={croppedImage1}/>}
+                        </div>
+                    }
+                    {disable2 == false &&
+                        <div className="sample">
+                            { category == "인스타게시물" && <InstaPostFrame sourceImg={croppedImage2} />}
+                            { category == "인스타프사" && <InstaProfileFrame sourceImg={croppedImage2}/>}
+                            { category == "카톡프사" && <KakaoProfileFrame sourceImg={croppedImage2}/>}
+                            { category == "카톡배사" && <KakaoBackFrame sourceImg={croppedImage2}/>}
+                            { category == "트위터프사" && <TwitterProfileFrame sourceImg={croppedImage2}/>}
+                            { category == "트위터헤더" && <TwitterBackFrame sourceImg={croppedImage2}/>}
+                        </div>
+                    }
+                    {disable3 == false &&
+                        <div className="sample">
+                            { category == "인스타게시물" && <InstaPostFrame sourceImg={croppedImage3} />}
+                            { category == "인스타프사" && <InstaProfileFrame sourceImg={croppedImage3}/>}
+                            { category == "카톡프사" && <KakaoProfileFrame sourceImg={croppedImage3}/>}
+                            { category == "카톡배사" && <KakaoBackFrame sourceImg={croppedImage3}/>}
+                            { category == "트위터프사" && <TwitterProfileFrame sourceImg={croppedImage3}/>}
+                            { category == "트위터헤더" && <TwitterBackFrame sourceImg={croppedImage3}/>}
+                        </div>
+                    }
+                    {disable4 == false &&
+                        <div className="sample">
+                            { category == "인스타게시물" && <InstaPostFrame sourceImg={croppedImage4} />}
+                            { category == "인스타프사" && <InstaProfileFrame sourceImg={croppedImage4}/>}
+                            { category == "카톡프사" && <KakaoProfileFrame sourceImg={croppedImage4}/>}
+                            { category == "카톡배사" && <KakaoBackFrame sourceImg={croppedImage4}/>}
+                            { category == "트위터프사" && <TwitterProfileFrame sourceImg={croppedImage4}/>}
+                            { category == "트위터헤더" && <TwitterBackFrame sourceImg={croppedImage4}/>}
+                        </div>
+                    }
                 </div>
                 <div className="createvote__button__container2">
                     <button onClick={onSubmitHandler} className="createvote__button">생성하기</button>
@@ -216,3 +264,68 @@ function OrderMid2() {
 }
 
 export default OrderMid2;
+
+
+
+//<div className="createvote__content">
+//        <div className="add__photo1">
+//            { croppedImage1 == null ?
+//                <button onClick={onPlusPic1Handler} disabled={disable1} className="createvote__b">
+//                    1
+//                </button>
+//                : <img alt="croppedImg" src={croppedImage1} />
+//            }
+//            {visible1 === true ?
+//                <EditPicModal
+//                    vote_id={voteID}
+//                    reNum={reNum}
+//                    onImageCroppedToOrderMid2={(croppedImage1) => setCroppedImage1(croppedImage1)}
+//                /> : null
+//            }
+//        </div>
+//        <div className="add__photo2">
+//            { croppedImage2 == null ?
+//                <button onClick={onPlusPic2Handler} disabled={disable1} className="createvote__b">
+//                    <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+//                </button>
+//                : <img alt="croppedImg" src={croppedImage2} />
+//            }
+//            {visible2 === true ?
+//                <EditPicModal
+//                    vote_id={voteID}
+//                    reNum={reNum}
+//                    onImageCroppedToOrderMid2={(croppedImage2) => setCroppedImage2(croppedImage2)}
+//                /> : null
+//            }
+//        </div>
+//        <div className="add__photo3">
+//            { croppedImage3 == null ?
+//                <button onClick={onPlusPic3Handler} disabled={disable3} className="createvote__b">
+//                    <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+//                </button>
+//                : <img alt="croppedImg" src={croppedImage3} />
+//            }
+//            {visible3 === true ?
+//                <EditPicModal
+//                    vote_id={voteID}
+//                    reNum={reNum}
+//                    onImageCroppedToOrderMid2={(croppedImage3) => setCroppedImage3(croppedImage3)}
+//                /> : null
+//            }
+//        </div>
+//        <div className="add__photo4">
+//            { croppedImage4 == null ?
+//                <button onClick={onPlusPic4Handler} disabled={disable4} className="createvote__b">
+//                    <BsPlusCircleFill color="rgb(122, 204, 185)" size="100%"/>
+//                </button>
+//                : <img alt="croppedImg" src={croppedImage4} />
+//            }
+//            {visible4 === true ?
+//                <EditPicModal
+//                    vote_id={voteID}
+//                    reNum={reNum}
+//                    onImageCroppedToOrderMid2={(croppedImage4) => setCroppedImage4(croppedImage4)}
+//                /> : null
+//            }
+//        </div>
+//    </div>
