@@ -67,17 +67,29 @@
 }
 
 .voteresult__votelist{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    //display: flex;
+    //align-items: center;
+    //justify-content: center;
 
     margin-top: 20px;
+
 
 
 }
 
 .voteresult__vote{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 1200px;
+    height: 440px;
+
     margin: 5px;
+
+    border-width: 1px;
+    border-style: solid;
+    border-color: gray;
 
 }
 
@@ -86,16 +98,25 @@
     align-items: center;
     justify-content: center;
 
-    width: 250px;
+    width: 500px;
     height: 430px;
 
-    border-width: 1px;
+    border-width: 2px;
     border-style: solid;
-    border-color: gray;
+    border-color: red;
+}
+
+.voteresult__analBox{
+    width: 500px;
+    height: 430px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: blue;
 }
 
 .voteresult__cnt{
-    width: 250px;
+    width: 500px;
     height: 50px;
 
     display: flex;
@@ -105,4 +126,79 @@
     font-size: 20px;
     font-weight: 700;
 
+    border-width: 2px;
+    border-style: solid;
+    border-color: purple;
+
 }
+
+.voteresult__agegenderBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 500px;
+    height: 100px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: purple;
+}
+
+.voteresult__agepercentageBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.voteresult__gender{
+    width: 250px;
+    height: 100px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: yellow;
+}
+
+.voteresult__age{
+    width: 250px;
+    height: 100px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: green;
+}
+
+.voteresult__nickBox{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 500px;
+    height: 270px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: pink;
+}
+
+.voteresult__nick{
+    width: 166px;
+    height: 270px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}
+
+.voteresult__tag {
+    width: 200px;
+    height: 450px;
+
+    border-width: 2px;
+    border-style: solid;
+    border-color: yellow;
+}
+
+
+

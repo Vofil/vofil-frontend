@@ -173,7 +173,7 @@ function MainPage() {
     }, []);
 
     useEffect(() => {
-        setLatestVotes(customVotes2)
+        setLatestVotes(latestVotes2)
     },[tmpBlobL])
 
     // 맞춤 투표 데이터 저장하기

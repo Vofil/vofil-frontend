@@ -9,7 +9,7 @@ function KakaoBackFrame(props) {
             <div className="kakao__back__parent">
                 <img src={sourceImg} className="kakao__back__img"/>
                 <div className="kakao__back__child">
-                    <img src={frame}/>
+                    <img src={frame} className="kakao__back__frame" />
                 </div>
             </div>
         </div>

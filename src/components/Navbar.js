@@ -40,12 +40,13 @@ function Navbar() {
     //끌어올리기
     const reraise = () => {
         axios
-        .put("api/votes/reraise", {params:
+        .get("api/votes/reraise", {params:
             {
-                userID: sessionStorage.getItem("loginID")
+                userId: sessionStorage.getItem("loginID")
             }
         })
         .then((response) => {
+            console.log("끌어올리기: " + response.data)
             console.log('well done!')
         })
         .catch((error) => {

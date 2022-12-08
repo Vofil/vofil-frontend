@@ -1,8 +1,14 @@
 import axios from 'axios';
 import {useNavigate, useLocation} from "react-router-dom";
 import {React, useState, useEffect} from 'react'
+import PieChartComponent from "./PieChartComponent"
 import "./VoteResult.css"
 import InstaPostFrame from "../../Frame/InstaPostFrame"
+import InstaProfileFrame from "../../Frame/InstaProfileFrame"
+import KakaoBackFrame from "../../Frame/KakaoBackFrame"
+import KakaoProfileFrame from "../../Frame/KakaoProfileFrame"
+import TwitterBackFrame from "../../Frame/TwitterBackFrame"
+import TwitterProfileFrame from "../../Frame/TwitterProfileFrame"
 
 // 투표 참여 후 투표 결과 페이지
 // 투표 참여한 사람만 볼 수 있음
@@ -63,10 +69,37 @@ function VoteResult() {
     const [re4, setRE4] = useState(0);
 
     // 투표 결과 분석
-    let [voteReGender1, setVoteReGender1] = useState([])
-    let [voteReGender2, setVoteReGender2] = useState([])
-    let [voteReGender3, setVoteReGender3] = useState([])
-    let [voteReGender4, setVoteReGender4] = useState([])
+    const [voteReGender1, setVoteReGender1] = useState([])
+    const [voteReGender2, setVoteReGender2] = useState([])
+    const [voteReGender3, setVoteReGender3] = useState([])
+    const [voteReGender4, setVoteReGender4] = useState([])
+
+    const [voteReAge1, setVoteReAge1] = useState([])
+    const [voteReAge2, setVoteReAge2] = useState([])
+    const [voteReAge3, setVoteReAge3] = useState([])
+    const [voteReAge4, setVoteReAge4] = useState([])
+
+    const [voteReTitle11, setVoteReTitle11] = useState([])
+    const [voteReTitle12, setVoteReTitle12] = useState([])
+    const [voteReTitle13, setVoteReTitle13] = useState([])
+    const [voteReTitle14, setVoteReTitle14] = useState([])
+
+    const [voteReTitle21, setVoteReTitle21] = useState([])
+    const [voteReTitle22, setVoteReTitle22] = useState([])
+    const [voteReTitle23, setVoteReTitle23] = useState([])
+    const [voteReTitle24, setVoteReTitle24] = useState([])
+
+    const [voteReTitle31, setVoteReTitle31] = useState([])
+    const [voteReTitle32, setVoteReTitle32] = useState([])
+    const [voteReTitle33, setVoteReTitle33] = useState([])
+    const [voteReTitle34, setVoteReTitle34] = useState([])
+
+    const [tagRe1, setTagRe1] = useState([])
+    const [tagRe2, setTagRe2] = useState([])
+    const [tagRe3, setTagRe3] = useState([])
+    const [tagRe4, setTagRe4] = useState([])
+
+
 
     // 투표 사진 데이터 저장하기(feeling, kind)
     const fetchVoteInfo = async () => {
@@ -220,7 +253,7 @@ function VoteResult() {
         fetchVoteRe();
     }, []);
 
-    // 투표 결과 분석
+    // 투표 결과 분석 - 성별
     const fetchVoteGender = async () => {
         getGenderRe(1)
         getGenderRe(2)
@@ -265,6 +298,235 @@ function VoteResult() {
         fetchVoteGender();
     }, []);
 
+    //투표 결과 분석 - 연령
+    const fetchVoteAge = async () => {
+        getAgeRe(1)
+        getAgeRe(2)
+        getAgeRe(3)
+        getAgeRe(4)
+    };
+
+    const getAgeRe = (_cnt) => {
+        axios
+        .get("api/votes/graphAge", { params:
+            {
+                id: voteID,
+                cnt: _cnt
+            }
+        })
+        .then((response) => {
+            if(_cnt == 1){
+                console.log(response.data)
+                setVoteReAge1(response.data)
+            }
+            else if(_cnt == 2){
+                console.log(response.data)
+                setVoteReAge2(response.data)
+            }
+            else if(_cnt == 3){
+                console.log(response.data)
+                setVoteReAge3(response.data)
+            }
+            else{
+                console.log(response.data)
+                setVoteReAge4(response.data)
+            }
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
+    useEffect(() => {
+        fetchVoteAge();
+    }, []);
+
+    //투표 결과 분석 - 칭호 kind1
+    const fetchVoteTitle1 = async () => {
+        getTitleRe1(1)
+        getTitleRe1(2)
+        getTitleRe1(3)
+        getTitleRe1(4)
+    };
+
+    const getTitleRe1 = (_cnt) => {
+        axios
+        .get("api/votes/graphNick", { params:
+            {
+                id: voteID,
+                cnt: _cnt,
+                kind: 1
+            }
+        })
+        .then((response) => {
+            if(_cnt == 1){
+                console.log(response.data)
+                setVoteReTitle11(response.data)
+            }
+            else if(_cnt == 2){
+                console.log(response.data)
+                setVoteReTitle12(response.data)
+            }
+            else if(_cnt == 3){
+                console.log(response.data)
+                setVoteReTitle13(response.data)
+            }
+            else{
+                console.log(response.data)
+                setVoteReTitle14(response.data)
+            }
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
+    useEffect(() => {
+        fetchVoteTitle1();
+    }, []);
+
+    //투표 결과 분석 - 칭호 kind2
+    const fetchVoteTitle2 = async () => {
+        getTitleRe2(1)
+        getTitleRe2(2)
+        getTitleRe2(3)
+        getTitleRe2(4)
+    };
+
+    const getTitleRe2 = (_cnt) => {
+        axios
+        .get("api/votes/graphNick", { params:
+            {
+                id: voteID,
+                cnt: _cnt,
+                kind: 2
+            }
+        })
+        .then((response) => {
+            if(_cnt == 1){
+                console.log(response.data)
+                setVoteReTitle21(response.data)
+            }
+            else if(_cnt == 2){
+                console.log(response.data)
+                setVoteReTitle22(response.data)
+            }
+            else if(_cnt == 3){
+                console.log(response.data)
+                setVoteReTitle23(response.data)
+            }
+            else{
+                console.log(response.data)
+                setVoteReTitle24(response.data)
+            }
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
+    useEffect(() => {
+        fetchVoteTitle2();
+    }, []);
+
+    //투표 결과 분석 - 칭호 kind3
+    const fetchVoteTitle3 = async () => {
+        getTitleRe3(1)
+        getTitleRe3(2)
+        getTitleRe3(3)
+        getTitleRe3(4)
+    };
+
+    const getTitleRe3 = (_cnt) => {
+        axios
+        .get("api/votes/graphNick", { params:
+            {
+                id: voteID,
+                cnt: _cnt,
+                kind: 3
+            }
+        })
+        .then((response) => {
+            if(_cnt == 1){
+                console.log(response.data)
+                setVoteReTitle31(response.data)
+            }
+            else if(_cnt == 2){
+                console.log(response.data)
+                setVoteReTitle32(response.data)
+            }
+            else if(_cnt == 3){
+                console.log(response.data)
+                setVoteReTitle33(response.data)
+            }
+            else{
+                console.log(response.data)
+                setVoteReTitle34(response.data)
+            }
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
+    useEffect(() => {
+        fetchVoteTitle3();
+    }, []);
+
+
+    //투표 태그 결과 분석
+    const fetchTagRe = async () => {
+        getTagRe(1)
+        getTagRe(2)
+        getTagRe(3)
+        getTagRe(4)
+    };
+
+    const getTagRe = (_cnt) => {
+        axios
+        .get("api/votes/tagGraph", { params:
+            {
+                id: voteID,
+                cnt: _cnt,
+            }
+        })
+        .then((response) => {
+            if(_cnt == 1){
+                console.log(response.data)
+                setTagRe1(response.data)
+            }
+            else if(_cnt == 2){
+                console.log(response.data)
+                setTagRe2(response.data)
+            }
+            else if(_cnt == 3){
+                console.log(response.data)
+                setTagRe3(response.data)
+            }
+            else{
+                console.log(response.data)
+                setTagRe4(response.data)
+            }
+
+            console.log('well done!')
+        })
+        .catch((error) => {
+            console.log('An error occurred:', error.response);
+        })
+    }
+
+    useEffect(() => {
+        fetchTagRe();
+    }, []);
+
     return(
         <div className="voteresult">
             <div className="voteresult__center">
@@ -282,13 +544,70 @@ function VoteResult() {
                         <div className="voteresult__vote">
                             <div className="voteresult__img">
                                 { category == "인스타게시물" && <InstaPostFrame sourceImg={image1}/>}
-                                { category == "인스타프사" && <InstaPostFrame sourceImg={image1}/>}
-                                { category == "카톡프사" && <InstaPostFrame sourceImg={image1}/>}
-                                { category == "카톡배사" && <InstaPostFrame sourceImg={image1}/>}
-                                { category == "트위터프사" && <InstaPostFrame sourceImg={image1}/>}
-                                { category == "트위터헤더" && <InstaPostFrame sourceImg={image1}/>}
+                                { category == "인스타프사" && <InstaProfileFrame sourceImg={image1}/>}
+                                { category == "카톡프사" && <KakaoProfileFrame sourceImg={image1}/>}
+                                { category == "카톡배사" && <KakaoBackFrame sourceImg={image1}/>}
+                                { category == "트위터프사" && <TwitterProfileFrame sourceImg={image1}/>}
+                                { category == "트위터헤더" && <TwitterBackFrame sourceImg={image1}/>}
                             </div>
-                            <div className="voteresult__cnt">{re1}</div>
+                            <div className="voteresult__analBox">
+                                <div className="voteresult__cnt">{re1}</div>
+                                <div className="voteresult__agegenderBox">
+                                    <div className="voteresult__gender">
+                                        {voteReGender1 != null &&
+                                            voteReGender1.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__age">
+                                        {voteReAge1 != null &&
+                                            voteReAge1.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                                <div className="voteresult__nickBox">
+                                    <div className="voteresult__nick">
+                                        {voteReTitle11 != null &&
+                                            voteReTitle11.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__nick">
+                                        {voteReTitle21 != null &&
+                                            voteReTitle21.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                    <div className="voteresult__nick">
+                                        {voteReTitle31 != null &&
+                                            voteReTitle31.map( x => (
+                                                <div className="voteresult__agepercentageBox">
+                                                    <div>{x.name}</div>
+                                                    <div>{x.percentage}</div>
+                                                </div>
+                                            ))
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="voteresult__tag">태그 분석 </div>
                         </div>
                     }
                     { image2 != "" &&
@@ -316,14 +635,6 @@ function VoteResult() {
                         </div>
 
                     }
-                    {voteReGender1 != null &&
-                        voteReGender1.map( x => (
-                            <div>
-                                <div>{x.name}</div>
-                                <div>{x.percentage}</div>
-                            </div>
-                        ))
-                    }
                 </div>
             </div>
         </div>
@@ -331,3 +642,11 @@ function VoteResult() {
 }
 
 export default VoteResult;
+
+
+
+//<PieChartComponent
+//                                            title={"투표 연령"}
+//                                            description={"연령에 따른 투표 분석"}
+//                                            analData={voteReGender1}
+//                                        />
