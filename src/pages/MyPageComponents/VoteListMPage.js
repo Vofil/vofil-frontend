@@ -187,8 +187,8 @@ function VoteListMPage() {
         <div>
             <div className="main__page">
                 <div className="vote_category2">
-                    <div className="vote_category__title">
-                        내가 만든 투표
+                    <div className="vote_category__title2">
+                        <div className="title-font">내가 만든 투표</div>
                         <button onClick={reraise} className="button">끌어올리기</button>
                     </div>
                     {sessionStorage.getItem("loginID") != null &&

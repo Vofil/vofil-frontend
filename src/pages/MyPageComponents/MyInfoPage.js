@@ -1,5 +1,9 @@
 import {React, useState, useEffect} from 'react';
+import {FaBirthdayCake} from "react-icons/fa";
+import {BsCoin, BsGenderAmbiguous, BsTrophy} from "react-icons/bs";
+import {RiEmotionHappyLine} from "react-icons/ri";
 import axios from 'axios';
+import "../MainPage.css"
 
 function MyInfoPage() {
     // 받아온 데이터 저장
@@ -42,16 +46,38 @@ function MyInfoPage() {
     }, []);
 
     return (
-        <div>
-            <h2>내 정보</h2>
-            <ul>
-                <li>닉네임: {name}</li>
-                <li>아이디: {user_id}</li>
-                <li>생일: {birth}</li>
-                <li>성별: {gender}</li>
-                <li>칭호: {title}</li>
-                <li>포인트: {point}</li>
-            </ul>
+        <div className="main__page">
+            <div className="myinfo_wrapper">
+                <div className="vote_category__title">내 정보</div>
+                <div className="my-info">
+                    <div className="header">
+                        <div className="profile-image"><RiEmotionHappyLine className="profile-icon"/></div>
+                        <div className="nicname">{name}</div>
+                        <div className="text-id">{user_id}</div>
+                    </div>
+                    <div className="detail-info">
+                        <div className="detail-info-box">
+                            <div className="icon-container"><BsTrophy className="icon"/></div>
+                            {(title == null) ?
+                                <div className="text-detail-info">아직 칭호가 없네요😅</div>
+                                : <div className="text-detail-info">{title}</div>
+                            }
+                        </div>
+                        <div className="detail-info-box">
+                            <div className="icon-container"><BsCoin className="icon"/></div>
+                            <div className="text-detail-info">{point}</div>
+                        </div>
+                        <div className="detail-info-box">
+                            <div className="icon-container"><FaBirthdayCake className="icon"/></div>
+                            <div className="text-detail-info">{birth}</div>
+                        </div>
+                        <div className="detail-info-box">
+                            <div className="icon-container"><BsGenderAmbiguous className="icon"/></div>
+                            <div className="text-detail-info">{gender}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
