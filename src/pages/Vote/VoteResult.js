@@ -575,8 +575,8 @@ function VoteResult() {
                         <div className="voteresult__vote">
                             <div className="voteresult__analBox">
                                 <div className="voteresult__graph__box">
-                                    {c1 == 1 && <AgeChart data={voteReAge1}/>}
-                                    {c2 == 1 && <GenderChart data={voteReGender1}/>}
+                                    {c1 == 1 && <AgeChart _data={voteReAge1}/>}
+                                    {c2 == 1 && <GenderChart _data={voteReGender1}/>}
                                     {c3 == 1 && <TitleChart data1={voteReTitle11} data2={voteReTitle21} data3={voteReTitle31}/>}
                                 </div>
                             </div>
