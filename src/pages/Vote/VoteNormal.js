@@ -215,7 +215,7 @@ function VoteNormal({voteID}) {
         // 투표 결과 페이지로
         navigate("/vote_result", {
             state: {
-                id: Vid
+                id: voteID
             }
         })
     }
