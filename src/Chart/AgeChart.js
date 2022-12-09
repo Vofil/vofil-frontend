@@ -21,8 +21,8 @@ function AgeChart(data) {
                 data={data}
                 cx={230}
                 cy={190}
-                innerRadius={40}
-                outerRadius={80}
+                innerRadius={70}
+                outerRadius={140}
                 fill="#8884d8"
                 label
             />

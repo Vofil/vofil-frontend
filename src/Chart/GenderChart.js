@@ -18,8 +18,8 @@ function GenderChart(data) {
                 data={data}
                 cx={230}
                 cy={190}
-                innerRadius={40}
-                outerRadius={80}
+                innerRadius={70}
+                outerRadius={140}
                 fill="#ffea00"
                 label
             />
