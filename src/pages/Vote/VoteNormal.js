@@ -207,26 +207,19 @@ function VoteNormal({voteID}) {
         })
         .then((response) => {
             console.log('well done!')
-            navigate("/");
         })
         .catch((error) => {
             console.log('An error occurred:', error.response);
         })
 
-//        axios
-//        .get("api/votes/update", {params:
-//            {
-//                id: voteID
-//            }
-//        })
-//        .then((response) => {
-//            console.log('well done!')
-//            return alert('제출되었습니다~^^')
-//        })
-//        .catch((error) => {
-//            console.log('An error occurred:', error.response);
-//        })
+        // 투표 결과 페이지로
+        navigate("/vote_result", {
+            state: {
+                id: Vid
+            }
+        })
     }
+
 
 
     return(
