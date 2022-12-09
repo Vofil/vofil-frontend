@@ -593,7 +593,7 @@ function VoteResult() {
                                     { category == "트위터헤더" && <TwitterBackFrame sourceImg={image1}/>}
                                 </div>
                                 <div className="voteresult__tag">
-                                    <TagChart data={tagRe1}/>
+                                    <TagChart _data={tagRe1}/>
                                 </div>
                             </div>
                         }
@@ -608,7 +608,7 @@ function VoteResult() {
                                     { category == "트위터헤더" && <TwitterBackFrame sourceImg={image2}/>}
                                 </div>
                                 <div className="voteresult__tag">
-                                    <TagChart data={tagRe2}/>
+                                    <TagChart _data={tagRe2}/>
                                 </div>
                             </div>
                         }
@@ -623,7 +623,7 @@ function VoteResult() {
                                     { category == "트위터헤더" && <TwitterBackFrame sourceImg={image3}/>}
                                 </div>
                                 <div className="voteresult__tag">
-                                    <TagChart data={tagRe3}/>
+                                    <TagChart _data={tagRe3}/>
                                 </div>
                             </div>
                         }
@@ -638,7 +638,7 @@ function VoteResult() {
                                     { category == "트위터헤더" && <TwitterBackFrame sourceImg={image4}/>}
                                 </div>
                                 <div className="voteresult__tag">
-                                    <TagChart data={tagRe4}/>
+                                    <TagChart _data={tagRe4}/>
                                 </div>
                             </div>
                         }
@@ -678,8 +678,8 @@ function VoteResult() {
                                 </div>
                                 <div className="voteresult__analBox">
                                     <div className="voteresult__graph__box">
-                                        {c1 == 1 && <AgeChart data={voteReAge1}/>}
-                                        {c2 == 1 && <GenderChart data={voteReGender1}/>}
+                                        {c1 == 1 && <AgeChart _data={voteReAge1}/>}
+                                        {c2 == 1 && <GenderChart _data={voteReGender1}/>}
                                         {c3 == 1 && <TitleChart data1={voteReTitle11} data2={voteReTitle21} data3={voteReTitle31}/>}
                                     </div>
                                     <div className="voteresult__cnt">총 득표 수: {re1}</div>
@@ -698,8 +698,8 @@ function VoteResult() {
                                 </div>
                                 <div className="voteresult__analBox">
                                     <div className="voteresult__graph__box">
-                                        {c1 == 1 && <AgeChart data={voteReAge2}/>}
-                                        {c2 == 1 && <GenderChart data={voteReGender2}/>}
+                                        {c1 == 1 && <AgeChart _data={voteReAge2}/>}
+                                        {c2 == 1 && <GenderChart _data={voteReGender2}/>}
                                         {c3 == 1 && <TitleChart data1={voteReTitle12} data2={voteReTitle22} data3={voteReTitle32}/>}
                                     </div>
                                     <div className="voteresult__cnt">총 득표 수: {re2}</div>
@@ -718,8 +718,8 @@ function VoteResult() {
                                 </div>
                                 <div className="voteresult__analBox">
                                     <div className="voteresult__graph__box">
-                                        {c1 == 1 && <AgeChart data={voteReAge3}/>}
-                                        {c2 == 1 && <GenderChart data={voteReGender3}/>}
+                                        {c1 == 1 && <AgeChart _data={voteReAge3}/>}
+                                        {c2 == 1 && <GenderChart _data={voteReGender3}/>}
                                         {c3 == 1 && <TitleChart data1={voteReTitle13} data2={voteReTitle23} data3={voteReTitle33}/>}
                                     </div>
                                     <div className="voteresult__cnt">총 득표 수: {re3}</div>
@@ -738,8 +738,8 @@ function VoteResult() {
                                 </div>
                                 <div className="voteresult__analBox">
                                     <div className="voteresult__graph__box">
-                                        {c1 == 1 && <AgeChart data={voteReAge4}/>}
-                                        {c2 == 1 && <GenderChart data={voteReGender4}/>}
+                                        {c1 == 1 && <AgeChart _data={voteReAge4}/>}
+                                        {c2 == 1 && <GenderChart _data={voteReGender4}/>}
                                         {c3 == 1 && <TitleChart data1={voteReTitle14} data2={voteReTitle24} data3={voteReTitle34}/>}
                                     </div>
                                     <div className="voteresult__cnt">총 득표 수: {re4}</div>

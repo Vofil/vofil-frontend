@@ -11,14 +11,14 @@ const dumyage =[
     },
 ];
 
-function AgeChart(data) {
+function AgeChart({_data}) {
 
     return (
         <PieChart width={1000} height={760} background-color="red">
             <Pie
                 dataKey="percentage"
                 isAnimationActive={true}
-                data={data}
+                data={_data}
                 cx={230}
                 cy={190}
                 innerRadius={70}

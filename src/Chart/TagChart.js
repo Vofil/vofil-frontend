@@ -1,23 +1,13 @@
 import { PieChart, Pie, Legend, Tooltip } from "recharts";
 
-const dumyage =[
-    {
-        name: "남자",
-        percentage: 30
-    },
-    {
-        name: "여자",
-        percentage: 70
-    },
-];
 
-function TagChart(data) {
+function TagChart({_data}) {
     return (
         <PieChart width={1000} height={760} background-color="red">
             <Pie
                 dataKey="percentage"
                 isAnimationActive={true}
-                data={data}
+                data={_data}
                 cx={190}
                 cy={200}
                 innerRadius={70}
