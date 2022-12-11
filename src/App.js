@@ -1,9 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import Navbar from './components/Navbar';
-import Main from './routes/Main';
-import Login from './routes/Login';
-import Register from './routes/Register';
 import MainPage from './pages/MainPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
